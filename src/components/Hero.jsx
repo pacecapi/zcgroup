@@ -1,265 +1,277 @@
-import React from 'react';
-import { Star, Check } from 'lucide-react';
-import heroImage from '../assets/hero.png';
+import React, { useState, useEffect } from 'react';
+import { Star, ArrowRight, ArrowLeft } from 'lucide-react';
+import heroImage1 from '../assets/hero.png';
+import heroImage2 from '../assets/hero_solar.png';
 
 const Hero = () => {
-    return (
-        <section className="hero">
-            <div className="hero-background">
-                <img src={heroImage} alt="Modern Scandinavian Interior" />
-                <div className="hero-overlay"></div>
+  const settings = {
+    slideDuration: 5000,
+  };
+
+  const images = [heroImage1, heroImage2];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, settings.slideDuration);
+    return () => clearInterval(timer);
+  }, [images.length, settings.slideDuration]);
+
+  const nextSlide = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+
+  return (
+    <section className="hero">
+      <div className="hero-grid">
+        {/* Left Column: Text */}
+        <div className="hero-text-content">
+          <div className="text-wrapper">
+            <div className="white-box-overlay"> {/* Placeholder for the blurred text effect if needed, mostly clean white bg now */}
+              <div className="title-placeholder-blur">
+                {/* Simulating the blurred title in the screenshot if we don't have exact text, 
+                               but let's use a real title that fits the description */}
+                <h1 className="hero-title">
+                  Tid för det som är viktigt.
+                </h1>
+              </div>
+
+              <p className="hero-desc">
+                Professionella tjänster inom städning och solcellsmontage.
+                Vi hjälper både privatpersoner och företag med pålitliga och kvalitativa tjänster.
+                Välj det tjänst som passar ditt behov.
+              </p>
             </div>
 
-            <div className="container hero-content">
-                <div className="hero-text">
-                    <div className="badge">
-                        <span className="badge-text">JUST NU!</span>
-                        <span className="badge-offer">50% rabatt på första städningen</span>
-                    </div>
-
-                    <h1 className="hero-title">
-                        Mer tid.<br />
-                        Mer Hemfrid.
-                    </h1>
-
-                    <p className="hero-subtitle">
-                        <span className="keyword">Tryggt.</span>
-                        <span className="dot">•</span>
-                        <span className="keyword">Flexibelt.</span>
-                        <span className="dot">•</span>
-                        <span className="keyword">Enkelt.</span>
-                    </p>
-
-                    <div className="conversion-box">
-                        <div className="input-group">
-                            <label>Postnummer</label>
-                            <input type="text" placeholder="123 45" />
-                        </div>
-                        <div className="input-group">
-                            <label>Tjänst</label>
-                            <select>
-                                <option>Hemstädning</option>
-                                <option>Storstädning</option>
-                                <option>Fönsterputs</option>
-                            </select>
-                        </div>
-                        <button className="btn btn-primary hero-cta">
-                            Se pris & boka
-                        </button>
-                    </div>
-
-                    <p className="promo-note">* Gäller nya kunder vid tecknande av abonnemang.</p>
-
-                    <div className="trustpilot-widget">
-                        <div className="tp-stars">
-                            <div className="star-box"><Star fill="white" size={16} /></div>
-                            <div className="star-box"><Star fill="white" size={16} /></div>
-                            <div className="star-box"><Star fill="white" size={16} /></div>
-                            <div className="star-box"><Star fill="white" size={16} /></div>
-                            <div className="star-box"><Star fill="white" size={16} /></div>
-                        </div>
-                        <div className="tp-text">
-                            <strong>Excellent</strong> 4.8 out of 5 based on 2,300+ reviews on <span className="tp-logo">Trustpilot</span>
-                        </div>
-                    </div>
-                </div>
+            <div className="short-data-section">
+              <div className="short-data-item">
+                <Star size={20} fill="black" />
+                <span>4.8/5 Trustpilot</span>
+              </div>
+              <div className="short-data-item">
+                <span>50,000+ Kunder</span>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <style>{`
+        {/* Right Column: Image Carousel */}
+        <div className="hero-image-content">
+          <div className="carousel-container">
+            {images.map((img, index) => (
+              <div
+                key={index}
+                className={`carousel-slide ${index === currentImageIndex ? 'active' : ''}`}
+                style={{ backgroundImage: `url(${img})` }}
+              ></div>
+            ))}
+
+            <button className="carousel-nav prev" onClick={prevSlide}>
+              <ArrowLeft size={32} color="white" />
+            </button>
+            <button className="carousel-nav next" onClick={nextSlide}>
+              <ArrowRight size={32} color="white" />
+            </button>
+
+            {/* Blue Badge Overlay */}
+            <div className="blue-badge">
+              <span className="badge-title">JUST NU!</span>
+              <span className="badge-desc">Boka hemstädning -<br />Storstädning på köpet*</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
         .hero {
-          position: relative;
-          height: 90vh;
-          min-height: 600px;
-          display: flex;
-          align-items: center;
           margin-top: 80px; /* Header height */
+          min-height: 500px;
+          height: calc(100vh - 80px);
+          max-height: 700px;
+          background-color: var(--color-bg-white);
           overflow: hidden;
         }
 
-        .hero-background {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: -1;
+        .hero-grid {
+            display: flex;
+            height: 100%;
         }
 
-        .hero-background img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+        .hero-text-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            position: relative;
+            z-index: 10;
         }
 
-        .hero-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
-        }
-
-        .hero-content {
-          position: relative;
-          z-index: 1;
-        }
-
-        .hero-text {
-          max-width: 600px;
-        }
-
-        .badge {
-          display: inline-flex;
-          align-items: center;
-          background: white;
-          padding: 0.25rem 0.75rem;
-          border-radius: var(--radius-full);
-          margin-bottom: 2rem;
-          box-shadow: var(--shadow-sm);
-          border: 1px solid var(--color-primary-light);
-        }
-
-        .badge-text {
-          background: var(--color-accent);
-          color: var(--color-text-main);
-          font-weight: 700;
-          font-size: 0.75rem;
-          padding: 0.25rem 0.5rem;
-          border-radius: var(--radius-sm);
-          margin-right: 0.75rem;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-
-        .badge-offer {
-          font-size: 0.9rem;
-          font-weight: 500;
-          color: var(--color-text-secondary);
+        .text-wrapper {
+            max-width: 500px;
         }
 
         .hero-title {
-          font-size: 4.5rem;
-          line-height: 1.1;
-          font-weight: 800;
-          color: var(--color-text-main);
-          margin-bottom: 1.5rem;
-          letter-spacing: -0.03em;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--color-text-main);
+            /* Simulating the blurred out heavy title in screenshot */
+            font-weight: 800;
+        }
+        
+        .hero-desc {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: #f9f9f9; /* Subtle box effect behind text like screenshot */
+            border-radius: var(--radius-md);
         }
 
-        .hero-subtitle {
-          font-size: 1.5rem;
-          color: var(--color-text-secondary);
-          margin-bottom: 3rem;
-          font-weight: 400;
+        .short-data-section {
+            display: flex;
+            gap: 2rem;
+            border-top: 1px solid var(--color-border);
+            padding-top: 2rem;
+        }
+        
+        .short-data-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
 
-        .keyword {
-          color: var(--color-primary);
-          font-weight: 600;
+        .hero-image-content {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
         }
 
-        .dot {
-          margin: 0 0.5rem;
-          color: #ccc;
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
         }
 
-        .conversion-box {
-          background: white;
-          padding: 1.5rem;
-          border-radius: var(--radius-lg);
-          box-shadow: var(--shadow-lg);
-          display: flex;
-          gap: 1rem;
-          flex-wrap: wrap;
-          align-items: flex-end;
-          margin-bottom: 1rem;
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
-        .input-group {
-          flex: 1;
-          min-width: 150px;
+        .carousel-slide.active {
+            opacity: 1;
         }
 
-        .input-group label {
-          display: block;
-          font-size: 0.8rem;
-          font-weight: 600;
-          color: var(--color-text-secondary);
-          margin-bottom: 0.5rem;
-          text-transform: uppercase;
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 20;
+            padding: 1rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .carousel-nav:hover {
+            opacity: 1;
         }
 
-        .input-group input, .input-group select {
-          width: 100%;
-          padding: 0.75rem;
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-md);
-          font-size: 1rem;
-          background: var(--color-bg-offwhite);
-          transition: border-color 0.2s;
+        .carousel-nav.prev {
+            left: 1rem;
         }
-
-        .input-group input:focus, .input-group select:focus {
-          outline: none;
-          border-color: var(--color-primary);
+        
+        .carousel-nav.next {
+            right: 1rem;
         }
-
-        .hero-cta {
-          padding: 0.75rem 2rem;
-          height: 48px; /* Match input height roughly */
-          font-weight: 600;
-        }
-
-        .promo-note {
-          font-size: 0.8rem;
-          color: var(--color-text-light);
-          margin-bottom: 3rem;
-          font-style: italic;
-        }
-
-        .trustpilot-widget {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-        }
-
-        .tp-stars {
-          display: flex;
-          gap: 2px;
-        }
-
-        .star-box {
-          background: #00b67a;
-          padding: 2px;
-        }
-
-        .tp-text {
-          font-size: 0.9rem;
-          color: var(--color-text-main);
-        }
-
-        @media (max-width: 768px) {
-          .hero-title {
-            font-size: 3rem;
-          }
-          
-          .conversion-box {
+        
+        /* Blue Circle Badge */
+        .blue-badge {
+            position: absolute;
+            top: 50%;
+            left: 10%; /* Positioning it slightly inside the image area */
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: 250px;
+            background-color: #2563EB; /* Bright royal blue */
+            border-radius: 50%;
+            display: flex;
             flex-direction: column;
-            align-items: stretch;
-          }
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            z-index: 30;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+            animation: float 6s ease-in-out infinite;
+        }
 
-          .hero-background img {
-            object-position: 70% center; 
-          }
-           
-          .hero-overlay {
-            background: rgba(255,255,255,0.85); /* More opacity on mobile to read text */
-          }
+        .badge-title {
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .badge-desc {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) translateY(0px); }
+            50% { transform: translate(-50%, -50%) translateY(-10px); }
+            100% { transform: translate(-50%, -50%) translateY(0px); }
+        }
+
+        @media (max-width: 992px) {
+            .hero-grid {
+                flex-direction: column-reverse;
+                height: auto;
+                max-height: none;
+            }
+            .hero-image-content {
+                height: 400px;
+            }
+            .hero-text-content {
+                padding: 2rem;
+            }
+            .blue-badge {
+                width: 180px;
+                height: 180px;
+                left: 50%;
+                top: 50%;
+            }
+            .badge-title {
+                font-size: 1.2rem;
+            }
+            .badge-desc {
+                font-size: 0.8rem;
+            }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Hero;

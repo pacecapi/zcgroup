@@ -1,40 +1,31 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronDown, Globe, User } from 'lucide-react';
+import { Menu, X, Globe, User } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Städning', items: ['Hemstädning', 'Storstädning', 'Fönsterputs', 'Flyttstädning'] },
-    { name: 'Trädgård', items: ['Trädgårdshjälp', 'Vår- och höststädning', 'Semesterservice'] },
-    { name: 'Fler tjänster', items: ['Hantverkshjälp', 'Bärhjälp', 'Återvinning'] },
-    { name: 'Företag', items: ['Kontorsstädning', 'BRF', 'Löneförmån'] },
-    { name: 'Vi är Hemfrid', items: ['Om oss', 'Kontakt', 'Karriär', 'FAQ'] },
+    { name: 'VÅRA TJÄNSTER', link: '#' },
+    { name: 'OM OSS', link: '#' },
+    { name: 'KONTAKTA OSS', link: '#' }
   ];
 
   return (
     <header className="header">
       <div className="container header-container">
         <div className="logo-section">
+          {/* Logo updated to be more visual if needed, currently text based on previous request */}
           <a href="/" className="logo">Hemfrid.</a>
         </div>
 
         {/* Desktop Nav */}
         <nav className="desktop-nav">
           <ul className="nav-list">
-            {navItems.map((category) => (
-              <li key={category.name} className="nav-item group">
-                <button className="nav-link">
-                  {category.name}
-                  <ChevronDown size={14} className="chevron" />
-                </button>
-                <div className="mega-menu">
-                  <ul>
-                    {category.items.map((item) => (
-                      <li key={item}><a href="#">{item}</a></li>
-                    ))}
-                  </ul>
-                </div>
+            {navItems.map((item) => (
+              <li key={item.name} className="nav-item">
+                <a href={item.link} className="nav-link">
+                  {item.name}
+                </a>
               </li>
             ))}
           </ul>
@@ -42,13 +33,10 @@ const Header = () => {
 
         <div className="header-actions">
           <button className="lang-btn">
-            <Globe size={18} />
-            <span>SV</span>
+            <span className="lang-active">SV</span>
+            <span className="lang-sep">|</span>
+            <span className="lang-inactive">EN</span>
           </button>
-          <a href="#" className="login-link">
-            <User size={18} />
-            <span>Logga in</span>
-          </a>
           <button className="mobile-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X /> : <Menu />}
           </button>
@@ -58,16 +46,11 @@ const Header = () => {
       {/* Mobile Nav */}
       {isMenuOpen && (
         <div className="mobile-nav">
-          {navItems.map((category) => (
-            <div key={category.name} className="mobile-group">
-              <div className="mobile-group-title">{category.name}</div>
-              <ul>
-                {category.items.map((item) => (
-                  <li key={item}><a href="#">{item}</a></li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <ul>
+            {navItems.map((item) => (
+              <li key={item.name}><a href={item.link}>{item.name}</a></li>
+            ))}
+          </ul>
         </div>
       )}
 
@@ -77,13 +60,13 @@ const Header = () => {
           top: 0;
           left: 0;
           right: 0;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(10px);
+          background: white;
           z-index: 1000;
-          border-bottom: 1px solid var(--color-border);
           height: 80px;
           display: flex;
           align-items: center;
+          border-bottom: 1px solid transparent; 
+          /* Removing border for cleaner look as per screenshot, or keeping it subtle. */
         }
 
         .header-container {
@@ -96,8 +79,9 @@ const Header = () => {
         .logo {
           font-size: 1.5rem;
           font-weight: 700;
-          color: var(--color-primary);
+          color: var(--color-primary); /* Keeping the green/teal logo color */
           letter-spacing: -0.05em;
+          /* If user wants an image logo, we'd replace this, but text is fine for now matching 'Hemfrid' style */
         }
 
         .desktop-nav {
@@ -106,65 +90,20 @@ const Header = () => {
 
         .nav-list {
           display: flex;
-          gap: 2rem;
+          gap: 3rem;
           list-style: none;
         }
 
         .nav-link {
-          display: flex;
-          align-items: center;
-          gap: 0.25rem;
-          font-weight: 500;
-          color: var(--color-text-main);
-          font-size: 0.95rem;
-          padding: 1rem 0;
-        }
-
-        .nav-link:hover {
-          color: var(--color-primary);
-        }
-
-        .nav-item {
-          position: relative;
-        }
-
-        .mega-menu {
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          transform: translateX(-50%) translateY(10px);
-          background: white;
-          padding: 1.5rem;
-          border-radius: var(--radius-md);
-          box-shadow: var(--shadow-lg);
-          min-width: 200px;
-          opacity: 0;
-          visibility: hidden;
-          transition: all 0.2s ease;
-          border: 1px solid var(--color-border);
-        }
-
-        .nav-item:hover .mega-menu {
-          opacity: 1;
-          visibility: visible;
-          transform: translateX(-50%) translateY(0);
-        }
-
-        .mega-menu ul {
-          list-style: none;
-        }
-
-        .mega-menu li {
-          margin-bottom: 0.75rem;
-        }
-
-        .mega-menu a {
-          color: var(--color-text-secondary);
-          font-size: 0.9rem;
+          font-weight: 700;
+          color: var(--color-text-light); /* Lighter grey for menu items */
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
           transition: color 0.2s;
         }
 
-        .mega-menu a:hover {
+        .nav-link:hover {
           color: var(--color-primary);
         }
 
@@ -174,13 +113,35 @@ const Header = () => {
           gap: 1.5rem;
         }
 
-        .lang-btn, .login-link {
+        .lang-btn {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: var(--color-text-main);
+          background: #000033; /* Dark background for SV based on screenshot? Or just black text. */
+          /* Screenshot shows SV in a dark box. Let's approximate that style. */
           display: flex;
           align-items: center;
-          gap: 0.5rem;
-          font-weight: 500;
-          font-size: 0.9rem;
-          color: var(--color-text-main);
+          gap: 4px;
+        }
+        
+        /* Specific style for language selector to match screenshot approx */
+        .lang-btn {
+            background: none;
+            color: #ccc;
+        }
+        
+        .lang-active {
+            background-color: #000040; /* Dark Blue/Black */
+            color: white;
+            padding: 2px 4px;
+            font-size: 0.75rem;
+            border-radius: 2px;
+        }
+
+        .lang-inactive {
+            color: #999;
+             font-size: 0.75rem;
+             padding: 2px 4px;
         }
         
         .mobile-toggle {
@@ -195,31 +156,29 @@ const Header = () => {
           background: white;
           padding: 2rem;
           border-bottom: 1px solid var(--color-border);
-          max-height: calc(100vh - 80px);
-          overflow-y: auto;
+          box-shadow: var(--shadow-md);
         }
 
-        .mobile-group {
-          margin-bottom: 2rem;
-        }
-
-        .mobile-group-title {
-          font-weight: 700;
-          margin-bottom: 1rem;
-          color: var(--color-primary);
-        }
-
-        .mobile-group ul {
+        .mobile-nav ul {
           list-style: none;
         }
 
-        .mobile-group li {
-          margin-bottom: 0.75rem;
+        .mobile-nav li {
+          margin-bottom: 1.5rem;
+        }
+        
+        .mobile-nav a {
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
         }
 
         @media (min-width: 992px) {
           .desktop-nav {
             display: block;
+            position: absolute; /* Center the nav */
+            left: 50%;
+            transform: translateX(-50%);
           }
           .mobile-toggle {
             display: none;
