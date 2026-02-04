@@ -3,44 +3,44 @@ import { CheckCircle } from 'lucide-react';
 import appMockup from '../assets/app-mockup.png';
 
 const AppSection = () => {
-    const features = [
-        'Se dina bokningar',
-        'Boka med timbank',
-        'Avboka & omboka smidigt',
-        'Uppdatera städinstruktioner',
-        'Lämna omdömen',
-        'Hantera fakturor',
-        'Få personliga erbjudanden',
-        'Tips & guider'
-    ];
+  const features = [
+    'Se dina bokningar',
+    'Boka med timbank',
+    'Avboka & omboka smidigt',
+    'Uppdatera städinstruktioner',
+    'Lämna omdömen',
+    'Hantera fakturor',
+    'Få personliga erbjudanden',
+    'Tips & guider'
+  ];
 
-    return (
-        <section className="section app-section">
-            <div className="container app-container">
-                <div className="app-content">
-                    <h2 className="section-title title-left">Allt du behöver på ett ställe</h2>
-                    <p className="app-text">
-                        Som kund hos Hemfrid får du tillgång till vår smidiga app. Här samlar vi allt som rör ditt hem, så att du kan lägga tiden på annat.
-                    </p>
+  return (
+    <section className="section app-section">
+      <div className="container app-container">
+        <div className="app-content">
+          <h2 className="section-title title-left">Allt du behöver på ett ställe</h2>
+          <p className="app-text">
+            Som kund hos Z&C Group får du tillgång till vår smidiga app. Här samlar vi allt som rör ditt hem, så att du kan lägga tiden på annat.
+          </p>
 
-                    <ul className="features-list">
-                        {features.map((feature, index) => (
-                            <li key={index} className="feature-item">
-                                <CheckCircle size={20} className="feature-icon" />
-                                <span>{feature}</span>
-                            </li>
-                        ))}
-                    </ul>
+          <ul className="features-list">
+            {features.map((feature, index) => (
+              <li key={index} className="feature-item">
+                <CheckCircle size={20} className="feature-icon" />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
 
-                    <button className="btn btn-primary app-btn">Läs mer om appen</button>
-                </div>
+          <button className="btn btn-primary app-btn">Läs mer om appen</button>
+        </div>
 
-                <div className="app-image">
-                    <img src={appMockup} alt="Hemfrid App" />
-                </div>
-            </div>
+        <div className="app-image">
+          <img src={appMockup} alt="Z&C Group App" />
+        </div>
+      </div>
 
-            <style>{`
+      <style>{`
         .app-section {
           background-color: var(--color-bg-light-grey);
           overflow: hidden;
@@ -109,8 +109,8 @@ const AppSection = () => {
           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default AppSection;

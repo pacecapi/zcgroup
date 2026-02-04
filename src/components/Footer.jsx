@@ -11,13 +11,13 @@ const Footer = () => {
           <div className="footer-col">
             <h4>{t('nav.services')}</h4>
             <ul>
-              <li><a href="#">{t('services.solar.title')}</a></li>
-              <li><a href="#">{t('services.cleaning.title')}</a></li>
-              <li><a href="#">{t('services.deepCleaning.title')}</a></li>
-              <li><a href="#">{t('services.window.title')}</a></li>
-              <li><a href="#">{t('services.moving.title')}</a></li>
-              <li><a href="#">{t('services.garden.title')}</a></li>
-              <li><a href="#">{t('services.office.title')}</a></li>
+              <li><a href="/solar-projects">{t('services.solar.title')}</a></li>
+              <li><a href="/tjanster/hemstadning">{t('services.cleaning.title')}</a></li>
+              <li><a href="/tjanster/storstadning">{t('services.deepCleaning.title')}</a></li>
+              <li><a href="/tjanster/fonsterputs">{t('services.window.title')}</a></li>
+              <li><a href="/tjanster/flyttstadning">{t('services.moving.title')}</a></li>
+              <li><a href="/tjanster/kontorsstadning">{t('services.office.title')}</a></li>
+              <li><a href="/tjanster/trappstadning">{t('services.staircase.title')}</a></li>
             </ul>
           </div>
 

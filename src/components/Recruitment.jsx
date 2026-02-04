@@ -2,31 +2,31 @@ import React from 'react';
 import { Users, Briefcase, ArrowRight } from 'lucide-react';
 
 const Recruitment = () => {
-    return (
-        <section className="section recruitment-section">
-            <div className="container recruitment-container">
-                <div className="recruitment-text">
-                    <h2 className="section-title title-left white-text">Vill du jobba på Hemfrid?</h2>
-                    <p className="recruitment-desc white-text">
-                        Vi söker ständigt efter nya stjärnor. Oavsett om du vill städa, fixa i trädgården eller jobba på kontoret.
-                    </p>
-                    <div className="roles-list">
-                        <div className="role-tag">Hemstädare</div>
-                        <div className="role-tag">Fönsterputsare</div>
-                        <div className="role-tag">Flyttstädare</div>
-                        <div className="role-tag">Kundtjänst</div>
-                        <div className="role-tag">Säljare</div>
-                    </div>
-                    <button className="btn btn-secondary mt-4">
-                        Besök vår karriärsida <ArrowRight size={16} style={{ marginLeft: '0.5rem' }} />
-                    </button>
-                </div>
-                <div className="recruitment-icon">
-                    <Users size={120} color="rgba(255,255,255,0.2)" />
-                </div>
-            </div>
+  return (
+    <section className="section recruitment-section">
+      <div className="container recruitment-container">
+        <div className="recruitment-text">
+          <h2 className="section-title title-left white-text">Vill du jobba på Z&C Group?</h2>
+          <p className="recruitment-desc white-text">
+            Vi söker ständigt efter nya stjärnor. Oavsett om du vill städa, fixa i trädgården eller jobba på kontoret.
+          </p>
+          <div className="roles-list">
+            <div className="role-tag">Hemstädare</div>
+            <div className="role-tag">Fönsterputsare</div>
+            <div className="role-tag">Flyttstädare</div>
+            <div className="role-tag">Kundtjänst</div>
+            <div className="role-tag">Säljare</div>
+          </div>
+          <button className="btn btn-secondary mt-4">
+            Besök vår karriärsida <ArrowRight size={16} style={{ marginLeft: '0.5rem' }} />
+          </button>
+        </div>
+        <div className="recruitment-icon">
+          <Users size={120} color="rgba(255,255,255,0.2)" />
+        </div>
+      </div>
 
-            <style>{`
+      <style>{`
         .recruitment-section {
           background-color: var(--color-primary);
           color: white;
@@ -78,8 +78,8 @@ const Recruitment = () => {
           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Recruitment;

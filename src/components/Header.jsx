@@ -113,7 +113,7 @@ const Header = () => {
           right: 0;
           background: white;
           z-index: 1000;
-          height: 110px;
+          height: 140px; /* Increased from 110px */
           display: flex;
           align-items: center;
           border-bottom: 1px solid transparent; 
@@ -130,7 +130,7 @@ const Header = () => {
 
         .logo-link {
           display: block;
-          height: 95px;
+          height: 130px; /* Adjusted to fit within 140px header with padding */
         }
 
         .logo-img {
