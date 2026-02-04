@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Globe, User } from 'lucide-react';
+import logo from '../assets/logo.jpg';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,8 +15,9 @@ const Header = () => {
     <header className="header">
       <div className="container header-container">
         <div className="logo-section">
-          {/* Logo updated to be more visual if needed, currently text based on previous request */}
-          <a href="/" className="logo">Hemfrid.</a>
+          <a href="/" className="logo-link">
+            <img src={logo} alt="Z&C Group" className="logo-img" />
+          </a>
         </div>
 
         {/* Desktop Nav */}
@@ -62,11 +64,11 @@ const Header = () => {
           right: 0;
           background: white;
           z-index: 1000;
-          height: 80px;
+          height: 90px;
           display: flex;
           align-items: center;
           border-bottom: 1px solid transparent; 
-          /* Removing border for cleaner look as per screenshot, or keeping it subtle. */
+          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .header-container {
@@ -76,12 +78,15 @@ const Header = () => {
           width: 100%;
         }
 
-        .logo {
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: var(--color-primary); /* Keeping the green/teal logo color */
-          letter-spacing: -0.05em;
-          /* If user wants an image logo, we'd replace this, but text is fine for now matching 'Hemfrid' style */
+        .logo-link {
+          display: block;
+          height: 70px; /* Adjust based on logo aspect ratio */
+        }
+
+        .logo-img {
+          height: 100%;
+          width: auto;
+          object-fit: contain;
         }
 
         .desktop-nav {
