@@ -10,6 +10,7 @@ import Testimonials from './components/Testimonials';
 import Recruitment from './components/Recruitment';
 import Footer from './components/Footer';
 import SolarProjects from './pages/SolarProjects';
+import ServiceDetail from './pages/ServiceDetail';
 import { LanguageProvider } from './context/LanguageContext';
 
 // Home Page Component
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/solar-projects" element={<SolarProjects />} />
+          <Route path="/tjanster/:slug" element={<ServiceDetail />} />
         </Routes>
       </Router>
     </LanguageProvider>

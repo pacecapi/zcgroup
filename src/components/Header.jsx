@@ -8,14 +8,14 @@ const Header = () => {
   const { language, setLanguage, t } = useLanguage();
 
   const cleaningServices = [
-    { key: 'moving', name: 'Flyttstädning' },
-    { key: 'deepCleaning', name: 'Storstädning' },
-    { key: 'cleaning', name: 'Hemstädning' },
-    { key: 'visning', name: 'Visningsstädning' },
-    { key: 'window', name: 'Fönsterputs' },
-    { key: 'office', name: 'Kontorsstädning' },
-    { key: 'construction', name: 'Byggstädning' },
-    { key: 'staircase', name: 'Trappstädning' },
+    { key: 'moving', slug: 'flyttstadning' },
+    { key: 'deepCleaning', slug: 'storstädning' },
+    { key: 'cleaning', slug: 'hemstadning' },
+    { key: 'visning', slug: 'visningsstadning' },
+    { key: 'window', slug: 'fonsterputs' },
+    { key: 'office', slug: 'kontorsstadning' },
+    { key: 'construction', slug: 'byggstadning' },
+    { key: 'staircase', slug: 'trappstadning' },
   ];
 
   return (
@@ -40,7 +40,7 @@ const Header = () => {
                     <h5>{t('services.cleaningServicesHeader')}</h5>
                     <ul>
                       {cleaningServices.map((service) => (
-                        <li key={service.key}><a href="#">{t(`services.${service.key}.title`)}</a></li>
+                        <li key={service.key}><a href={`/tjanster/${service.slug}`}>{t(`services.${service.key}.title`)}</a></li>
                       ))}
                     </ul>
                   </div>
@@ -93,9 +93,9 @@ const Header = () => {
             <li>
               <span className="mobile-nav-header">{t('nav.services')}</span>
               <ul className="mobile-subnav">
-                <li><a href="#">{t('services.solar.title')}</a></li>
+                <li><a href="/solar-projects">{t('services.solar.title')}</a></li>
                 {cleaningServices.map((service) => (
-                  <li key={service.key}><a href="#">{t(`services.${service.key}.title`)}</a></li>
+                  <li key={service.key}><a href={`/tjanster/${service.slug}`}>{t(`services.${service.key}.title`)}</a></li>
                 ))}
               </ul>
             </li>

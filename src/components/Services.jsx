@@ -10,7 +10,7 @@ const Services = () => {
       title: t('services.solar.title'),
       desc: t('services.solar.desc'),
       icon: <Sun size={32} />,
-      link: '#',
+      link: '/solar-projects',
       color: 'var(--color-brand-yellow)',
       bg: 'rgba(255, 210, 0, 0.1)'
     },
@@ -18,43 +18,43 @@ const Services = () => {
       title: t('services.cleaning.title'),
       desc: t('services.cleaning.desc'),
       icon: <Home size={32} />,
-      link: '#'
+      link: '/tjanster/hemstadning'
     },
     {
       title: t('services.deepCleaning.title'),
       desc: t('services.deepCleaning.desc'),
       icon: <Sparkles size={32} />,
-      link: '#'
+      link: '/tjanster/storstadning'
     },
     {
       title: t('services.window.title'),
       desc: t('services.window.desc'),
       icon: <Wind size={32} />,
-      link: '#'
+      link: '/tjanster/fonsterputs'
     },
     {
       title: t('services.moving.title'),
       desc: t('services.moving.desc'),
       icon: <Truck size={32} />,
-      link: '#'
+      link: '/tjanster/flyttstadning'
     },
     {
       title: t('services.garden.title'),
       desc: t('services.garden.desc'),
       icon: <Shovel size={32} />,
-      link: '#'
+      link: '#' // No specific page for garden help yet, but could be added
     },
     {
       title: t('services.office.title'),
       desc: t('services.office.desc'),
       icon: <Briefcase size={32} />,
-      link: '#'
+      link: '/tjanster/kontorsstadning'
     },
     {
       title: t('services.brf.title'),
       desc: t('services.brf.desc'),
       icon: <Building2 size={32} />,
-      link: '#'
+      link: '/tjanster/trappstadning'
     }
   ];
 
