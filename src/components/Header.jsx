@@ -100,7 +100,7 @@ const Header = () => {
           right: 0;
           background: white;
           z-index: 1000;
-          height: 90px;
+          height: 110px;
           display: flex;
           align-items: center;
           border-bottom: 1px solid transparent; 
@@ -117,7 +117,7 @@ const Header = () => {
 
         .logo-link {
           display: block;
-          height: 70px;
+          height: 95px;
         }
 
         .logo-img {
@@ -139,7 +139,7 @@ const Header = () => {
 
         .nav-item {
             position: relative;
-            height: 90px;
+            height: 110px;
             display: flex;
             align-items: center;
         }
@@ -304,7 +304,7 @@ const Header = () => {
 
         .mobile-nav {
           position: absolute;
-          top: 90px;
+          top: 110px;
           left: 0;
           right: 0;
           background: white;

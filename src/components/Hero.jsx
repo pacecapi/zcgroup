@@ -94,9 +94,9 @@ const Hero = () => {
 
       <style>{`
         .hero {
-          margin-top: 80px; /* Header height */
+          margin-top: 110px; /* Header height */
           min-height: 500px;
-          height: calc(100vh - 80px);
+          height: calc(100vh - 110px);
           max-height: 700px;
           background-color: var(--color-primary);
           overflow: hidden;

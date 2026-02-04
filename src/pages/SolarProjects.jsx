@@ -56,7 +56,7 @@ const SolarProjects = () => {
 
             <style>{`
                 .solar-hero {
-                    margin-top: 90px;
+                    margin-top: 110px;
                     background-color: var(--color-brand-blue); 
                     color: white;
                     padding: 6rem 0;
