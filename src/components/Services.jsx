@@ -62,9 +62,9 @@ const Services = () => {
     <section className="section services-section">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Våra Tjänster</h2>
+          <h2 className="section-title">{t('services.title')}</h2>
           <p className="section-subtitle">
-            Från skinande rena hem till hållbar energi. Vi erbjuder ett brett utbud av tjänster för att förenkla din vardag.
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -82,7 +82,7 @@ const Services = () => {
               </div>
               <h3>{service.title}</h3>
               <p>{service.desc}</p>
-              <span className="read-more">Läs mer →</span>
+              <span className="read-more">{t('services.readMore')} →</span>
             </a>
           ))}
         </div>

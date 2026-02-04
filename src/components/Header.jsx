@@ -34,10 +34,10 @@ const Header = () => {
               <div className="dropdown-menu">
                 <div className="dropdown-grid">
                   <div className="dropdown-col">
-                    <h5>{t('services.cleaning')}</h5>
+                    <h5>{t('services.title')}</h5>
                     <ul>
                       {cleaningServices.map((service) => (
-                        <li key={service.key}><a href="#">{t(`services.${service.key}`)}</a></li>
+                        <li key={service.key}><a href="#">{t(`services.${service.key}.title`)}</a></li>
                       ))}
                     </ul>
                   </div>
@@ -92,7 +92,7 @@ const Header = () => {
               <ul className="mobile-subnav">
                 <li><a href="#">{t('services.solar.title')}</a></li>
                 {cleaningServices.map((service) => (
-                  <li key={service.key}><a href="#">{t(`services.${service.key}`)}</a></li>
+                  <li key={service.key}><a href="#">{t(`services.${service.key}.title`)}</a></li>
                 ))}
               </ul>
             </li>
