@@ -8,11 +8,14 @@ const Header = () => {
   const { language, setLanguage, t } = useLanguage();
 
   const cleaningServices = [
-    { key: 'cleaning', name: 'Hemstädning' },
-    { key: 'deepCleaning', name: 'Storstädning' },
     { key: 'moving', name: 'Flyttstädning' },
+    { key: 'deepCleaning', name: 'Storstädning' },
+    { key: 'cleaning', name: 'Hemstädning' },
+    { key: 'visning', name: 'Visningsstädning' },
     { key: 'window', name: 'Fönsterputs' },
     { key: 'office', name: 'Kontorsstädning' },
+    { key: 'construction', name: 'Byggstädning' },
+    { key: 'staircase', name: 'Trappstädning' },
   ];
 
   return (
@@ -34,7 +37,7 @@ const Header = () => {
               <div className="dropdown-menu">
                 <div className="dropdown-grid">
                   <div className="dropdown-col">
-                    <h5>{t('services.title')}</h5>
+                    <h5>{t('services.cleaningServicesHeader')}</h5>
                     <ul>
                       {cleaningServices.map((service) => (
                         <li key={service.key}><a href="#">{t(`services.${service.key}.title`)}</a></li>
@@ -227,7 +230,7 @@ const Header = () => {
         .dropdown-col ul {
             list-style: none;
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Split cleaning list into 2 sub-cols if needed, or just 1 list */
+            grid-template-columns: 1fr; /* Single column as requested */
             gap: 0.5rem;
         }
         

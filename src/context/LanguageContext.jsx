@@ -22,6 +22,7 @@ export const translations = {
             title: 'Våra Tjänster',
             subtitle: 'Från skinande rena hem till hållbar energi.',
             readMore: 'Läs mer',
+            cleaningServicesHeader: 'Städtjänster',
             solar: { title: 'Solcellsmontage', desc: 'Komplett installation av solceller för både villa och företag.' },
             cleaning: { title: 'Hemstädning', desc: 'Regelbunden städning för en enklare vardag.' },
             deepCleaning: { title: 'Storstädning', desc: 'En grundlig rengöring från golv till tak.' },
@@ -29,7 +30,10 @@ export const translations = {
             moving: { title: 'Flyttstädning', desc: 'Vi städar så att du kan lämna över med gott samvete.' },
             garden: { title: 'Trädgårdshjälp', desc: 'Från gräsklippning till beskärning.' },
             office: { title: 'Kontorsstädning', desc: 'En ren arbetsplats för bättre fokus.' },
-            brf: { title: 'För BRF', desc: 'Renare trapphus och gemensamma utrymmen.' }
+            brf: { title: 'För BRF', desc: 'Renare trapphus och gemensamma utrymmen.' },
+            visning: { title: 'Visningsstädning', desc: 'Inför försäljning eller visning.' },
+            construction: { title: 'Byggstädning', desc: 'Professionell städning efter renovering.' },
+            staircase: { title: 'Trappstädning', desc: 'För fastighetsägare och BRF.' }
         },
         footer: {
             legal: '© 2024 Z&C Group. Alla rättigheter förbehållna.',
@@ -58,6 +62,7 @@ export const translations = {
             title: 'Our Services',
             subtitle: 'From sparkling clean homes to sustainable energy.',
             readMore: 'Read more',
+            cleaningServicesHeader: 'Cleaning Services',
             solar: { title: 'Solar Installation', desc: 'Complete installation of solar panels for both villas and businesses.' },
             cleaning: { title: 'Home Cleaning', desc: 'Regular cleaning for a simpler everyday life.' },
             deepCleaning: { title: 'Deep Cleaning', desc: 'A thorough clean from floor to ceiling.' },
@@ -65,7 +70,10 @@ export const translations = {
             moving: { title: 'Move-out Cleaning', desc: 'We clean so you can handover with peace of mind.' },
             garden: { title: 'Garden Help', desc: 'From lawn mowing to pruning.' },
             office: { title: 'Office Cleaning', desc: 'A clean workplace for better focus.' },
-            brf: { title: 'For HOA/BRF', desc: 'Cleaner stairwells and common areas.' }
+            brf: { title: 'For HOA/BRF', desc: 'Cleaner stairwells and common areas.' },
+            visning: { title: 'Pre-sale Cleaning', desc: 'Before selling or viewing.' },
+            construction: { title: 'Post-construction Cleaning', desc: 'Professional cleaning post renovation.' },
+            staircase: { title: 'Stairwell Cleaning', desc: 'For property owners and HOAs.' }
         },
         footer: {
             legal: '© 2024 Z&C Group. All rights reserved.',
@@ -93,6 +101,7 @@ export const translations = {
             title: 'Nuestros Servicios',
             subtitle: 'Desde hogares impecables hasta energía sostenible.',
             readMore: 'Leer más',
+            cleaningServicesHeader: 'Servicios de Limpieza',
             solar: { title: 'Instalación Solar', desc: 'Instalación completa de paneles solares para casas particulares y empresas.' },
             cleaning: { title: 'Limpieza de Hogar', desc: 'Limpieza regular para un día a día más sencillo.' },
             deepCleaning: { title: 'Limpieza a Fondo', desc: 'Una limpieza minuciosa de suelo a techo.' },
@@ -100,7 +109,10 @@ export const translations = {
             moving: { title: 'Limpieza por Mudanza', desc: 'Limpiamos para que entregues las llaves con tranquilidad.' },
             garden: { title: 'Ayuda en Jardín', desc: 'Desde cortar el césped hasta podar.' },
             office: { title: 'Limpieza de Oficinas', desc: 'Un lugar de trabajo limpio para un mejor enfoque.' },
-            brf: { title: 'Para Comunidades', desc: 'Escaleras y zonas comunes más limpias.' }
+            brf: { title: 'Para Comunidades', desc: 'Escaleras y zonas comunes más limpias.' },
+            visning: { title: 'Limpieza de Visita', desc: 'Antes de vender o enseñar la casa.' },
+            construction: { title: 'Limpieza de Obra', desc: 'Limpieza profesional tras reformas.' },
+            staircase: { title: 'Limpieza de Escaleras', desc: 'Para comunidades y propietarios.' }
         },
         footer: {
             legal: '© 2024 Z&C Group. Todos los derechos reservados.',
