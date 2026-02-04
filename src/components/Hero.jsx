@@ -79,11 +79,7 @@ const Hero = () => {
               <ArrowRight size={32} color="white" />
             </button>
 
-            {/* Blue Badge Overlay */}
-            <div className="blue-badge">
-              <span className="badge-title">JUST NU!</span>
-              <span className="badge-desc">Boka hemstädning -<br />Storstädning på köpet*</span>
-            </div>
+
           </div>
         </div>
       </div>
@@ -205,44 +201,7 @@ const Hero = () => {
         }
         
         /* Blue Circle Badge */
-        .blue-badge {
-            position: absolute;
-            top: 50%;
-            left: 10%; /* Positioning it slightly inside the image area */
-            transform: translate(-50%, -50%);
-            width: 250px;
-            height: 250px;
-            background-color: #2563EB; /* Bright royal blue */
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 2rem;
-            z-index: 30;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
-            animation: float 6s ease-in-out infinite;
-        }
 
-        .badge-title {
-            font-weight: 800;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-
-        .badge-desc {
-            font-size: 1rem;
-            line-height: 1.4;
-        }
-        
-        @keyframes float {
-            0% { transform: translate(-50%, -50%) translateY(0px); }
-            50% { transform: translate(-50%, -50%) translateY(-10px); }
-            100% { transform: translate(-50%, -50%) translateY(0px); }
-        }
 
         @media (max-width: 992px) {
             .hero-grid {
@@ -256,18 +215,7 @@ const Hero = () => {
             .hero-text-content {
                 padding: 2rem;
             }
-            .blue-badge {
-                width: 180px;
-                height: 180px;
-                left: 50%;
-                top: 50%;
-            }
-            .badge-title {
-                font-size: 1.2rem;
-            }
-            .badge-desc {
-                font-size: 0.8rem;
-            }
+
         }
       `}</style>
     </section>
