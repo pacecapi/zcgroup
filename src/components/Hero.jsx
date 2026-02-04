@@ -47,6 +47,14 @@ const Hero = () => {
                 Vi hjälper både privatpersoner och företag med pålitliga och kvalitativa tjänster.
                 Välj det tjänst som passar ditt behov.
               </p>
+
+              <div className="conversion-widget">
+                <div className="input-with-button">
+                  <input type="text" placeholder="Ditt postnummer" aria-label="Postnummer" />
+                  <button className="btn-cta">Beräkna pris</button>
+                </div>
+                <p className="widget-note">Se ditt pris direkt på 30 sekunder</p>
+              </div>
             </div>
 
             <div className="short-data-section">
@@ -129,6 +137,57 @@ const Hero = () => {
             margin-bottom: 3rem;
             padding: 1.5rem 0;
             border-radius: var(--radius-md);
+        }
+
+        .conversion-widget {
+            margin-bottom: 2rem;
+            max-width: 450px;
+        }
+
+        .input-with-button {
+            display: flex;
+            background: white;
+            padding: 0.5rem;
+            border-radius: var(--radius-full);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .input-with-button input {
+            flex: 1;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            outline: none;
+            background: transparent;
+            color: var(--color-text-main);
+        }
+
+        .input-with-button input::placeholder {
+            color: #999;
+        }
+
+        .btn-cta {
+            background-color: var(--color-brand-yellow);
+            color: var(--color-text-main);
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: var(--radius-full);
+            white-space: nowrap;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 210, 0, 0.4);
+            filter: brightness(1.05);
+        }
+
+        .widget-note {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+            margin-left: 1rem;
         }
 
         .short-data-section {
