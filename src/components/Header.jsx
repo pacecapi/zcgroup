@@ -9,7 +9,7 @@ const Header = () => {
 
   const cleaningServices = [
     { key: 'moving', slug: 'flyttstadning' },
-    { key: 'deepCleaning', slug: 'storstädning' },
+    { key: 'deepCleaning', slug: 'storstadning' },
     { key: 'cleaning', slug: 'hemstadning' },
     { key: 'visning', slug: 'visningsstadning' },
     { key: 'window', slug: 'fonsterputs' },
