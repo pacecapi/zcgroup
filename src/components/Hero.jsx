@@ -51,7 +51,7 @@ const Hero = () => {
 
             <div className="short-data-section">
               <div className="short-data-item">
-                <Star size={20} fill="black" />
+                <Star size={20} fill="white" />
                 <span>4.8/5 Trustpilot</span>
               </div>
               <div className="short-data-item">
@@ -90,7 +90,7 @@ const Hero = () => {
           min-height: 500px;
           height: calc(100vh - 80px);
           max-height: 700px;
-          background-color: var(--color-bg-white);
+          background-color: var(--color-primary);
           overflow: hidden;
         }
 
@@ -117,25 +117,24 @@ const Hero = () => {
             font-size: 3.5rem;
             line-height: 1.1;
             margin-bottom: 2rem;
-            color: var(--color-text-main);
+            color: white;
             /* Simulating the blurred out heavy title in screenshot */
             font-weight: 800;
         }
         
         .hero-desc {
             font-size: 1.125rem;
-            color: var(--color-text-secondary);
+            color: white;
             line-height: 1.6;
             margin-bottom: 3rem;
-            padding: 1.5rem;
-            background: #f9f9f9; /* Subtle box effect behind text like screenshot */
+            padding: 1.5rem 0;
             border-radius: var(--radius-md);
         }
 
         .short-data-section {
             display: flex;
             gap: 2rem;
-            border-top: 1px solid var(--color-border);
+            border-top: 1px solid rgba(255,255,255,0.3);
             padding-top: 2rem;
         }
         
@@ -145,6 +144,7 @@ const Hero = () => {
             gap: 0.5rem;
             font-weight: 600;
             font-size: 0.9rem;
+            color: white;
         }
 
         .hero-image-content {
