@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -8,20 +9,31 @@ import AppSection from './components/AppSection';
 import Testimonials from './components/Testimonials';
 import Recruitment from './components/Recruitment';
 import Footer from './components/Footer';
+import SolarProjects from './pages/SolarProjects';
+
+// Home Page Component
+const Home = () => (
+  <>
+    <Header />
+    <Hero />
+    <Services />
+    <Values />
+    <Description />
+    <AppSection />
+    <Testimonials />
+    <Recruitment />
+    <Footer />
+  </>
+);
 
 function App() {
   return (
-    <div className="app">
-      <Header />
-      <Hero />
-      <Services />
-      <Values />
-      <Description />
-      <AppSection />
-      <Testimonials />
-      <Recruitment />
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/solar-projects" element={<SolarProjects />} />
+      </Routes>
+    </Router>
   );
 }
 

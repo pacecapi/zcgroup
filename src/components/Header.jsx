@@ -47,7 +47,7 @@ const Header = () => {
                     <p className="dropdown-desc">
                       Kompletta lösningar för företag och fastigheter.
                     </p>
-                    <a href="#" className="btn-dropdown">Se våra projekt →</a>
+                    <a href="/solar-projects" className="btn-dropdown">Se våra projekt →</a>
                   </div>
                 </div>
               </div>
