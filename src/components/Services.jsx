@@ -1,56 +1,58 @@
 import React from 'react';
 import { Sparkles, Home, Wind, Truck, Shovel, Briefcase, Building2, Sun } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Services = () => {
+  const { t } = useLanguage();
   const services = [
     {
       id: 'solar',
-      title: 'Solcellsmontage',
-      desc: 'Komplett installation av solceller för både villa och företag.',
+      title: t('services.solar.title'),
+      desc: t('services.solar.desc'),
       icon: <Sun size={32} />,
       link: '#',
       color: 'var(--color-brand-yellow)',
       bg: 'rgba(255, 210, 0, 0.1)'
     },
     {
-      title: 'Hemstädning',
-      desc: 'Regelbunden städning för en enklare vardag.',
+      title: t('services.cleaning.title'),
+      desc: t('services.cleaning.desc'),
       icon: <Home size={32} />,
       link: '#'
     },
     {
-      title: 'Storstädning',
-      desc: 'En grundlig rengöring från golv till tak.',
+      title: t('services.deepCleaning.title'),
+      desc: t('services.deepCleaning.desc'),
       icon: <Sparkles size={32} />,
       link: '#'
     },
     {
-      title: 'Fönsterputs',
-      desc: 'Skinande rena fönster, året om.',
+      title: t('services.window.title'),
+      desc: t('services.window.desc'),
       icon: <Wind size={32} />,
       link: '#'
     },
     {
-      title: 'Flyttstädning',
-      desc: 'Vi städar så att du kan lämna över med gott samvete.',
+      title: t('services.moving.title'),
+      desc: t('services.moving.desc'),
       icon: <Truck size={32} />,
       link: '#'
     },
     {
-      title: 'Trädgårdshjälp',
-      desc: 'Från gräsklippning till beskärning.',
+      title: t('services.garden.title'),
+      desc: t('services.garden.desc'),
       icon: <Shovel size={32} />,
       link: '#'
     },
     {
-      title: 'Kontorsstädning',
-      desc: 'En ren arbetsplats för bättre fokus.',
+      title: t('services.office.title'),
+      desc: t('services.office.desc'),
       icon: <Briefcase size={32} />,
       link: '#'
     },
     {
-      title: 'För BRF',
-      desc: 'Renare trapphus och gemensamma utrymmen.',
+      title: t('services.brf.title'),
+      desc: t('services.brf.desc'),
       icon: <Building2 size={32} />,
       link: '#'
     }

@@ -10,6 +10,7 @@ import Testimonials from './components/Testimonials';
 import Recruitment from './components/Recruitment';
 import Footer from './components/Footer';
 import SolarProjects from './pages/SolarProjects';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Home Page Component
 const Home = () => (
@@ -28,12 +29,14 @@ const Home = () => (
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/solar-projects" element={<SolarProjects />} />
-      </Routes>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/solar-projects" element={<SolarProjects />} />
+        </Routes>
+      </Router>
+    </LanguageProvider>
   );
 }
 

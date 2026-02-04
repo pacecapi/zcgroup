@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Star, ArrowRight, ArrowLeft } from 'lucide-react';
 import heroImage1 from '../assets/hero.png';
 import heroImage2 from '../assets/hero_solar.png';
+import { useLanguage } from '../context/LanguageContext';
 
 const Hero = () => {
+  const { t } = useLanguage();
   const settings = {
     slideDuration: 5000,
   };
@@ -38,32 +40,30 @@ const Hero = () => {
                 {/* Simulating the blurred title in the screenshot if we don't have exact text, 
                                but let's use a real title that fits the description */}
                 <h1 className="hero-title">
-                  Tid för det som är viktigt.
+                  {t('hero.title')}
                 </h1>
               </div>
 
               <p className="hero-desc">
-                Professionella tjänster inom städning och solcellsmontage.
-                Vi hjälper både privatpersoner och företag med pålitliga och kvalitativa tjänster.
-                Välj det tjänst som passar ditt behov.
+                {t('hero.desc')}
               </p>
 
               <div className="conversion-widget">
                 <div className="input-with-button">
-                  <input type="text" placeholder="Ditt postnummer" aria-label="Postnummer" />
-                  <button className="btn-cta">Beräkna pris</button>
+                  <input type="text" placeholder={t('hero.inputPlaceholder')} aria-label="Postnummer" />
+                  <button className="btn-cta">{t('hero.cta')}</button>
                 </div>
-                <p className="widget-note">Se ditt pris direkt på 30 sekunder</p>
+                <p className="widget-note">{t('hero.note')}</p>
               </div>
             </div>
 
             <div className="short-data-section">
               <div className="short-data-item">
                 <Star size={20} fill="white" />
-                <span>4.8/5 Trustpilot</span>
+                <span>{t('hero.trustpilot')}</span>
               </div>
               <div className="short-data-item">
-                <span>50,000+ Kunder</span>
+                <span>{t('hero.customers')}</span>
               </div>
             </div>
           </div>

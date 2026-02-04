@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { Menu, X, Globe, User, ChevronDown } from 'lucide-react';
 import logo from '../assets/logo.jpg';
+import { useLanguage } from '../context/LanguageContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   const cleaningServices = [
-    "Hemstädning",
-    "Storstädning",
-    "Flyttstädning",
-    "Visningsstädning",
-    "Fönsterputs",
-    "Kontorsstädning",
-    "Byggstädning",
-    "Trappstädning"
+    { key: 'cleaning', name: 'Hemstädning' },
+    { key: 'deepCleaning', name: 'Storstädning' },
+    { key: 'moving', name: 'Flyttstädning' },
+    { key: 'window', name: 'Fönsterputs' },
+    { key: 'office', name: 'Kontorsstädning' },
   ];
 
   return (
@@ -30,43 +29,54 @@ const Header = () => {
           <ul className="nav-list">
             <li className="nav-item has-dropdown">
               <a href="#" className="nav-link">
-                VÅRA TJÄNSTER <ChevronDown size={14} style={{ marginLeft: '4px' }} />
+                {t('nav.services')} <ChevronDown size={14} style={{ marginLeft: '4px' }} />
               </a>
               <div className="dropdown-menu">
                 <div className="dropdown-grid">
                   <div className="dropdown-col">
-                    <h5>Städtjänster</h5>
+                    <h5>{t('services.cleaning')}</h5>
                     <ul>
                       {cleaningServices.map((service) => (
-                        <li key={service}><a href="#">{service}</a></li>
+                        <li key={service.key}><a href="#">{t(`services.${service.key}`)}</a></li>
                       ))}
                     </ul>
                   </div>
                   <div className="dropdown-col featured-col">
-                    <h5>Solcellsmontage (B2B)</h5>
+                    <h5>{t('services.solar.title')}</h5>
                     <p className="dropdown-desc">
-                      Kompletta lösningar för företag och fastigheter.
+                      {t('services.solar.desc')}
                     </p>
-                    <a href="/solar-projects" className="btn-dropdown">Se våra projekt →</a>
+                    <a href="/solar-projects" className="btn-dropdown">{t('services.readMore')} →</a>
                   </div>
                 </div>
               </div>
             </li>
             <li className="nav-item">
-              <a href="#" className="nav-link">OM OSS</a>
+              <a href="#" className="nav-link">{t('nav.about')}</a>
             </li>
             <li className="nav-item">
-              <a href="#" className="nav-link">KONTAKTA OSS</a>
+              <a href="#" className="nav-link">{t('nav.contact')}</a>
             </li>
           </ul>
         </nav>
 
         <div className="header-actions">
-          <button className="lang-btn">
-            <span className="lang-active">SV</span>
+          <div className="lang-selector">
+            <button
+              className={`lang-btn ${language === 'sv' ? 'active' : ''}`}
+              onClick={() => setLanguage('sv')}
+            >SV</button>
             <span className="lang-sep">|</span>
-            <span className="lang-inactive">EN</span>
-          </button>
+            <button
+              className={`lang-btn ${language === 'en' ? 'active' : ''}`}
+              onClick={() => setLanguage('en')}
+            >EN</button>
+            <span className="lang-sep">|</span>
+            <button
+              className={`lang-btn ${language === 'es' ? 'active' : ''}`}
+              onClick={() => setLanguage('es')}
+            >ES</button>
+          </div>
           <button className="mobile-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X /> : <Menu />}
           </button>
@@ -78,16 +88,16 @@ const Header = () => {
         <div className="mobile-nav">
           <ul>
             <li>
-              <span className="mobile-nav-header">VÅRA TJÄNSTER</span>
+              <span className="mobile-nav-header">{t('nav.services')}</span>
               <ul className="mobile-subnav">
-                <li><a href="#">Solcellsmontage (B2B)</a></li>
+                <li><a href="#">{t('services.solar.title')}</a></li>
                 {cleaningServices.map((service) => (
-                  <li key={service}><a href="#">{service}</a></li>
+                  <li key={service.key}><a href="#">{t(`services.${service.key}`)}</a></li>
                 ))}
               </ul>
             </li>
-            <li className="mobile-item"><a href="#">OM OSS</a></li>
-            <li className="mobile-item"><a href="#">KONTAKTA OSS</a></li>
+            <li className="mobile-item"><a href="#">{t('nav.about')}</a></li>
+            <li className="mobile-item"><a href="#">{t('nav.contact')}</a></li>
           </ul>
         </div>
       )}
@@ -269,30 +279,36 @@ const Header = () => {
           gap: 1.5rem;
         }
 
+        .lang-selector {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
         .lang-btn {
-          font-size: 0.85rem;
+          font-size: 0.75rem;
           font-weight: 700;
-          color: var(--color-text-main);
+          color: #999;
           background: none;
           border: none;
           cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 4px;
+          padding: 2px 6px;
+          border-radius: 2px;
+          transition: all 0.2s;
         }
         
-        .lang-active {
+        .lang-btn.active {
             background-color: #000040; 
             color: white;
-            padding: 2px 4px;
-            font-size: 0.75rem;
-            border-radius: 2px;
         }
 
-        .lang-inactive {
-            color: #999;
-             font-size: 0.75rem;
-             padding: 2px 4px;
+        .lang-btn:hover:not(.active) {
+            color: var(--color-primary);
+        }
+
+        .lang-sep {
+            color: #ccc;
+            font-size: 0.8rem;
         }
         
         .mobile-toggle {
