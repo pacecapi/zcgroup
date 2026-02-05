@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Globe, User, ChevronDown } from 'lucide-react';
-import logo from '/logo_main.svg';
+import logo from '../assets/logo.jpg';
 import { useLanguage } from '../context/LanguageContext';
 
 const Header = () => {
