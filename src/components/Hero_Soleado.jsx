@@ -4,7 +4,7 @@ import './Hero_Soleado.css';
 const Hero_Soleado = () => {
     return (
         <section className="hero-soleado">
-            <div className="hero-soleado__content container">
+            <div className="hero-soleado__content">
                 <div className="hero-soleado__text">
                     <h1 className="hero-soleado__title">
                         ZC Group:<br />

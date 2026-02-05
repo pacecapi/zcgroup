@@ -61,15 +61,9 @@
 .hero-soleado__content {
     position: relative;
     z-index: 3;
-    padding: 8rem 0 4rem 0;
-    /* More top padding to account for header */
-    width: 100%;
-}
-
-.hero-soleado__content {
-    padding-left: 5rem;
+    padding: 8rem 1.5rem 4rem 5rem;
     /* Align content to the left */
-    padding-right: 1.5rem;
+    width: 100%;
 }
 
 .hero-soleado__text {
