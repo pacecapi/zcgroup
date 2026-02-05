@@ -374,7 +374,7 @@ const Hero = () => {
         }
         
 
-        @media (max-width: 992px) {
+        @media (max-width: 991px) {
             .hero {
                 height: auto;
                 max-height: none;
@@ -384,14 +384,16 @@ const Hero = () => {
                 height: auto;
             }
             .hero-image-content {
-                height: 400px;
+                height: 350px;
+                flex: none;
+                width: 100%;
                 mask-image: linear-gradient(to bottom, transparent, black 15%);
             }
             .hero-text-content {
                 padding: 3rem 1.5rem;
             }
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
         }
       `}</style>

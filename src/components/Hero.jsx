@@ -311,19 +311,20 @@ const Hero = () => {
         /* Blue Circle Badge */
 
 
-        @media (max-width: 992px) {
+        @media (max-width: 991px) {
             .hero-grid {
                 flex-direction: column-reverse;
                 height: auto;
                 max-height: none;
             }
             .hero-image-content {
-                height: 400px;
+                height: 350px;
+                flex: none;
+                width: 100%;
             }
             .hero-text-content {
-                padding: 2rem;
+                padding: 2.5rem 1.5rem;
             }
-
         }
       `}</style>
     </section>
