@@ -66,9 +66,9 @@
     width: 100%;
 }
 
-.hero-soleado__content .container {
-    padding-left: 3rem;
-    /* Move text more to the left */
+.hero-soleado__content {
+    padding-left: 5rem;
+    /* Align content to the left */
     padding-right: 1.5rem;
 }
 
@@ -124,6 +124,7 @@
 
     .hero-soleado__content {
         padding: 6rem 0 3rem 0;
+        padding-left: 2rem;
     }
 
     .hero-soleado::after {
@@ -146,6 +147,7 @@
 @media (max-width: 480px) {
     .hero-soleado__content {
         padding: 5rem 0 2rem 0;
+        padding-left: 1.5rem;
     }
 
     .hero-soleado__title {
