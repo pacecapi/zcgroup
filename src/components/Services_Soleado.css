@@ -1,0 +1,107 @@
+.services-soleado {
+    background: linear-gradient(180deg,
+            #FFE66D 0%,
+            #FFF8DC 50%,
+            #FFFFFF 100%);
+    position: relative;
+    padding: 5rem 0;
+}
+
+.services-soleado__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text-main);
+    margin-bottom: 3rem;
+    letter-spacing: -0.02em;
+}
+
+.services-soleado__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card-soleado {
+    /* Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.service-card-soleado:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.service-card-soleado__icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-brand-yellow) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: white;
+    box-shadow: 0 4px 15px rgba(61, 174, 73, 0.3);
+}
+
+.service-card-soleado__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.service-card-soleado__description {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .services-soleado__grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .services-soleado__title {
+        font-size: 2rem;
+    }
+
+    .service-card-soleado {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-soleado__title {
+        font-size: 1.75rem;
+    }
+
+    .service-card-soleado__icon {
+        width: 64px;
+        height: 64px;
+    }
+
+    .service-card-soleado__title {
+        font-size: 1.25rem;
+    }
+}

@@ -1,0 +1,163 @@
+.hero-soleado {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(180deg,
+            #87CEEB 0%,
+            /* Sky blue at top */
+            #A8D8EA 20%,
+            /* Light blue */
+            #B8E6D5 40%,
+            /* Mint */
+            #C8F0C0 60%,
+            /* Light green */
+            #F5E6A0 80%,
+            /* Soft yellow */
+            #FFE66D 100%
+            /* Bright yellow at bottom */
+        );
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 0;
+    /* Remove top padding to allow image to go to top */
+}
+
+/* Rainbow gradient overlay for more realism */
+.hero-soleado::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 15% 25%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
+        radial-gradient(ellipse at 85% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 35%),
+        radial-gradient(ellipse at 50% 50%, rgba(200, 240, 192, 0.3) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Solar panel workers background image - positioned at top right */
+.hero-soleado::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    /* Image starts from the very top */
+    width: 65%;
+    height: 85%;
+    background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center right;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 2;
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.7) 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.7) 60%, transparent 100%);
+}
+
+.hero-soleado__content {
+    position: relative;
+    z-index: 3;
+    padding: 8rem 0 4rem 0;
+    /* More top padding to account for header */
+    width: 100%;
+}
+
+.hero-soleado__content .container {
+    padding-left: 3rem;
+    /* Move text more to the left */
+    padding-right: 1.5rem;
+}
+
+.hero-soleado__text {
+    max-width: 600px;
+    /* Keep text on the left side */
+    margin-left: 0;
+    /* Align to left */
+}
+
+.hero-soleado__title {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-text-main);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+}
+
+.hero-soleado__description {
+    font-size: 1.25rem;
+    color: var(--color-text-main);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    font-weight: 400;
+    max-width: 480px;
+}
+
+.btn-soleado {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-brand-yellow) 100%);
+    color: var(--color-text-main);
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    box-shadow: 0 4px 15px rgba(61, 174, 73, 0.3);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-soleado:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61, 174, 73, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-soleado {
+        min-height: 80vh;
+        padding-top: 0;
+    }
+
+    .hero-soleado__content {
+        padding: 6rem 0 3rem 0;
+    }
+
+    .hero-soleado::after {
+        width: 100%;
+        height: 50%;
+        top: 0;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+    }
+
+    .hero-soleado__title {
+        font-size: 2.5rem;
+    }
+
+    .hero-soleado__description {
+        font-size: 1.125rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-soleado__content {
+        padding: 5rem 0 2rem 0;
+    }
+
+    .hero-soleado__title {
+        font-size: 2rem;
+    }
+
+    .hero-soleado__description {
+        font-size: 1rem;
+    }
+
+    .btn-soleado {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+    }
+}
