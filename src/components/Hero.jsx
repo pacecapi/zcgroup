@@ -135,7 +135,7 @@ const Hero = () => {
             font-size: 3.5rem;
             line-height: 1.1;
             margin-bottom: 2rem;
-            color: white;
+            color: #008CCF;
             font-weight: 800;
         }
 
