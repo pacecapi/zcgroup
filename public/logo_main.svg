@@ -1,42 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <!-- Sun (Simplified & Stylized) -->
-  <circle cx="150" cy="150" r="35" fill="#FFD700" />
-  <g stroke="#FFD700" stroke-width="3" stroke-linecap="round">
-    <line x1="150" y1="100" x2="150" y2="85" />
-    <line x1="150" y1="200" x2="150" y2="215" />
-    <line x1="100" y1="150" x2="85" y2="150" />
-    <line x1="200" y1="150" x2="215" y2="150" />
-    <line x1="115" y1="115" x2="105" y2="105" />
-    <line x1="185" y1="185" x2="195" y2="195" />
-    <line x1="115" y1="185" x2="105" y2="195" />
-    <line x1="185" y1="115" x2="195" y2="105" />
+  <!-- Sun -->
+  <circle cx="180" cy="180" r="45" fill="#FFD700" />
+  <g stroke="#FFD700" stroke-width="4" stroke-linecap="round">
+    <line x1="180" y1="120" x2="180" y2="100" />
+    <line x1="180" y1="240" x2="180" y2="260" />
+    <line x1="120" y1="180" x2="100" y2="180" />
+    <line x1="240" y1="180" x2="260" y2="180" />
+    <line x1="138" y1="138" x2="124" y2="124" />
+    <line x1="222" y1="222" x2="236" y2="236" />
+    <line x1="138" y1="222" x2="124" y2="236" />
+    <line x1="222" y1="138" x2="236" y2="124" />
   </g>
 
-  <!-- Circular Border (Professional Brush stroke effect) -->
-  <path d="M470,256 C470,374.2 374.2,470 256,470 C137.8,470 42,374.2 42,256 C42,137.8 137.8,42 256,42 C345,42 420,95 450,175" 
-        stroke="#4CAF50" stroke-width="14" stroke-linecap="round" fill="none" />
+  <!-- Circle Border (Professional Brush stroke effect) -->
+  <path d="M450,256 C450,363.1 363.1,450 256,450 C148.9,450 62,363.1 62,256 C62,148.9 148.9,62 256,62 C340,62 411,114 438,188" 
+        stroke="#4CAF50" stroke-width="15" stroke-linecap="round" fill="none" stroke-dasharray="5,5" />
+  <path d="M445,256 C445,360.4 360.4,445 256,445 C151.6,445 67,360.4 67,256 C67,151.6 151.6,67 256,67" 
+        stroke="#4CAF50" stroke-width="8" stroke-linecap="round" fill="none" />
 
-  <!-- House with 3D Perspective -->
-  <!-- Main Wall (Front) -->
-  <path d="M180,330 L320,330 L320,430 L180,430 Z" fill="#4CAF50" />
-  <!-- Side Wall (Perspective Depth) -->
-  <path d="M320,330 L400,280 L400,380 L320,430 Z" fill="#388E3C" />
-  <!-- Front Gable -->
-  <path d="M180,330 L250,250 L320,330 Z" fill="#4CAF50" />
-  <!-- Roof Plane -->
-  <path d="M250,250 L330,200 L400,280 L320,330 Z" fill="#1E88E5" />
+  <!-- House (Original 2D Style) -->
+  <path d="M150,380 L150,280 L256,180 L362,280 L362,380 Z" fill="#4CAF50" />
+  
+  <!-- Windows -->
+  <rect x="236" y="280" width="40" height="40" fill="white" fill-opacity="0.8" />
+  <line x1="256" y1="280" x2="256" y2="320" stroke="#4CAF50" stroke-width="2" />
+  <line x1="236" y1="300" x2="276" y2="300" stroke="#4CAF50" stroke-width="2" />
 
-  <!-- Solar Panel Grid (Subtle lines) -->
-  <g stroke="white" stroke-width="1" stroke-opacity="0.3">
-    <line x1="280" y1="235" x2="355" y2="225" />
-    <line x1="310" y1="215" x2="385" y2="205" />
-    <line x1="275" y1="230" x2="305" y2="280" />
-    <line x1="305" y1="215" x2="335" y2="265" />
-    <line x1="335" y1="200" x2="365" y2="250" />
+  <!-- Solar Panels (Blue Blocks) -->
+  <g transform="translate(150, 200) rotate(-43)">
+    <rect x="0" y="0" width="120" height="80" fill="#1E88E5" rx="5" />
+    <line x1="0" y1="20" x2="120" y2="20" stroke="white" stroke-width="1" stroke-opacity="0.3" />
+    <line x1="0" y1="40" x2="120" y2="40" stroke="white" stroke-width="1" stroke-opacity="0.3" />
+    <line x1="0" y1="60" x2="120" y2="60" stroke="white" stroke-width="1" stroke-opacity="0.3" />
+    <line x1="30" y1="0" x2="30" y2="80" stroke="white" stroke-width="1" stroke-opacity="0.3" />
+    <line x1="60" y1="0" x2="60" y2="80" stroke="white" stroke-width="1" stroke-opacity="0.3" />
+    <line x1="90" y1="0" x2="90" y2="80" stroke="white" stroke-width="1" stroke-opacity="0.3" />
   </g>
-
-  <!-- Clear Window on Front -->
-  <rect x="230" y="350" width="40" height="40" fill="white" fill-opacity="0.9" rx="2" />
-  <line x1="250" y1="350" x2="250" y2="390" stroke="#4CAF50" stroke-width="2" />
-  <line x1="230" y1="370" x2="270" y2="370" stroke="#4CAF50" stroke-width="2" />
 </svg>
