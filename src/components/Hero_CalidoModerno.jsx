@@ -94,13 +94,23 @@ const Hero = () => {
 
       <style>{`
         .hero {
-          margin-top: 140px; /* Header height */
+          margin-top: 140px;
           min-height: 500px;
           height: calc(100vh - 140px);
           max-height: 700px;
           background: linear-gradient(135deg, var(--color-brand-blue) 0%, var(--color-primary) 100%);
           position: relative;
           overflow: hidden;
+          transition: margin-top 0.3s ease, height 0.3s ease;
+        }
+
+        @media (max-width: 991px) {
+          .hero {
+            margin-top: 80px;
+            height: auto;
+            min-height: calc(100vh - 80px);
+            max-height: none;
+          }
         }
 
         /* Decorative Glows for Warmth and Modernity */
@@ -163,6 +173,13 @@ const Hero = () => {
             font-weight: 800;
             text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+
+        @media (max-width: 991px) {
+            .hero-title {
+                font-size: 2.2rem;
+                margin-bottom: 1.5rem;
+            }
+        }
         
         .hero-desc {
             font-size: 1.125rem;
@@ -171,6 +188,14 @@ const Hero = () => {
             margin-bottom: 3rem;
             padding: 1rem 0;
             border-radius: var(--radius-md);
+        }
+
+        @media (max-width: 991px) {
+            .hero-desc {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+                padding: 0.5rem 0;
+            }
         }
 
         .conversion-widget {
@@ -188,6 +213,26 @@ const Hero = () => {
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 480px) {
+            .input-with-button {
+                flex-direction: column;
+                background: transparent;
+                box-shadow: none;
+                padding: 0;
+                gap: 1rem;
+                backdrop-filter: none;
+                border: none;
+            }
+            .input-with-button input {
+                background: white;
+                border-radius: var(--radius-full);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+            .btn-cta {
+                width: 100%;
+            }
         }
 
         .input-with-button:focus-within {
@@ -238,6 +283,13 @@ const Hero = () => {
             font-size: 0.85rem;
             color: rgba(255,255,255,0.85);
             margin-left: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .widget-note {
+                margin-left: 0;
+                text-align: center;
+            }
         }
 
         .short-data-section {

@@ -113,11 +113,18 @@ const Header = () => {
           right: 0;
           background: white;
           z-index: 1000;
-          height: 140px; /* Increased from 110px */
+          height: 140px;
           display: flex;
           align-items: center;
           border-bottom: 1px solid transparent; 
           box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+          transition: height 0.3s ease;
+        }
+
+        @media (max-width: 991px) {
+          .header {
+            height: 80px;
+          }
         }
 
         .header-container {
@@ -130,7 +137,14 @@ const Header = () => {
 
         .logo-link {
           display: block;
-          height: 130px; /* Adjusted to fit within 140px header with padding */
+          height: 130px;
+          transition: height 0.3s ease;
+        }
+
+        @media (max-width: 991px) {
+          .logo-link {
+            height: 60px;
+          }
         }
 
         .logo-img {
@@ -282,6 +296,19 @@ const Header = () => {
           gap: 1.5rem;
         }
 
+        @media (max-width: 991px) {
+          .header-actions {
+            gap: 0.75rem;
+          }
+          .lang-selector {
+            gap: 4px;
+          }
+          .lang-btn {
+            padding: 2px 4px;
+            font-size: 0.7rem;
+          }
+        }
+
         .lang-selector {
           display: flex;
           align-items: center;
@@ -323,15 +350,23 @@ const Header = () => {
 
         .mobile-nav {
           position: absolute;
-          top: 110px;
+          top: 140px;
           left: 0;
           right: 0;
           background: white;
           padding: 2rem;
           border-bottom: 1px solid var(--color-border);
           box-shadow: var(--shadow-md);
-          max-height: 80vh;
+          max-height: calc(100vh - 140px);
           overflow-y: auto;
+          transition: top 0.3s ease;
+        }
+
+        @media (max-width: 991px) {
+          .mobile-nav {
+            top: 80px;
+            max-height: calc(100vh - 80px);
+          }
         }
 
         .mobile-nav ul {
