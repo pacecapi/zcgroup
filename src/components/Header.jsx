@@ -141,17 +141,15 @@ const Header = () => {
 
         .logo-link {
           display: block;
-          height: 85px;
-          width: 85px;
-          margin: -15px 0;
+          height: 45px;
+          width: 45px;
           transition: height 0.3s ease;
         }
 
         @media (max-width: 991px) {
           .logo-link {
-            height: 55px;
-            width: 55px;
-            margin: -8px 0;
+            height: 40px;
+            width: 40px;
           }
         }
 
