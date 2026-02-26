@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Globe, User, ChevronDown } from 'lucide-react';
-import logo from '../assets/logo.jpg';
+import logo from '../assets/logo-removebg-preview.png';
 import { useLanguage } from '../context/LanguageContext';
 
 const Header = () => {
@@ -159,7 +159,6 @@ const Header = () => {
           height: 100%;
           width: 100%;
           object-fit: contain;
-          mix-blend-mode: multiply;
         }
 
         .desktop-nav {
