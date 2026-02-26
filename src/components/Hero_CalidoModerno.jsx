@@ -169,7 +169,7 @@ const Hero = () => {
             font-size: 3.5rem;
             line-height: 1.1;
             margin-bottom: 2rem;
-            color: #008CCF;
+            color: #006699;
             font-weight: 800;
             text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
