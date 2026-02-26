@@ -49,19 +49,16 @@
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-.client-logo {
-    max-width: 120px;
-    max-height: 50px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    filter: grayscale(100%);
+.client-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
     opacity: 0.7;
     transition: all 0.3s ease;
 }
 
-.client-logo-card:hover .client-logo {
-    filter: grayscale(0%);
+.client-logo-card:hover .client-name {
+    color: var(--color-primary);
     opacity: 1;
 }
 

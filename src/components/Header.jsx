@@ -108,22 +108,19 @@ const Header = () => {
       <style>{`
         .header {
           position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          background: white;
+          top: 2rem;
+          left: 50%;
+          transform: translateX(-50%);
+          width: calc(100% - 4rem);
+          max-width: 1200px;
           z-index: 1000;
-          height: 140px;
-          display: flex;
-          align-items: center;
-          border-bottom: 1px solid transparent; 
-          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-          transition: height 0.3s ease;
+          transition: all 0.3s ease;
         }
 
         @media (max-width: 991px) {
           .header {
-            height: 80px;
+            top: 1rem;
+            width: calc(100% - 2rem);
           }
         }
 
@@ -133,17 +130,28 @@ const Header = () => {
           align-items: center;
           width: 100%;
           position: relative;
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border-radius: 60px;
+          padding: 0.75rem 2rem 0.75rem 0.75rem;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .logo-link {
           display: block;
-          height: 130px;
+          height: 85px;
+          width: 85px;
+          margin: -15px 0;
           transition: height 0.3s ease;
         }
 
         @media (max-width: 991px) {
           .logo-link {
-            height: 60px;
+            height: 55px;
+            width: 55px;
+            margin: -8px 0;
           }
         }
 
@@ -151,6 +159,7 @@ const Header = () => {
           height: 100%;
           width: auto;
           object-fit: contain;
+          mix-blend-mode: multiply;
         }
 
         .desktop-nav {
@@ -166,7 +175,7 @@ const Header = () => {
 
         .nav-item {
             position: relative;
-            height: 110px;
+            height: 50px;
             display: flex;
             align-items: center;
         }
