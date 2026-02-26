@@ -158,8 +158,8 @@ const Header = () => {
         .logo-img {
           height: 100%;
           width: 100%;
-          object-fit: cover;
-          border-radius: 50%;
+          object-fit: contain;
+          mix-blend-mode: multiply;
         }
 
         .desktop-nav {
