@@ -157,9 +157,9 @@ const Header = () => {
 
         .logo-img {
           height: 100%;
-          width: auto;
-          object-fit: contain;
-          mix-blend-mode: multiply;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 50%;
         }
 
         .desktop-nav {
