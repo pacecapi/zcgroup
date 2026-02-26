@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import logo from '../assets/logo.jpg';
+import logo from '../assets/logo-removebg-preview.png';
 import './Header_Soleado.css';
 
 const Header_Soleado = () => {
