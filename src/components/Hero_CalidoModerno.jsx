@@ -94,21 +94,19 @@ const Hero = () => {
 
       <style>{`
         .hero {
-          margin-top: 140px;
+          margin-top: 0;
           min-height: 500px;
-          height: calc(100vh - 140px);
-          max-height: 700px;
+          height: 100vh;
+          max-height: 800px;
           background: linear-gradient(135deg, var(--color-brand-blue) 0%, var(--color-primary) 100%);
           position: relative;
           overflow: hidden;
-          transition: margin-top 0.3s ease, height 0.3s ease;
         }
 
         @media (max-width: 991px) {
           .hero {
-            margin-top: 80px;
             height: auto;
-            min-height: calc(100vh - 80px);
+            min-height: 100vh;
             max-height: none;
           }
         }
@@ -156,7 +154,7 @@ const Hero = () => {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 4rem;
+            padding: 8rem 4rem 4rem 4rem;
             position: relative;
             z-index: 10;
         }

@@ -130,13 +130,19 @@ const Header = () => {
           align-items: center;
           width: 100%;
           position: relative;
-          background: rgba(255, 255, 255, 0.7);
+          background: rgba(255, 255, 255, 0.15);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           border-radius: 60px;
           padding: 0.75rem 2rem 0.75rem 0.75rem;
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
           border: 1px solid rgba(255, 255, 255, 0.3);
+          transition: all 0.3s ease;
+        }
+
+        .header-container:hover {
+          background: rgba(255, 255, 255, 0.2);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
 
         .logo-link {
