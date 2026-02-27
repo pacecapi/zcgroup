@@ -79,21 +79,50 @@ const ServiceDetail = () => {
 
             <style>{`
                 .service-hero {
-                    margin-top: 110px;
-                    background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1581578731548-c64695ce6958?auto=format&fit=crop&q=80') center/cover;
+                    margin-top: 0;
+                    background: linear-gradient(135deg, var(--color-brand-blue) 0%, var(--color-primary) 100%);
                     color: white;
-                    padding: 8rem 0;
+                    padding: 12rem 0 6rem 0;
                     text-align: center;
+                    position: relative;
+                    overflow: hidden;
+                }
+                .service-hero::before {
+                    content: '';
+                    position: absolute;
+                    top: -20%;
+                    left: -10%;
+                    width: 60%;
+                    height: 60%;
+                    background: radial-gradient(circle, rgba(255, 210, 0, 0.15) 0%, transparent 70%);
+                    pointer-events: none;
+                }
+                .service-hero::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10%;
+                    right: 10%;
+                    width: 40%;
+                    height: 40%;
+                    background: radial-gradient(circle, rgba(0, 140, 207, 0.3) 0%, transparent 70%);
+                    pointer-events: none;
                 }
                 .service-hero h1 {
                     font-size: 3.5rem;
                     margin-bottom: 1rem;
+                    color: #006699;
+                    font-weight: 800;
+                    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                    position: relative;
+                    z-index: 1;
                 }
                 .hero-subtitle {
                     font-size: 1.25rem;
                     max-width: 700px;
                     margin: 0 auto 2rem;
-                    opacity: 0.9;
+                    opacity: 0.95;
+                    position: relative;
+                    z-index: 1;
                 }
                 .btn-cta-main {
                     background: var(--color-brand-yellow);
@@ -104,10 +133,14 @@ const ServiceDetail = () => {
                     font-size: 1.1rem;
                     border-radius: var(--radius-full);
                     cursor: pointer;
-                    transition: transform 0.2s;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 0 rgba(184, 152, 0, 1);
+                    position: relative;
+                    z-index: 1;
                 }
                 .btn-cta-main:hover {
-                    transform: scale(1.05);
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 15px rgba(255, 210, 0, 0.4), 0 2px 0 rgba(184, 152, 0, 1);
                 }
                 .bg-light {
                     background-color: #F8FAFC;
@@ -167,11 +200,14 @@ const ServiceDetail = () => {
                 }
 
                 @media (max-width: 992px) {
+                    .service-hero {
+                        padding: 10rem 0 4rem 0;
+                    }
                     .service-content-grid {
                         grid-template-columns: 1fr;
                     }
                     .service-hero h1 {
-                        font-size: 2.5rem;
+                        font-size: 2.2rem;
                     }
                     .include-list {
                         grid-template-columns: 1fr;
