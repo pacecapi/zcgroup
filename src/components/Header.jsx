@@ -24,6 +24,7 @@ const Header = () => {
         <div className="logo-section">
           <a href="/" className="logo-link">
             <img src={logo} alt="Z&C Group" className="logo-img" />
+            <span className="logo-text">ZC Group</span>
           </a>
         </div>
 
@@ -146,25 +147,38 @@ const Header = () => {
         }
 
         .logo-link {
-          display: block;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          text-decoration: none;
+          margin: -15px 0;
+          transition: all 0.3s ease;
+        }
+
+        .logo-img {
           height: 85px;
           width: 85px;
-          margin: -15px 0;
-          transition: height 0.3s ease;
+          object-fit: contain;
+        }
+
+        .logo-text {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: #1a365d;
+          letter-spacing: -0.02em;
         }
 
         @media (max-width: 991px) {
           .logo-link {
-            height: 55px;
-            width: 55px;
             margin: -8px 0;
           }
-        }
-
-        .logo-img {
-          height: 100%;
-          width: 100%;
-          object-fit: contain;
+          .logo-img {
+            height: 55px;
+            width: 55px;
+          }
+          .logo-text {
+            font-size: 1.1rem;
+          }
         }
 
         .desktop-nav {
