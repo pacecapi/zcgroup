@@ -64,8 +64,8 @@ function App() {
     <LanguageProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/calidomoderno" element={<HomeModern />} />
+          <Route path="/" element={<HomeModern />} />
+          <Route path="/verdeamarillo" element={<Home />} />
           <Route path="/soleado" element={<Soleado />} />
           <Route path="/solar-projects" element={<SolarProjects />} />
           <Route path="/tjanster/:slug" element={<ServiceDetail />} />
