@@ -150,14 +150,22 @@ const Header = () => {
           display: flex;
           align-items: center;
           gap: 0.75rem;
+          height: 85px;
           text-decoration: none;
           margin: -15px 0;
           transition: all 0.3s ease;
         }
 
+        @media (max-width: 991px) {
+          .logo-link {
+            height: 55px;
+            margin: -8px 0;
+          }
+        }
+
         .logo-img {
-          height: 85px;
-          width: 85px;
+          height: 100%;
+          width: auto;
           object-fit: contain;
         }
 
@@ -169,13 +177,6 @@ const Header = () => {
         }
 
         @media (max-width: 991px) {
-          .logo-link {
-            margin: -8px 0;
-          }
-          .logo-img {
-            height: 55px;
-            width: 55px;
-          }
           .logo-text {
             font-size: 1.1rem;
           }
