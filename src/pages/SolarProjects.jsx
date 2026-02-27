@@ -56,23 +56,63 @@ const SolarProjects = () => {
 
             <style>{`
                 .solar-hero {
-                    margin-top: 110px;
-                    background-color: var(--color-brand-blue); 
+                    margin-top: 0;
+                    background: linear-gradient(135deg, var(--color-brand-blue) 0%, var(--color-primary) 100%);
                     color: white;
-                    padding: 6rem 0;
+                    padding: 12rem 0 6rem 0;
                     text-align: center;
+                    position: relative;
+                    overflow: hidden;
                 }
-                
+
+                .solar-hero::before {
+                    content: '';
+                    position: absolute;
+                    top: -20%;
+                    left: -10%;
+                    width: 60%;
+                    height: 60%;
+                    background: radial-gradient(circle, rgba(255, 210, 0, 0.15) 0%, transparent 70%);
+                    pointer-events: none;
+                }
+
+                .solar-hero::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10%;
+                    right: 10%;
+                    width: 40%;
+                    height: 40%;
+                    background: radial-gradient(circle, rgba(0, 140, 207, 0.3) 0%, transparent 70%);
+                    pointer-events: none;
+                }
+
                 .solar-hero h1 {
-                    font-size: 3rem;
+                    font-size: 3.5rem;
                     margin-bottom: 1.5rem;
+                    color: #006699;
+                    font-weight: 800;
+                    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                    position: relative;
+                    z-index: 1;
                 }
-                
+
                 .solar-hero p {
                     font-size: 1.25rem;
                     max-width: 600px;
                     margin: 0 auto;
-                    opacity: 0.9;
+                    opacity: 0.95;
+                    position: relative;
+                    z-index: 1;
+                }
+
+                @media (max-width: 992px) {
+                    .solar-hero {
+                        padding: 10rem 0 4rem 0;
+                    }
+                    .solar-hero h1 {
+                        font-size: 2.2rem;
+                    }
                 }
 
                 .projects-grid {
