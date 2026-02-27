@@ -24,7 +24,7 @@ const Header = () => {
         <div className="logo-section">
           <a href="/" className="logo-link">
             <img src={logo} alt="Z&C Group" className="logo-img" />
-            <span className="logo-text">ZC Group</span>
+            <span className="logo-text">Z&C Group</span>
           </a>
         </div>
 
