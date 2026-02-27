@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Home, Wind, Truck, Shovel, Briefcase, Building2, Sun } from 'lucide-react';
+import { Sparkles, Home, Wind, Truck, Eye, Briefcase, Building2, Sun, HardHat } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Services = () => {
@@ -15,10 +15,10 @@ const Services = () => {
       bg: 'rgba(255, 210, 0, 0.1)'
     },
     {
-      title: t('services.cleaning.title'),
-      desc: t('services.cleaning.desc'),
-      icon: <Home size={32} />,
-      link: '/tjanster/hemstadning'
+      title: t('services.moving.title'),
+      desc: t('services.moving.desc'),
+      icon: <Truck size={32} />,
+      link: '/tjanster/flyttstadning'
     },
     {
       title: t('services.deepCleaning.title'),
@@ -27,22 +27,22 @@ const Services = () => {
       link: '/tjanster/storstadning'
     },
     {
+      title: t('services.cleaning.title'),
+      desc: t('services.cleaning.desc'),
+      icon: <Home size={32} />,
+      link: '/tjanster/hemstadning'
+    },
+    {
+      title: t('services.visning.title'),
+      desc: t('services.visning.desc'),
+      icon: <Eye size={32} />,
+      link: '/tjanster/visningsstadning'
+    },
+    {
       title: t('services.window.title'),
       desc: t('services.window.desc'),
       icon: <Wind size={32} />,
       link: '/tjanster/fonsterputs'
-    },
-    {
-      title: t('services.moving.title'),
-      desc: t('services.moving.desc'),
-      icon: <Truck size={32} />,
-      link: '/tjanster/flyttstadning'
-    },
-    {
-      title: t('services.garden.title'),
-      desc: t('services.garden.desc'),
-      icon: <Shovel size={32} />,
-      link: '#' // No specific page for garden help yet, but could be added
     },
     {
       title: t('services.office.title'),
@@ -51,8 +51,14 @@ const Services = () => {
       link: '/tjanster/kontorsstadning'
     },
     {
-      title: t('services.brf.title'),
-      desc: t('services.brf.desc'),
+      title: t('services.construction.title'),
+      desc: t('services.construction.desc'),
+      icon: <HardHat size={32} />,
+      link: '/tjanster/byggstadning'
+    },
+    {
+      title: t('services.staircase.title'),
+      desc: t('services.staircase.desc'),
       icon: <Building2 size={32} />,
       link: '/tjanster/trappstadning'
     }
