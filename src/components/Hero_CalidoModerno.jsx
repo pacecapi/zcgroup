@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Star, ArrowRight, ArrowLeft } from 'lucide-react';
 import heroImage1 from '../assets/hero.png';
-import heroImage2 from '../assets/hero_solar.png';
+import heroImage2 from '../assets/hero_solar.jpg';
 import { useLanguage } from '../context/LanguageContext';
 
 const Hero = () => {
