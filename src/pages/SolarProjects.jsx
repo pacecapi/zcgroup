@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Home } from 'lucide-react';
 
 const SolarProjects = () => {
     return (
@@ -10,6 +12,10 @@ const SolarProjects = () => {
                 {/* Hero Section for Solar Projects */}
                 <section className="solar-hero">
                     <div className="container">
+                        <Link to="/" className="home-link">
+                            <Home size={18} />
+                            <span>Hem</span>
+                        </Link>
                         <h1>Våra Solcellsprojekt</h1>
                         <p>Vi hjälper företag och bostadsrättsföreningar att ställa om till förnybar energi.</p>
                     </div>
@@ -104,6 +110,28 @@ const SolarProjects = () => {
                     opacity: 0.95;
                     position: relative;
                     z-index: 1;
+                }
+
+                .home-link {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    color: white;
+                    text-decoration: none;
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                    margin-bottom: 1.5rem;
+                    padding: 0.5rem 1rem;
+                    background: rgba(255, 255, 255, 0.15);
+                    border-radius: var(--radius-full);
+                    transition: all 0.3s ease;
+                    position: relative;
+                    z-index: 1;
+                }
+
+                .home-link:hover {
+                    background: rgba(255, 255, 255, 0.25);
+                    transform: translateX(-5px);
                 }
 
                 @media (max-width: 992px) {

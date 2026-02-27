@@ -1,9 +1,9 @@
 import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Home } from 'lucide-react';
 
 const ServiceDetail = () => {
     const { slug } = useParams();
@@ -38,6 +38,10 @@ const ServiceDetail = () => {
             <main>
                 <section className="service-hero">
                     <div className="container">
+                        <Link to="/" className="home-link">
+                            <Home size={18} />
+                            <span>{language === 'sv' ? 'Hem' : language === 'en' ? 'Home' : 'Inicio'}</span>
+                        </Link>
                         <h1>{serviceData.title}</h1>
                         <p className="hero-subtitle">{serviceData.desc}</p>
                         <button className="btn-cta-main">{t('hero.cta')}</button>
@@ -141,6 +145,26 @@ const ServiceDetail = () => {
                 .btn-cta-main:hover {
                     transform: translateY(-2px);
                     box-shadow: 0 6px 15px rgba(255, 210, 0, 0.4), 0 2px 0 rgba(184, 152, 0, 1);
+                }
+                .home-link {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    color: white;
+                    text-decoration: none;
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                    margin-bottom: 1.5rem;
+                    padding: 0.5rem 1rem;
+                    background: rgba(255, 255, 255, 0.15);
+                    border-radius: var(--radius-full);
+                    transition: all 0.3s ease;
+                    position: relative;
+                    z-index: 1;
+                }
+                .home-link:hover {
+                    background: rgba(255, 255, 255, 0.25);
+                    transform: translateX(-5px);
                 }
                 .bg-light {
                     background-color: #F8FAFC;
