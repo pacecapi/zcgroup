@@ -187,7 +187,7 @@ const Header = () => {
 
         .nav-link {
           font-weight: 700;
-          color: var(--color-text-light);
+          color: #333;
           font-size: 0.85rem;
           text-transform: uppercase;
           letter-spacing: 0.05em;
