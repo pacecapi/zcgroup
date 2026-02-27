@@ -329,6 +329,7 @@ const Hero = () => {
             background-position: center;
             opacity: 0;
             transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: brightness(1.15) contrast(1.1) saturate(1.1);
         }
 
         .carousel-slide.active {
