@@ -20,6 +20,10 @@ import Storstadning from './pages/Storstadning';
 import Flyttstadning from './pages/Flyttstadning';
 import Solcellsmontage from './pages/Solcellsmontage';
 import Fonsterputs from './pages/Fonsterputs';
+import Visningsstadning from './pages/Visningsstadning';
+import Kontorsstadning from './pages/Kontorsstadning';
+import Byggstadning from './pages/Byggstadning';
+import Trappstadning from './pages/Trappstadning';
 import { LanguageProvider } from './context/LanguageContext';
 
 // Home Page Component (Original)
@@ -77,6 +81,10 @@ function App() {
           <Route path="/flyttstadning" element={<Flyttstadning />} />
           <Route path="/solcellsmontage" element={<Solcellsmontage />} />
           <Route path="/fonsterputs" element={<Fonsterputs />} />
+          <Route path="/tjanster/visningsstadning" element={<Visningsstadning />} />
+          <Route path="/tjanster/kontorsstadning" element={<Kontorsstadning />} />
+          <Route path="/tjanster/byggstadning" element={<Byggstadning />} />
+          <Route path="/tjanster/trappstadning" element={<Trappstadning />} />
         </Routes>
       </Router>
     </LanguageProvider>
