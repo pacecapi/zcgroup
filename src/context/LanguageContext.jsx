@@ -13,7 +13,7 @@ export const translations = {
             title: 'Tid för det som är viktigt.',
             desc: 'Professionella tjänster inom städning och solcellsmontage. Vi hjälper både privatpersoner och företag med pålitliga och kvalitativa tjänster.',
             inputPlaceholder: 'Ditt postnummer',
-            cta: 'Beräkna pris',
+            cta: 'VÄLJ TJÄNST',
             note: 'Se ditt pris direkt på 30 sekunder',
             trustpilot: '4.8/5 Trustpilot',
             customers: '50,000+ Kunder'
