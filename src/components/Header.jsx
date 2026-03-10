@@ -8,14 +8,14 @@ const Header = () => {
   const { language, setLanguage, t } = useLanguage();
 
   const cleaningServices = [
-    { key: 'moving', slug: 'flyttstadning' },
-    { key: 'deepCleaning', slug: 'storstadning' },
-    { key: 'cleaning', slug: 'hemstadning' },
-    { key: 'visning', slug: 'visningsstadning' },
-    { key: 'window', slug: 'fonsterputs' },
-    { key: 'office', slug: 'kontorsstadning' },
-    { key: 'construction', slug: 'byggstadning' },
-    { key: 'staircase', slug: 'trappstadning' },
+    { key: 'moving', slug: 'flyttstadning', link: '/flyttstadning' },
+    { key: 'deepCleaning', slug: 'storstadning', link: '/storstadning' },
+    { key: 'cleaning', slug: 'hemstadning', link: '/tjanster/hemstadning' },
+    { key: 'visning', slug: 'visningsstadning', link: '/tjanster/visningsstadning' },
+    { key: 'window', slug: 'fonsterputs', link: '/tjanster/fonsterputs' },
+    { key: 'office', slug: 'kontorsstadning', link: '/tjanster/kontorsstadning' },
+    { key: 'construction', slug: 'byggstadning', link: '/tjanster/byggstadning' },
+    { key: 'staircase', slug: 'trappstadning', link: '/tjanster/trappstadning' },
   ];
 
   return (
@@ -41,7 +41,7 @@ const Header = () => {
                     <h5>{t('services.cleaningServicesHeader')}</h5>
                     <ul>
                       {cleaningServices.map((service) => (
-                        <li key={service.key}><a href={`/tjanster/${service.slug}`}>{t(`services.${service.key}.title`)}</a></li>
+                        <li key={service.key}><a href={service.link}>{t(`services.${service.key}.title`)}</a></li>
                       ))}
                     </ul>
                   </div>
@@ -50,7 +50,7 @@ const Header = () => {
                     <p className="dropdown-desc">
                       {t('services.solar.desc')}
                     </p>
-                    <a href="/solar-projects" className="btn-dropdown">{t('services.readMore')} →</a>
+                    <a href="/solcellsmontage" className="btn-dropdown">{t('services.readMore')} →</a>
                   </div>
                 </div>
               </div>
@@ -94,9 +94,9 @@ const Header = () => {
             <li>
               <span className="mobile-nav-header">{t('nav.services')}</span>
               <ul className="mobile-subnav">
-                <li><a href="/solar-projects">{t('services.solar.title')}</a></li>
+                <li><a href="/solcellsmontage">{t('services.solar.title')}</a></li>
                 {cleaningServices.map((service) => (
-                  <li key={service.key}><a href={`/tjanster/${service.slug}`}>{t(`services.${service.key}.title`)}</a></li>
+                  <li key={service.key}><a href={service.link}>{t(`services.${service.key}.title`)}</a></li>
                 ))}
               </ul>
             </li>
