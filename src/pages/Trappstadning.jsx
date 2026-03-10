@@ -2,9 +2,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Home, CheckCircle, Shield, GraduationCap, Award, Building2, User, Mail, Phone, MapPin, Send, FileText, Clock, Users } from 'lucide-react';
+import { Home, CheckCircle, Shield, GraduationCap, Award, Building2, User, Mail, Phone, MapPin, Send, FileText, Clock, Users, Loader2 } from 'lucide-react';
+import { sendEmail } from '../utils/sendEmail';
 
 const Trappstadning = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
     const [formData, setFormData] = useState({
         companyName: '',
         orgNumber: '',
@@ -39,10 +42,36 @@ const Trappstadning = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        alert('Tack! Vi har mottagit din förfrågan och återkommer inom kort.');
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        const result = await sendEmail('trappstadning', formData);
+
+        setIsSubmitting(false);
+        if (result.success) {
+            setSubmitStatus('success');
+            // Reset form
+            setFormData({
+                companyName: '',
+                orgNumber: '',
+                contactPerson: '',
+                email: '',
+                phone: '',
+                propertyAddress: '',
+                postalCode: '',
+                city: '',
+                floors: '',
+                apartments: '',
+                frequency: '',
+                additionalServices: [],
+                message: '',
+                acceptTerms: false
+            });
+        } else {
+            setSubmitStatus('error');
+        }
     };
 
     const services = [
@@ -318,9 +347,31 @@ const Trappstadning = () => {
                                     </label>
                                 </div>
 
-                                <button type="submit" className="btn-submit">
-                                    <Send size={18} />
-                                    Skicka offertförfrågan
+                                {submitStatus === 'success' && (
+                                    <div className="status-message success">
+                                        <CheckCircle size={20} />
+                                        Tack! Vi har mottagit din förfrågan och återkommer inom kort.
+                                    </div>
+                                )}
+
+                                {submitStatus === 'error' && (
+                                    <div className="status-message error">
+                                        Något gick fel. Vänligen försök igen eller kontakta oss direkt.
+                                    </div>
+                                )}
+
+                                <button type="submit" className="btn-submit" disabled={isSubmitting}>
+                                    {isSubmitting ? (
+                                        <>
+                                            <Loader2 size={18} className="spin" />
+                                            Skickar...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send size={18} />
+                                            Skicka offertförfrågan
+                                        </>
+                                    )}
                                 </button>
                             </form>
                         </div>
@@ -666,6 +717,42 @@ const Trappstadning = () => {
                 .btn-submit:hover {
                     transform: translateY(-2px);
                     box-shadow: 0 6px 15px rgba(255, 210, 0, 0.4), 0 2px 0 rgba(184, 152, 0, 1);
+                }
+
+                .btn-submit:disabled {
+                    opacity: 0.7;
+                    cursor: not-allowed;
+                    transform: none;
+                }
+
+                .status-message {
+                    padding: 1rem 1.5rem;
+                    border-radius: var(--radius-md);
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                    font-weight: 600;
+                }
+
+                .status-message.success {
+                    background: #D1FAE5;
+                    color: #065F46;
+                    border: 1px solid #6EE7B7;
+                }
+
+                .status-message.error {
+                    background: #FEE2E2;
+                    color: #991B1B;
+                    border: 1px solid #FCA5A5;
+                }
+
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+
+                .spin {
+                    animation: spin 1s linear infinite;
                 }
 
                 @media (max-width: 992px) {
