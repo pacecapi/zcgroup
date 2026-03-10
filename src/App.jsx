@@ -17,6 +17,7 @@ import Footer from './components/Footer';
 import SolarProjects from './pages/SolarProjects';
 import ServiceDetail from './pages/ServiceDetail';
 import Storstadning from './pages/Storstadning';
+import Flyttstadning from './pages/Flyttstadning';
 import { LanguageProvider } from './context/LanguageContext';
 
 // Home Page Component (Original)
@@ -71,6 +72,7 @@ function App() {
           <Route path="/solar-projects" element={<SolarProjects />} />
           <Route path="/tjanster/:slug" element={<ServiceDetail />} />
           <Route path="/storstadning" element={<Storstadning />} />
+          <Route path="/flyttstadning" element={<Flyttstadning />} />
         </Routes>
       </Router>
     </LanguageProvider>
