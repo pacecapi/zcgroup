@@ -10,7 +10,7 @@ const Services = () => {
       title: t('services.solar.title'),
       desc: t('services.solar.desc'),
       icon: <Sun size={32} />,
-      link: '/solar-projects',
+      link: '/solcellsmontage',
       color: 'var(--color-brand-yellow)',
       bg: 'rgba(255, 210, 0, 0.1)'
     },
@@ -18,13 +18,13 @@ const Services = () => {
       title: t('services.moving.title'),
       desc: t('services.moving.desc'),
       icon: <Truck size={32} />,
-      link: '/tjanster/flyttstadning'
+      link: '/flyttstadning'
     },
     {
       title: t('services.deepCleaning.title'),
       desc: t('services.deepCleaning.desc'),
       icon: <Sparkles size={32} />,
-      link: '/tjanster/storstadning'
+      link: '/storstadning'
     },
     {
       title: t('services.cleaning.title'),
