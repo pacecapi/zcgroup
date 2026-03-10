@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         const emailContent = buildEmailContent(formType, formData);
 
         const { data, error } = await resend.emails.send({
-            from: 'Z&C Group <noreply@zcgroup.se>', // Change to your verified domain
+            from: 'Z&C Group <onboarding@resend.dev>', // Use verified domain in production
             to: ['pablocaicedo@gmail.com'],
             subject: emailContent.subject,
             html: emailContent.html,

@@ -2,13 +2,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Home, CheckCircle, Shield, Users, Zap, FileText, Wrench, Building2, Sun, ArrowRight, Phone, Mail, Clock, Award, Target, Hammer } from 'lucide-react';
+import { Home, CheckCircle, Shield, Users, Zap, FileText, Wrench, Building2, Sun, ArrowRight, Phone, Mail, Clock, Award, Target, Hammer, Send, Loader2 } from 'lucide-react';
+import { sendEmail } from '../utils/sendEmail';
 import heroSolar from '../assets/hero_solar.jpg';
 
 const Solcellsmontage = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
     const [formData, setFormData] = useState({
-        company: '',
-        contact: '',
+        companyName: '',
+        contactPerson: '',
         email: '',
         phone: '',
         message: ''
@@ -16,6 +19,28 @@ const Solcellsmontage = () => {
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        const result = await sendEmail('solcellsmontage', formData);
+
+        setIsSubmitting(false);
+        if (result.success) {
+            setSubmitStatus('success');
+            setFormData({
+                companyName: '',
+                contactPerson: '',
+                email: '',
+                phone: '',
+                message: ''
+            });
+        } else {
+            setSubmitStatus('error');
+        }
     };
 
     const features = [
@@ -213,26 +238,26 @@ const Solcellsmontage = () => {
 
                             <div className="contact-form-card">
                                 <h3>Skicka en förfrågan</h3>
-                                <form className="contact-form">
+                                <form className="contact-form" onSubmit={handleSubmit}>
                                     <div className="form-group">
-                                        <label htmlFor="company">Företagsnamn *</label>
+                                        <label htmlFor="companyName">Företagsnamn *</label>
                                         <input
                                             type="text"
-                                            id="company"
-                                            name="company"
-                                            value={formData.company}
+                                            id="companyName"
+                                            name="companyName"
+                                            value={formData.companyName}
                                             onChange={handleChange}
                                             required
                                         />
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group">
-                                            <label htmlFor="contact">Kontaktperson *</label>
+                                            <label htmlFor="contactPerson">Kontaktperson *</label>
                                             <input
                                                 type="text"
-                                                id="contact"
-                                                name="contact"
-                                                value={formData.contact}
+                                                id="contactPerson"
+                                                name="contactPerson"
+                                                value={formData.contactPerson}
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -271,9 +296,29 @@ const Solcellsmontage = () => {
                                             placeholder="Berätta om ert projekt..."
                                         ></textarea>
                                     </div>
-                                    <button type="submit" className="btn-submit">
-                                        Skicka förfrågan
-                                        <ArrowRight size={18} />
+                                    {submitStatus === 'success' && (
+                                        <div className="status-message success">
+                                            Tack! Din förfrågan har skickats. Vi återkommer inom kort.
+                                        </div>
+                                    )}
+                                    {submitStatus === 'error' && (
+                                        <div className="status-message error">
+                                            Ett fel uppstod. Försök igen eller kontakta oss direkt.
+                                        </div>
+                                    )}
+
+                                    <button type="submit" className="btn-submit" disabled={isSubmitting}>
+                                        {isSubmitting ? (
+                                            <>
+                                                <Loader2 size={18} className="spin" />
+                                                Skickar...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Send size={18} />
+                                                Skicka förfrågan
+                                            </>
+                                        )}
                                     </button>
                                 </form>
                             </div>
@@ -802,9 +847,40 @@ const Solcellsmontage = () => {
                     box-shadow: 0 4px 0 rgba(184, 152, 0, 1);
                 }
 
-                .btn-submit:hover {
+                .btn-submit:hover:not(:disabled) {
                     transform: translateY(-2px);
                     box-shadow: 0 6px 15px rgba(255, 210, 0, 0.4), 0 2px 0 rgba(184, 152, 0, 1);
+                }
+
+                .btn-submit:disabled {
+                    opacity: 0.7;
+                    cursor: not-allowed;
+                }
+
+                .status-message {
+                    padding: 1rem;
+                    border-radius: var(--radius-md);
+                    text-align: center;
+                    font-weight: 600;
+                }
+
+                .status-message.success {
+                    background: #D1FAE5;
+                    color: #065F46;
+                }
+
+                .status-message.error {
+                    background: #FEE2E2;
+                    color: #991B1B;
+                }
+
+                .spin {
+                    animation: spin 1s linear infinite;
+                }
+
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
                 }
 
                 /* Responsive */

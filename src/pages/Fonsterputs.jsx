@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Home, CheckCircle, Shield, GraduationCap, Award, Plus, Minus, Wind, Calendar, Clock, User, Mail, Phone, MapPin, Hash, MessageSquare } from 'lucide-react';
+import { Home, CheckCircle, Shield, GraduationCap, Award, Plus, Minus, Wind, Calendar, Clock, User, Mail, Phone, MapPin, Hash, MessageSquare, Send, Loader2 } from 'lucide-react';
+import { sendEmail } from '../utils/sendEmail';
 
 // Window visual component
 const WindowVisual = ({ type }) => {
@@ -227,6 +228,8 @@ const Fonsterputs = () => {
 
     const [selectedWindows, setSelectedWindows] = useState({});
     const [selectedAddons, setSelectedAddons] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -263,6 +266,42 @@ const Fonsterputs = () => {
 
     const handleFormChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        const result = await sendEmail('fonsterputs', {
+            ...formData,
+            selectedWindows,
+            selectedAddons,
+            totalPrice: calculateTotal()
+        });
+
+        setIsSubmitting(false);
+        if (result.success) {
+            setSubmitStatus('success');
+            setFormData({
+                firstName: '',
+                lastName: '',
+                address: '',
+                postalCode: '',
+                city: '',
+                entryCode: '',
+                phone: '',
+                email: '',
+                personnummer: '',
+                preferredDate: '',
+                timeSlot: '',
+                message: ''
+            });
+            setSelectedWindows({});
+            setSelectedAddons({});
+        } else {
+            setSubmitStatus('error');
+        }
     };
 
     // Calculate total price
@@ -412,7 +451,7 @@ const Fonsterputs = () => {
                             <h2>Boka fönsterputsning</h2>
                             <p className="form-intro">Fyll i dina uppgifter så kontaktar vi dig för att bekräfta bokningen.</p>
 
-                            <form className="booking-form">
+                            <form className="booking-form" onSubmit={handleSubmit}>
                                 <div className="form-row">
                                     <div className="form-group">
                                         <label><User size={16} /> Förnamn *</label>
@@ -581,9 +620,25 @@ const Fonsterputs = () => {
                                     </div>
                                 )}
 
-                                <button type="submit" className="btn-submit">
-                                    Skicka bokningsförfrågan
-                                    <Wind size={20} />
+                                {submitStatus === 'success' && (
+                                    <div className="status-message success">
+                                        <CheckCircle size={20} />
+                                        Tack! Vi har mottagit din förfrågan och återkommer inom kort.
+                                    </div>
+                                )}
+
+                                {submitStatus === 'error' && (
+                                    <div className="status-message error">
+                                        Något gick fel. Vänligen försök igen eller kontakta oss direkt.
+                                    </div>
+                                )}
+
+                                <button type="submit" className="btn-submit" disabled={isSubmitting || totalWindows === 0}>
+                                    {isSubmitting ? (
+                                        <><Loader2 size={18} className="spin" /> Skickar...</>
+                                    ) : (
+                                        <>Skicka bokningsförfrågan <Wind size={20} /></>
+                                    )}
                                 </button>
                             </form>
                         </div>
@@ -1082,6 +1137,42 @@ const Fonsterputs = () => {
                 .btn-submit:hover {
                     transform: translateY(-2px);
                     box-shadow: 0 6px 15px rgba(255, 210, 0, 0.4), 0 2px 0 rgba(184, 152, 0, 1);
+                }
+
+                .btn-submit:disabled {
+                    opacity: 0.7;
+                    cursor: not-allowed;
+                    transform: none;
+                }
+
+                .status-message {
+                    padding: 1rem 1.5rem;
+                    border-radius: var(--radius-md);
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                    font-weight: 600;
+                }
+
+                .status-message.success {
+                    background: #D1FAE5;
+                    color: #065F46;
+                    border: 1px solid #6EE7B7;
+                }
+
+                .status-message.error {
+                    background: #FEE2E2;
+                    color: #991B1B;
+                    border: 1px solid #FCA5A5;
+                }
+
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+
+                .spin {
+                    animation: spin 1s linear infinite;
                 }
 
                 /* Responsive */

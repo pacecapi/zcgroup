@@ -2,9 +2,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Home, CheckCircle, Shield, GraduationCap, Award, Briefcase, Building2, User, Mail, Phone, MapPin, Send, FileText, Clock } from 'lucide-react';
+import { Home, CheckCircle, Shield, GraduationCap, Award, Briefcase, Building2, User, Mail, Phone, MapPin, Send, FileText, Clock, Loader2 } from 'lucide-react';
+import { sendEmail } from '../utils/sendEmail';
 
 const Kontorsstadning = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
     const [formData, setFormData] = useState({
         companyName: '',
         orgNumber: '',
@@ -30,10 +33,35 @@ const Kontorsstadning = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        alert('Tack! Vi har mottagit din förfrågan och återkommer inom kort.');
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        const result = await sendEmail('kontorsstadning', formData);
+
+        setIsSubmitting(false);
+        if (result.success) {
+            setSubmitStatus('success');
+            setFormData({
+                companyName: '',
+                orgNumber: '',
+                contactPerson: '',
+                email: '',
+                phone: '',
+                address: '',
+                postalCode: '',
+                city: '',
+                officeSize: '',
+                employees: '',
+                frequency: '',
+                preferredTime: '',
+                message: '',
+                acceptTerms: false
+            });
+        } else {
+            setSubmitStatus('error');
+        }
     };
 
     const services = [
@@ -303,9 +331,29 @@ const Kontorsstadning = () => {
                                     </label>
                                 </div>
 
-                                <button type="submit" className="btn-submit">
-                                    <Send size={18} />
-                                    Skicka offertförfrågan
+                                {submitStatus === 'success' && (
+                                    <div className="status-message success">
+                                        Tack! Din offertförfrågan har skickats. Vi återkommer inom kort.
+                                    </div>
+                                )}
+                                {submitStatus === 'error' && (
+                                    <div className="status-message error">
+                                        Ett fel uppstod. Försök igen eller kontakta oss direkt.
+                                    </div>
+                                )}
+
+                                <button type="submit" className="btn-submit" disabled={isSubmitting}>
+                                    {isSubmitting ? (
+                                        <>
+                                            <Loader2 size={18} className="spin" />
+                                            Skickar...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send size={18} />
+                                            Skicka offertförfrågan
+                                        </>
+                                    )}
                                 </button>
                             </form>
                         </div>
@@ -620,9 +668,40 @@ const Kontorsstadning = () => {
                     margin-top: 1rem;
                 }
 
-                .btn-submit:hover {
+                .btn-submit:hover:not(:disabled) {
                     transform: translateY(-2px);
                     box-shadow: 0 6px 15px rgba(255, 210, 0, 0.4), 0 2px 0 rgba(184, 152, 0, 1);
+                }
+
+                .btn-submit:disabled {
+                    opacity: 0.7;
+                    cursor: not-allowed;
+                }
+
+                .status-message {
+                    padding: 1rem;
+                    border-radius: var(--radius-md);
+                    text-align: center;
+                    font-weight: 600;
+                }
+
+                .status-message.success {
+                    background: #D1FAE5;
+                    color: #065F46;
+                }
+
+                .status-message.error {
+                    background: #FEE2E2;
+                    color: #991B1B;
+                }
+
+                .spin {
+                    animation: spin 1s linear infinite;
+                }
+
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
                 }
 
                 @media (max-width: 992px) {

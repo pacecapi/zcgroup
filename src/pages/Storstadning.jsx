@@ -2,28 +2,78 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Home, CheckCircle, Shield, GraduationCap, Award, ChevronDown, Sparkles, UtensilsCrossed, Bath, Plus, Info } from 'lucide-react';
+import { Home, CheckCircle, Shield, GraduationCap, Award, ChevronDown, Sparkles, UtensilsCrossed, Bath, Plus, Info, Send, Loader2, User, Mail, Phone, MapPin } from 'lucide-react';
+import { sendEmail } from '../utils/sendEmail';
 
 const Storstadning = () => {
-    const [postnummer, setPostnummer] = useState('');
-    const [bostadenSize, setBostadenSize] = useState('');
-    const [acceptedTerms, setAcceptedTerms] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        address: '',
+        postalCode: '',
+        city: '',
+        size: '',
+        propertyType: '',
+        preferredDate: '',
+        message: '',
+        acceptTerms: false
+    });
+
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: type === 'checkbox' ? checked : value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        const result = await sendEmail('storstadning', formData);
+
+        setIsSubmitting(false);
+        if (result.success) {
+            setSubmitStatus('success');
+            setFormData({
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                address: '',
+                postalCode: '',
+                city: '',
+                size: '',
+                propertyType: '',
+                preferredDate: '',
+                message: '',
+                acceptTerms: false
+            });
+        } else {
+            setSubmitStatus('error');
+        }
+    };
 
     // Pricing based on m2
     const getPriceForSize = (size) => {
         const sizeNum = parseInt(size);
         if (!sizeNum) return null;
 
-        // Base price + price per m2 (with RUT deduction shown)
         const basePrice = 1500;
         const pricePerM2 = 35;
         const totalPrice = basePrice + (sizeNum * pricePerM2);
-        const rutPrice = Math.round(totalPrice * 0.5); // 50% RUT-avdrag
+        const rutPrice = Math.round(totalPrice * 0.5);
 
         return { totalPrice, rutPrice };
     };
 
-    const priceInfo = getPriceForSize(bostadenSize);
+    const priceInfo = getPriceForSize(formData.size);
 
     const sizeOptions = [
         { value: '', label: 'Välj storlek' },
@@ -67,65 +117,114 @@ const Storstadning = () => {
                     <div className="container">
                         <div className="booking-card">
                             <h2>Boka din storstädning</h2>
+                            <p className="form-intro">Fyll i formuläret så kontaktar vi dig för att bekräfta bokningen.</p>
 
-                            <div className="form-grid">
-                                <div className="form-group">
-                                    <label htmlFor="postnummer">Ange ditt postnummer</label>
-                                    <input
-                                        type="text"
-                                        id="postnummer"
-                                        placeholder="T.ex. 123 45"
-                                        value={postnummer}
-                                        onChange={(e) => setPostnummer(e.target.value)}
-                                        maxLength={6}
-                                    />
+                            <form onSubmit={handleSubmit} className="booking-form">
+                                <div className="form-row">
+                                    <div className="form-group">
+                                        <label><User size={16} /> Förnamn *</label>
+                                        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label><User size={16} /> Efternamn *</label>
+                                        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                                    </div>
+                                </div>
+
+                                <div className="form-row">
+                                    <div className="form-group">
+                                        <label><Mail size={16} /> E-post *</label>
+                                        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label><Phone size={16} /> Telefon *</label>
+                                        <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+                                    </div>
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="size">Hur stor är bostaden?</label>
-                                    <div className="select-wrapper">
-                                        <select
-                                            id="size"
-                                            value={bostadenSize}
-                                            onChange={(e) => setBostadenSize(e.target.value)}
-                                        >
+                                    <label><MapPin size={16} /> Adress *</label>
+                                    <input type="text" name="address" value={formData.address} onChange={handleChange} required />
+                                </div>
+
+                                <div className="form-row three-col">
+                                    <div className="form-group">
+                                        <label>Postnummer *</label>
+                                        <input type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Ort *</label>
+                                        <input type="text" name="city" value={formData.city} onChange={handleChange} required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Bostadstyp</label>
+                                        <select name="propertyType" value={formData.propertyType} onChange={handleChange}>
+                                            <option value="">Välj typ</option>
+                                            <option value="lagenhet">Lägenhet</option>
+                                            <option value="villa">Villa</option>
+                                            <option value="radhus">Radhus</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="form-row">
+                                    <div className="form-group">
+                                        <label>Storlek (m²) *</label>
+                                        <select name="size" value={formData.size} onChange={handleChange} required>
                                             {sizeOptions.map(opt => (
                                                 <option key={opt.value} value={opt.value}>{opt.label}</option>
                                             ))}
                                         </select>
-                                        <ChevronDown className="select-icon" size={20} />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Önskat datum</label>
+                                        <input type="date" name="preferredDate" value={formData.preferredDate} onChange={handleChange} />
                                     </div>
                                 </div>
-                            </div>
 
-                            {priceInfo && (
-                                <div className="price-display">
-                                    <div className="price-box">
-                                        <span className="price-label">Pris efter RUT-avdrag</span>
-                                        <span className="price-value">{priceInfo.rutPrice.toLocaleString('sv-SE')} kr</span>
-                                        <span className="price-original">Ordinarie: {priceInfo.totalPrice.toLocaleString('sv-SE')} kr</span>
+                                {priceInfo && (
+                                    <div className="price-display">
+                                        <div className="price-box">
+                                            <span className="price-label">Pris efter RUT-avdrag</span>
+                                            <span className="price-value">{priceInfo.rutPrice.toLocaleString('sv-SE')} kr</span>
+                                            <span className="price-original">Ordinarie: {priceInfo.totalPrice.toLocaleString('sv-SE')} kr</span>
+                                        </div>
                                     </div>
+                                )}
+
+                                <div className="form-group">
+                                    <label>Meddelande</label>
+                                    <textarea name="message" rows={3} value={formData.message} onChange={handleChange} placeholder="Berätta gärna mer om din bostad eller speciella önskemål..."></textarea>
                                 </div>
-                            )}
 
-                            <div className="form-group checkbox-group">
-                                <label className="checkbox-label">
-                                    <input
-                                        type="checkbox"
-                                        checked={acceptedTerms}
-                                        onChange={(e) => setAcceptedTerms(e.target.checked)}
-                                    />
-                                    <span className="checkmark"></span>
-                                    <span>Jag accepterar <a href="/villkor" className="terms-link">villkoren</a></span>
-                                </label>
-                            </div>
+                                <div className="form-group checkbox-group">
+                                    <label className="checkbox-label">
+                                        <input type="checkbox" name="acceptTerms" checked={formData.acceptTerms} onChange={handleChange} required />
+                                        <span>Jag accepterar <a href="/villkor" className="terms-link">villkoren</a></span>
+                                    </label>
+                                </div>
 
-                            <button
-                                className="btn-cta-booking"
-                                disabled={!postnummer || !bostadenSize || !acceptedTerms}
-                            >
-                                Boka storstädning
-                            </button>
+                                {submitStatus === 'success' && (
+                                    <div className="status-message success">
+                                        <CheckCircle size={20} />
+                                        Tack! Vi har mottagit din förfrågan och återkommer inom kort.
+                                    </div>
+                                )}
+
+                                {submitStatus === 'error' && (
+                                    <div className="status-message error">
+                                        Något gick fel. Vänligen försök igen eller kontakta oss direkt.
+                                    </div>
+                                )}
+
+                                <button type="submit" className="btn-cta-booking" disabled={isSubmitting}>
+                                    {isSubmitting ? (
+                                        <><Loader2 size={18} className="spin" /> Skickar...</>
+                                    ) : (
+                                        <><Send size={18} /> Boka storstädning</>
+                                    )}
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </section>
@@ -486,8 +585,69 @@ const Storstadning = () => {
                 }
 
                 .btn-cta-booking:disabled {
-                    opacity: 0.5;
+                    opacity: 0.7;
                     cursor: not-allowed;
+                }
+
+                .booking-form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.25rem;
+                }
+
+                .form-intro {
+                    text-align: center;
+                    color: var(--color-text-secondary);
+                    margin-bottom: 1rem;
+                }
+
+                .form-row {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1.25rem;
+                }
+
+                .form-row.three-col {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+
+                .form-group label svg {
+                    color: var(--color-primary);
+                }
+
+                .form-group textarea {
+                    resize: vertical;
+                    min-height: 80px;
+                }
+
+                .status-message {
+                    padding: 1rem 1.5rem;
+                    border-radius: var(--radius-md);
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                    font-weight: 600;
+                }
+
+                .status-message.success {
+                    background: #D1FAE5;
+                    color: #065F46;
+                    border: 1px solid #6EE7B7;
+                }
+
+                .status-message.error {
+                    background: #FEE2E2;
+                    color: #991B1B;
+                    border: 1px solid #FCA5A5;
+                }
+
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+
+                .spin {
+                    animation: spin 1s linear infinite;
                 }
 
                 /* Service Description Section */
@@ -677,6 +837,10 @@ const Storstadning = () => {
 
                     .price-value {
                         font-size: 2rem;
+                    }
+
+                    .form-row, .form-row.three-col {
+                        grid-template-columns: 1fr;
                     }
                 }
             `}</style>
