@@ -19,6 +19,7 @@ import ServiceDetail from './pages/ServiceDetail';
 import Storstadning from './pages/Storstadning';
 import Flyttstadning from './pages/Flyttstadning';
 import Solcellsmontage from './pages/Solcellsmontage';
+import Fonsterputs from './pages/Fonsterputs';
 import { LanguageProvider } from './context/LanguageContext';
 
 // Home Page Component (Original)
@@ -75,6 +76,7 @@ function App() {
           <Route path="/storstadning" element={<Storstadning />} />
           <Route path="/flyttstadning" element={<Flyttstadning />} />
           <Route path="/solcellsmontage" element={<Solcellsmontage />} />
+          <Route path="/fonsterputs" element={<Fonsterputs />} />
         </Routes>
       </Router>
     </LanguageProvider>

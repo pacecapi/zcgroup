@@ -42,7 +42,7 @@ const Services = () => {
       title: t('services.window.title'),
       desc: t('services.window.desc'),
       icon: <Wind size={32} />,
-      link: '/tjanster/fonsterputs'
+      link: '/fonsterputs'
     },
     {
       title: t('services.office.title'),

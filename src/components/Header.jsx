@@ -12,7 +12,7 @@ const Header = () => {
     { key: 'deepCleaning', slug: 'storstadning', link: '/storstadning' },
     { key: 'cleaning', slug: 'hemstadning', link: '/tjanster/hemstadning' },
     { key: 'visning', slug: 'visningsstadning', link: '/tjanster/visningsstadning' },
-    { key: 'window', slug: 'fonsterputs', link: '/tjanster/fonsterputs' },
+    { key: 'window', slug: 'fonsterputs', link: '/fonsterputs' },
     { key: 'office', slug: 'kontorsstadning', link: '/tjanster/kontorsstadning' },
     { key: 'construction', slug: 'byggstadning', link: '/tjanster/byggstadning' },
     { key: 'staircase', slug: 'trappstadning', link: '/tjanster/trappstadning' },
