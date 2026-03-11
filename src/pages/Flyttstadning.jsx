@@ -735,11 +735,11 @@ const Flyttstadning = () => {
                 }
 
                 .price-display {
-                    background: linear-gradient(135deg, #EBF7ED 0%, #D4EEDB 100%);
+                    background: linear-gradient(135deg, rgba(61, 174, 73, 0.1) 0%, rgba(61, 174, 73, 0.2) 100%);
                     border-radius: var(--radius-md);
                     padding: 1.5rem;
                     text-align: center;
-                    border: 1px solid rgba(61, 174, 73, 0.3);
+                    border: 1px solid rgba(61, 174, 73, 0.4);
                 }
 
                 .price-box {
@@ -880,22 +880,22 @@ const Flyttstadning = () => {
                     box-shadow: var(--shadow-lg);
                 }
 
-                /* Alla rum - Brand Blue theme */
+                /* Alla rum - Brand Blue */
                 .service-card:nth-child(1) {
-                    background: linear-gradient(135deg, #E8F4FD 0%, #CCE7F7 100%);
-                    border-color: rgba(0, 140, 207, 0.3);
+                    background: linear-gradient(135deg, rgba(0, 140, 207, 0.1) 0%, rgba(0, 140, 207, 0.2) 100%);
+                    border-color: rgba(0, 140, 207, 0.4);
                 }
 
-                /* Kök - Brand Green theme */
+                /* Kök - Brand Green */
                 .service-card:nth-child(2) {
-                    background: linear-gradient(135deg, #EBF7ED 0%, #D4EEDB 100%);
-                    border-color: rgba(61, 174, 73, 0.3);
+                    background: linear-gradient(135deg, rgba(61, 174, 73, 0.1) 0%, rgba(61, 174, 73, 0.2) 100%);
+                    border-color: rgba(61, 174, 73, 0.4);
                 }
 
-                /* Badrum - Brand Yellow theme */
+                /* Badrum - Brand Yellow */
                 .service-card:nth-child(3) {
-                    background: linear-gradient(135deg, #FFF9E0 0%, #FFF3BF 100%);
-                    border-color: rgba(255, 210, 0, 0.4);
+                    background: linear-gradient(135deg, rgba(255, 210, 0, 0.1) 0%, rgba(255, 210, 0, 0.2) 100%);
+                    border-color: rgba(255, 210, 0, 0.5);
                 }
 
                 .card-header {
@@ -997,8 +997,8 @@ const Flyttstadning = () => {
                 }
 
                 .addon-card {
-                    background: linear-gradient(135deg, #FFF9E0 0%, #FFF3BF 100%);
-                    border: 1px solid var(--color-brand-yellow);
+                    background: linear-gradient(135deg, rgba(255, 210, 0, 0.08) 0%, rgba(255, 210, 0, 0.18) 100%);
+                    border: 1px solid rgba(255, 210, 0, 0.5);
                     border-top: 4px solid var(--color-brand-yellow);
                 }
 
@@ -1038,8 +1038,8 @@ const Flyttstadning = () => {
                 .note-card {
                     display: flex;
                     gap: 1rem;
-                    background: linear-gradient(135deg, #FFF9E0 0%, #FFF3BF 100%);
-                    border: 1px solid var(--color-brand-yellow);
+                    background: linear-gradient(135deg, rgba(255, 210, 0, 0.08) 0%, rgba(255, 210, 0, 0.18) 100%);
+                    border: 1px solid rgba(255, 210, 0, 0.5);
                     border-left: 4px solid var(--color-brand-yellow);
                     border-radius: var(--radius-lg);
                     padding: 1.5rem;
@@ -1107,8 +1107,8 @@ const Flyttstadning = () => {
                 }
 
                 .info-card {
-                    background: linear-gradient(135deg, #E8F4FD 0%, #CCE7F7 100%);
-                    border: 1px solid rgba(0, 140, 207, 0.3);
+                    background: linear-gradient(135deg, rgba(0, 140, 207, 0.08) 0%, rgba(0, 140, 207, 0.18) 100%);
+                    border: 1px solid rgba(0, 140, 207, 0.4);
                     border-radius: var(--radius-lg);
                     padding: 2rem;
                 }
