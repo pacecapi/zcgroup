@@ -510,7 +510,7 @@ const Storstadning = () => {
                 }
 
                 .price-display {
-                    background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+                    background: linear-gradient(135deg, #EBF7ED 0%, #D4EEDB 100%);
                     border-radius: var(--radius-md);
                     padding: 1.5rem;
                     margin-bottom: 1.5rem;
@@ -752,8 +752,8 @@ const Storstadning = () => {
                 }
 
                 .info-card {
-                    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
-                    border: 1px solid #93C5FD;
+                    background: linear-gradient(135deg, #E8F4FD 0%, #CCE7F7 100%);
+                    border: 1px solid rgba(0, 140, 207, 0.3);
                     border-radius: var(--radius-lg);
                     padding: 2rem;
                 }
@@ -771,12 +771,12 @@ const Storstadning = () => {
 
                 .info-header h3 {
                     margin: 0;
-                    color: #1E40AF;
+                    color: #1a365d;
                     font-size: 1.25rem;
                 }
 
                 .info-content p {
-                    color: #1E40AF;
+                    color: #1a365d;
                     line-height: 1.7;
                     margin-bottom: 1rem;
                 }

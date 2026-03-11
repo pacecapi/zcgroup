@@ -778,7 +778,7 @@ const Fonsterputs = () => {
 
                 .window-card.selected {
                     border-color: var(--color-primary);
-                    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+                    background: linear-gradient(135deg, #E8F4FD 0%, #CCE7F7 100%);
                 }
 
                 .window-visual {
@@ -894,12 +894,12 @@ const Fonsterputs = () => {
                 }
 
                 .addon-card:hover {
-                    background: #EFF6FF;
+                    background: #E8F4FD;
                 }
 
                 .addon-card.selected {
                     border-color: var(--color-brand-green);
-                    background: #F0FDF4;
+                    background: #EBF7ED;
                 }
 
                 .addon-checkbox {

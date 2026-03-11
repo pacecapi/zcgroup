@@ -513,7 +513,7 @@ const Solcellsmontage = () => {
                 }
 
                 .target-content .highlight {
-                    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+                    background: linear-gradient(135deg, #E8F4FD 0%, #CCE7F7 100%);
                     padding: 1rem;
                     border-radius: var(--radius-md);
                     border-left: 4px solid var(--color-primary);
@@ -733,7 +733,7 @@ const Solcellsmontage = () => {
                     width: 50px;
                     height: 50px;
                     padding: 12px;
-                    background: #F0FDF4;
+                    background: #EBF7ED;
                     border-radius: var(--radius-md);
                     color: var(--color-brand-green);
                 }
