@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Home, CheckCircle, Shield, GraduationCap, Award, ChevronDown, Sparkles, UtensilsCrossed, Bath, Plus, Info, XCircle, AlertTriangle, Mail, Send, Loader2, User, Phone, MapPin } from 'lucide-react';
+import { Home, CheckCircle, Shield, GraduationCap, Award, Sparkles, UtensilsCrossed, Bath, Plus, Info, XCircle, AlertTriangle, Mail, Send, Loader2, User, Phone, MapPin, Truck, Calendar, Clock } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
 
 const Flyttstadning = () => {
@@ -19,6 +19,7 @@ const Flyttstadning = () => {
         size: '',
         propertyType: '',
         preferredDate: '',
+        timeSlot: '',
         message: '',
         acceptTerms: false
     });
@@ -52,6 +53,7 @@ const Flyttstadning = () => {
                 size: '',
                 propertyType: '',
                 preferredDate: '',
+                timeSlot: '',
                 message: '',
                 acceptTerms: false
             });
@@ -101,6 +103,17 @@ const Flyttstadning = () => {
         { name: 'Städning av biytor (förråd, garage, balkonger)', price: 'Offert' },
     ];
 
+    const services = [
+        'Dammsugning och våttorkning av alla golv',
+        'Rengöring av kök och vitvaror (in- och utvändigt)',
+        'Badrum och toalett rengörs noggrant',
+        'Fönsterputsning (in- och utvändigt)',
+        'Rengöring av garderober och skåp',
+        'Avtorkning av dörrar och karmar',
+        'Rengöring av golvlister och socklar',
+        'Städgaranti vid besiktning',
+    ];
+
     return (
         <div className="app flyttstadning-page">
             <Header />
@@ -125,73 +138,164 @@ const Flyttstadning = () => {
                     </div>
                 </section>
 
-                {/* Booking Form Section */}
-                <section className="booking-section">
+                {/* Services Included */}
+                <section className="services-included">
                     <div className="container">
-                        <div className="booking-card">
-                            <h2>Boka din flyttstädning</h2>
+                        <div className="services-card">
+                            <div className="services-icon">
+                                <Truck size={32} />
+                            </div>
+                            <div className="services-content">
+                                <h2>Vad ingår i flyttstädning?</h2>
+                                <div className="services-grid">
+                                    {services.map((service, index) => (
+                                        <div key={index} className="service-item">
+                                            <CheckCircle size={18} />
+                                            <span>{service}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Booking Form */}
+                <section className="form-section">
+                    <div className="container">
+                        <div className="form-card">
+                            <h2>Boka flyttstädning</h2>
                             <p className="form-intro">Fyll i formuläret så kontaktar vi dig för att bekräfta bokningen.</p>
 
                             <form onSubmit={handleSubmit} className="booking-form">
                                 <div className="form-row">
                                     <div className="form-group">
                                         <label><User size={16} /> Förnamn *</label>
-                                        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                                        <input
+                                            type="text"
+                                            name="firstName"
+                                            value={formData.firstName}
+                                            onChange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <div className="form-group">
                                         <label><User size={16} /> Efternamn *</label>
-                                        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                                        <input
+                                            type="text"
+                                            name="lastName"
+                                            value={formData.lastName}
+                                            onChange={handleChange}
+                                            required
+                                        />
                                     </div>
                                 </div>
 
                                 <div className="form-row">
                                     <div className="form-group">
                                         <label><Mail size={16} /> E-post *</label>
-                                        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <div className="form-group">
                                         <label><Phone size={16} /> Telefon *</label>
-                                        <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+                                        <input
+                                            type="tel"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            required
+                                        />
                                     </div>
                                 </div>
 
                                 <div className="form-group">
-                                    <label><MapPin size={16} /> Adress (flyttar från) *</label>
-                                    <input type="text" name="address" value={formData.address} onChange={handleChange} required />
+                                    <label><MapPin size={16} /> Adress *</label>
+                                    <input
+                                        type="text"
+                                        name="address"
+                                        value={formData.address}
+                                        onChange={handleChange}
+                                        required
+                                    />
                                 </div>
 
                                 <div className="form-row three-col">
                                     <div className="form-group">
                                         <label>Postnummer *</label>
-                                        <input type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
+                                        <input
+                                            type="text"
+                                            name="postalCode"
+                                            value={formData.postalCode}
+                                            onChange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <div className="form-group">
                                         <label>Ort *</label>
-                                        <input type="text" name="city" value={formData.city} onChange={handleChange} required />
+                                        <input
+                                            type="text"
+                                            name="city"
+                                            value={formData.city}
+                                            onChange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <div className="form-group">
                                         <label>Bostadstyp</label>
-                                        <select name="propertyType" value={formData.propertyType} onChange={handleChange}>
+                                        <select
+                                            name="propertyType"
+                                            value={formData.propertyType}
+                                            onChange={handleChange}
+                                        >
                                             <option value="">Välj typ</option>
                                             <option value="lagenhet">Lägenhet</option>
                                             <option value="villa">Villa</option>
                                             <option value="radhus">Radhus</option>
+                                            <option value="annat">Annat</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label>Storlek (m²) *</label>
-                                        <select name="size" value={formData.size} onChange={handleChange} required>
+                                        <label>Storlek (m²)</label>
+                                        <select
+                                            name="size"
+                                            value={formData.size}
+                                            onChange={handleChange}
+                                        >
                                             {sizeOptions.map(opt => (
                                                 <option key={opt.value} value={opt.value}>{opt.label}</option>
                                             ))}
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <label>Önskat datum</label>
-                                        <input type="date" name="preferredDate" value={formData.preferredDate} onChange={handleChange} />
+                                        <label><Calendar size={16} /> Önskat datum *</label>
+                                        <input
+                                            type="date"
+                                            name="preferredDate"
+                                            value={formData.preferredDate}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label><Clock size={16} /> Tid</label>
+                                        <select
+                                            name="timeSlot"
+                                            value={formData.timeSlot || ''}
+                                            onChange={handleChange}
+                                        >
+                                            <option value="">Välj tid</option>
+                                            <option value="morning">Förmiddag (08-12)</option>
+                                            <option value="afternoon">Eftermiddag (12-17)</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -207,13 +311,25 @@ const Flyttstadning = () => {
 
                                 <div className="form-group">
                                     <label>Meddelande</label>
-                                    <textarea name="message" rows={3} value={formData.message} onChange={handleChange} placeholder="Berätta gärna mer om din bostad eller speciella önskemål..."></textarea>
+                                    <textarea
+                                        name="message"
+                                        rows={4}
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        placeholder="Berätta gärna mer om din bostad eller speciella önskemål..."
+                                    ></textarea>
                                 </div>
 
                                 <div className="form-group checkbox-group">
                                     <label className="checkbox-label">
-                                        <input type="checkbox" name="acceptTerms" checked={formData.acceptTerms} onChange={handleChange} required />
-                                        <span>Jag accepterar <a href="/villkor" className="terms-link">villkoren</a></span>
+                                        <input
+                                            type="checkbox"
+                                            name="acceptTerms"
+                                            checked={formData.acceptTerms}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                        <span>Jag accepterar <a href="/villkor">villkoren</a></span>
                                     </label>
                                 </div>
 
@@ -230,11 +346,17 @@ const Flyttstadning = () => {
                                     </div>
                                 )}
 
-                                <button type="submit" className="btn-cta-booking" disabled={isSubmitting}>
+                                <button type="submit" className="btn-submit" disabled={isSubmitting}>
                                     {isSubmitting ? (
-                                        <><Loader2 size={18} className="spin" /> Skickar...</>
+                                        <>
+                                            <Loader2 size={18} className="spin" />
+                                            Skickar...
+                                        </>
                                     ) : (
-                                        <><Send size={18} /> Boka flyttstädning</>
+                                        <>
+                                            <Send size={18} />
+                                            Skicka bokningsförfrågan
+                                        </>
                                     )}
                                 </button>
                             </form>
@@ -478,36 +600,101 @@ const Flyttstadning = () => {
                     transform: translateX(-5px);
                 }
 
-                /* Booking Section */
-                .booking-section {
-                    background: #F8FAFC;
+                /* Services Included */
+                .services-included {
                     padding: 4rem 0;
+                    background: #F8FAFC;
                     margin-top: -2rem;
                     position: relative;
                     z-index: 10;
                 }
 
-                .booking-card {
+                .services-card {
                     background: white;
                     border-radius: var(--radius-lg);
                     padding: 3rem;
-                    max-width: 600px;
-                    margin: 0 auto;
                     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+                    display: flex;
+                    gap: 2rem;
+                    max-width: 900px;
+                    margin: 0 auto;
                 }
 
-                .booking-card h2 {
-                    text-align: center;
-                    margin-bottom: 2rem;
+                .services-icon {
+                    width: 70px;
+                    height: 70px;
+                    background: linear-gradient(135deg, var(--color-brand-blue) 0%, var(--color-primary) 100%);
+                    border-radius: var(--radius-md);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    flex-shrink: 0;
+                }
+
+                .services-content h2 {
+                    margin-bottom: 1.5rem;
                     color: var(--color-text-main);
-                    font-size: 1.75rem;
                 }
 
-                .form-grid {
+                .services-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 0.75rem;
+                }
+
+                .service-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    color: var(--color-text-secondary);
+                }
+
+                .service-item svg {
+                    color: var(--color-brand-green);
+                    flex-shrink: 0;
+                }
+
+                /* Form Section */
+                .form-section {
+                    padding: var(--section-padding);
+                    background: #F8FAFC;
+                }
+
+                .form-card {
+                    background: white;
+                    border-radius: var(--radius-lg);
+                    padding: 3rem;
+                    max-width: 800px;
+                    margin: 0 auto;
+                    box-shadow: var(--shadow-lg);
+                }
+
+                .form-card h2 {
+                    text-align: center;
+                    margin-bottom: 0.5rem;
+                }
+
+                .form-intro {
+                    text-align: center;
+                    color: var(--color-text-secondary);
+                    margin-bottom: 2rem;
+                }
+
+                .booking-form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem;
+                }
+
+                .form-row {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     gap: 1.5rem;
-                    margin-bottom: 1.5rem;
+                }
+
+                .form-row.three-col {
+                    grid-template-columns: 1fr 1fr 1fr;
                 }
 
                 .form-group {
@@ -518,12 +705,20 @@ const Flyttstadning = () => {
 
                 .form-group label {
                     font-weight: 600;
-                    color: var(--color-text-main);
                     font-size: 0.9rem;
+                    color: var(--color-text-main);
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+                .form-group label svg {
+                    color: var(--color-primary);
                 }
 
                 .form-group input,
-                .form-group select {
+                .form-group select,
+                .form-group textarea {
                     padding: 0.875rem 1rem;
                     border: 2px solid #E2E8F0;
                     border-radius: var(--radius-md);
@@ -532,37 +727,17 @@ const Flyttstadning = () => {
                 }
 
                 .form-group input:focus,
-                .form-group select:focus {
+                .form-group select:focus,
+                .form-group textarea:focus {
                     outline: none;
                     border-color: var(--color-primary);
                     box-shadow: 0 0 0 3px rgba(0, 140, 207, 0.1);
-                }
-
-                .select-wrapper {
-                    position: relative;
-                }
-
-                .select-wrapper select {
-                    width: 100%;
-                    appearance: none;
-                    cursor: pointer;
-                    padding-right: 2.5rem;
-                }
-
-                .select-icon {
-                    position: absolute;
-                    right: 1rem;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    pointer-events: none;
-                    color: #64748B;
                 }
 
                 .price-display {
                     background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
                     border-radius: var(--radius-md);
                     padding: 1.5rem;
-                    margin-bottom: 1.5rem;
                     text-align: center;
                     border: 1px solid #86EFAC;
                 }
@@ -592,7 +767,7 @@ const Flyttstadning = () => {
                 }
 
                 .checkbox-group {
-                    margin-bottom: 1.5rem;
+                    margin-top: 0.5rem;
                 }
 
                 .checkbox-label {
@@ -600,73 +775,46 @@ const Flyttstadning = () => {
                     align-items: center;
                     gap: 0.75rem;
                     cursor: pointer;
-                    font-size: 0.9rem;
                 }
 
-                .checkbox-label input[type="checkbox"] {
+                .checkbox-label input {
                     width: 20px;
                     height: 20px;
                     accent-color: var(--color-primary);
                 }
 
-                .terms-link {
+                .checkbox-label a {
                     color: var(--color-primary);
                     text-decoration: underline;
                 }
 
-                .btn-cta-booking {
-                    width: 100%;
+                .btn-submit {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.75rem;
                     background: var(--color-brand-yellow);
                     color: var(--color-text-main);
                     border: none;
-                    padding: 1rem 2rem;
+                    padding: 1.25rem 2rem;
                     font-size: 1.1rem;
                     font-weight: 700;
                     border-radius: var(--radius-full);
                     cursor: pointer;
                     transition: all 0.3s ease;
                     box-shadow: 0 4px 0 rgba(184, 152, 0, 1);
+                    margin-top: 1rem;
                 }
 
-                .btn-cta-booking:hover:not(:disabled) {
+                .btn-submit:hover {
                     transform: translateY(-2px);
                     box-shadow: 0 6px 15px rgba(255, 210, 0, 0.4), 0 2px 0 rgba(184, 152, 0, 1);
                 }
 
-                .btn-cta-booking:disabled {
+                .btn-submit:disabled {
                     opacity: 0.7;
                     cursor: not-allowed;
-                }
-
-                .booking-form {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 1.25rem;
-                }
-
-                .form-intro {
-                    text-align: center;
-                    color: var(--color-text-secondary);
-                    margin-bottom: 1rem;
-                }
-
-                .form-row {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 1.25rem;
-                }
-
-                .form-row.three-col {
-                    grid-template-columns: 1fr 1fr 1fr;
-                }
-
-                .form-group label svg {
-                    color: var(--color-primary);
-                }
-
-                .form-group textarea {
-                    resize: vertical;
-                    min-height: 80px;
+                    transform: none;
                 }
 
                 .status-message {
@@ -697,23 +845,6 @@ const Flyttstadning = () => {
 
                 .spin {
                     animation: spin 1s linear infinite;
-                }
-
-                .confirmation-notice {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 0.5rem;
-                    margin-top: 1.5rem;
-                    padding: 1rem;
-                    background: #EFF6FF;
-                    border-radius: var(--radius-md);
-                    color: #1E40AF;
-                    font-size: 0.9rem;
-                }
-
-                .confirmation-notice svg {
-                    flex-shrink: 0;
                 }
 
                 /* Service Description Section */
@@ -961,67 +1092,61 @@ const Flyttstadning = () => {
                     margin: 0;
                 }
 
-                /* Responsive */
                 @media (max-width: 992px) {
-                    .service-hero {
-                        padding: 8rem 0 3rem 0;
-                    }
-
                     .service-hero h1 {
                         font-size: 2.5rem;
                     }
-
+                    .services-card {
+                        flex-direction: column;
+                        text-align: center;
+                    }
+                    .services-icon {
+                        margin: 0 auto;
+                    }
+                    .form-card {
+                        padding: 2rem;
+                    }
                     .service-grid {
                         grid-template-columns: 1fr;
                     }
-
-                    .form-grid {
-                        grid-template-columns: 1fr;
-                    }
-
-                    .booking-card {
-                        padding: 2rem;
-                    }
                 }
 
-                @media (max-width: 576px) {
+                @media (max-width: 768px) {
+                    .service-hero {
+                        padding: 8rem 0 3rem;
+                    }
+                    .form-row, .form-row.three-col {
+                        grid-template-columns: 1fr;
+                    }
+                    .services-grid {
+                        grid-template-columns: 1fr;
+                    }
                     .trust-badges {
                         flex-direction: column;
                         align-items: center;
                     }
-
                     .badge {
                         width: 100%;
                         justify-content: center;
                         max-width: 280px;
                     }
-
                     .section-title {
                         font-size: 1.75rem;
                     }
-
                     .service-card {
                         padding: 1.5rem;
                     }
-
                     .price-value {
                         font-size: 2rem;
                     }
-
-                    .form-row, .form-row.three-col {
-                        grid-template-columns: 1fr;
-                    }
-
                     .addon-list li {
                         flex-direction: column;
                         align-items: flex-start;
                         gap: 0.5rem;
                     }
-
                     .addon-price {
                         margin-left: 1.5rem;
                     }
-
                     .excluded-grid {
                         grid-template-columns: 1fr;
                     }
