@@ -872,11 +872,24 @@ const Flyttstadning = () => {
                     padding: 2rem;
                     box-shadow: var(--shadow-md);
                     transition: all 0.3s ease;
+                    border-top: 4px solid var(--color-primary);
                 }
 
                 .service-card:hover {
                     transform: translateY(-5px);
                     box-shadow: var(--shadow-lg);
+                }
+
+                .service-card:nth-child(1) {
+                    border-top-color: var(--color-brand-blue);
+                }
+
+                .service-card:nth-child(2) {
+                    border-top-color: var(--color-primary);
+                }
+
+                .service-card:nth-child(3) {
+                    border-top-color: var(--color-brand-green);
                 }
 
                 .card-header {
@@ -890,6 +903,18 @@ const Flyttstadning = () => {
 
                 .card-header svg {
                     color: var(--color-primary);
+                }
+
+                .service-card:nth-child(1) .card-header svg {
+                    color: var(--color-brand-blue);
+                }
+
+                .service-card:nth-child(2) .card-header svg {
+                    color: var(--color-primary);
+                }
+
+                .service-card:nth-child(3) .card-header svg {
+                    color: var(--color-brand-green);
                 }
 
                 .card-header h3 {
@@ -934,19 +959,24 @@ const Flyttstadning = () => {
                 }
 
                 .addon-card {
-                    background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
-                    border: 1px solid #FDBA74;
+                    background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+                    border: 1px solid var(--color-brand-yellow);
+                    border-top: 4px solid var(--color-brand-yellow);
                 }
 
                 .addon-card .card-header svg {
-                    color: #EA580C;
+                    color: #B8980A;
                 }
 
                 .addon-list li {
-                    color: #9A3412;
+                    color: #78350F;
                     display: flex;
                     align-items: center;
                     flex-wrap: wrap;
+                }
+
+                .addon-list svg {
+                    color: #B8980A !important;
                 }
 
                 .addon-name {
@@ -955,8 +985,8 @@ const Flyttstadning = () => {
 
                 .addon-price {
                     font-weight: 700;
-                    color: #EA580C;
-                    background: rgba(255, 255, 255, 0.7);
+                    color: #1a365d;
+                    background: var(--color-brand-yellow);
                     padding: 0.25rem 0.75rem;
                     border-radius: var(--radius-full);
                     font-size: 0.85rem;
@@ -970,14 +1000,15 @@ const Flyttstadning = () => {
                 .note-card {
                     display: flex;
                     gap: 1rem;
-                    background: #FFFBEB;
-                    border: 1px solid #FCD34D;
+                    background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+                    border: 1px solid var(--color-brand-yellow);
+                    border-left: 4px solid var(--color-brand-yellow);
                     border-radius: var(--radius-lg);
                     padding: 1.5rem;
                 }
 
                 .note-card svg {
-                    color: #D97706;
+                    color: #B8980A;
                     flex-shrink: 0;
                     margin-top: 2px;
                 }
@@ -988,7 +1019,7 @@ const Flyttstadning = () => {
                 }
 
                 .note-card li {
-                    color: #92400E;
+                    color: #78350F;
                     margin-bottom: 0.5rem;
                     font-size: 0.95rem;
                 }
