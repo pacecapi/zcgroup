@@ -1064,8 +1064,9 @@ const Flyttstadning = () => {
 
                 /* Excluded Section */
                 .excluded-section {
-                    background: #FEF2F2;
-                    border: 1px solid #FECACA;
+                    background: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
+                    border: 1px solid #CBD5E1;
+                    border-left: 4px solid #64748B;
                     border-radius: var(--radius-lg);
                     padding: 2rem;
                     margin-bottom: 3rem;
@@ -1075,13 +1076,13 @@ const Flyttstadning = () => {
                     display: flex;
                     align-items: center;
                     gap: 0.75rem;
-                    color: #991B1B;
+                    color: #334155;
                     margin-bottom: 1.5rem;
                     font-size: 1.25rem;
                 }
 
                 .excluded-section h3 svg {
-                    color: #DC2626;
+                    color: #64748B;
                 }
 
                 .excluded-grid {
@@ -1094,9 +1095,9 @@ const Flyttstadning = () => {
                     background: white;
                     padding: 0.75rem 1rem;
                     border-radius: var(--radius-md);
-                    color: #7F1D1D;
+                    color: #475569;
                     font-size: 0.9rem;
-                    border: 1px solid #FCA5A5;
+                    border: 1px solid #CBD5E1;
                 }
 
                 /* Info Section */
