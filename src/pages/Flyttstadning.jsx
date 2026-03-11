@@ -735,11 +735,11 @@ const Flyttstadning = () => {
                 }
 
                 .price-display {
-                    background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+                    background: linear-gradient(135deg, #EBF7ED 0%, #D4EEDB 100%);
                     border-radius: var(--radius-md);
                     padding: 1.5rem;
                     text-align: center;
-                    border: 1px solid #86EFAC;
+                    border: 1px solid rgba(61, 174, 73, 0.3);
                 }
 
                 .price-box {
@@ -750,14 +750,14 @@ const Flyttstadning = () => {
 
                 .price-label {
                     font-size: 0.875rem;
-                    color: #166534;
+                    color: #1a365d;
                     font-weight: 500;
                 }
 
                 .price-value {
                     font-size: 2.5rem;
                     font-weight: 800;
-                    color: #166534;
+                    color: #1a365d;
                 }
 
                 .price-original {
@@ -880,22 +880,22 @@ const Flyttstadning = () => {
                     box-shadow: var(--shadow-lg);
                 }
 
-                /* Alla rum - Blue theme */
+                /* Alla rum - Brand Blue theme */
                 .service-card:nth-child(1) {
-                    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
-                    border-color: #93C5FD;
+                    background: linear-gradient(135deg, #E8F4FD 0%, #CCE7F7 100%);
+                    border-color: rgba(0, 140, 207, 0.3);
                 }
 
-                /* Kök - Primary/Cyan theme */
+                /* Kök - Brand Green theme */
                 .service-card:nth-child(2) {
-                    background: linear-gradient(135deg, #ECFEFF 0%, #CFFAFE 100%);
-                    border-color: #67E8F9;
+                    background: linear-gradient(135deg, #EBF7ED 0%, #D4EEDB 100%);
+                    border-color: rgba(61, 174, 73, 0.3);
                 }
 
-                /* Badrum - Green theme */
+                /* Badrum - Brand Yellow theme */
                 .service-card:nth-child(3) {
-                    background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
-                    border-color: #86EFAC;
+                    background: linear-gradient(135deg, #FFF9E0 0%, #FFF3BF 100%);
+                    border-color: rgba(255, 210, 0, 0.4);
                 }
 
                 .card-header {
@@ -911,37 +911,37 @@ const Flyttstadning = () => {
                     color: var(--color-primary);
                 }
 
-                /* Alla rum - Blue */
+                /* Alla rum - Brand Blue */
                 .service-card:nth-child(1) .card-header {
-                    border-bottom-color: #93C5FD;
+                    border-bottom-color: rgba(0, 140, 207, 0.3);
                 }
                 .service-card:nth-child(1) .card-header svg {
-                    color: #2563EB;
+                    color: #008CCF;
                 }
                 .service-card:nth-child(1) .card-header h3 {
-                    color: #1E40AF;
+                    color: #1a365d;
                 }
 
-                /* Kök - Cyan */
+                /* Kök - Brand Green */
                 .service-card:nth-child(2) .card-header {
-                    border-bottom-color: #67E8F9;
+                    border-bottom-color: rgba(61, 174, 73, 0.3);
                 }
                 .service-card:nth-child(2) .card-header svg {
-                    color: #0891B2;
+                    color: #3DAE49;
                 }
                 .service-card:nth-child(2) .card-header h3 {
-                    color: #155E75;
+                    color: #1a365d;
                 }
 
-                /* Badrum - Green */
+                /* Badrum - Brand Yellow */
                 .service-card:nth-child(3) .card-header {
-                    border-bottom-color: #86EFAC;
+                    border-bottom-color: rgba(255, 210, 0, 0.4);
                 }
                 .service-card:nth-child(3) .card-header svg {
-                    color: #16A34A;
+                    color: #D4AF00;
                 }
                 .service-card:nth-child(3) .card-header h3 {
-                    color: #166534;
+                    color: #1a365d;
                 }
 
                 .card-header h3 {
@@ -974,15 +974,15 @@ const Flyttstadning = () => {
                 }
 
                 .service-card:nth-child(1) .service-list svg {
-                    color: #2563EB;
+                    color: #008CCF;
                 }
 
                 .service-card:nth-child(2) .service-list svg {
-                    color: #0891B2;
+                    color: #3DAE49;
                 }
 
                 .service-card:nth-child(3) .service-list svg {
-                    color: #16A34A;
+                    color: #D4AF00;
                 }
 
                 .card-note {
@@ -1007,7 +1007,7 @@ const Flyttstadning = () => {
                 }
 
                 .addon-list li {
-                    color: #78350F;
+                    color: #1a365d;
                     display: flex;
                     align-items: center;
                     flex-wrap: wrap;
@@ -1057,7 +1057,7 @@ const Flyttstadning = () => {
                 }
 
                 .note-card li {
-                    color: #78350F;
+                    color: #1a365d;
                     margin-bottom: 0.5rem;
                     font-size: 0.95rem;
                 }
@@ -1107,8 +1107,8 @@ const Flyttstadning = () => {
                 }
 
                 .info-card {
-                    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
-                    border: 1px solid #93C5FD;
+                    background: linear-gradient(135deg, #E8F4FD 0%, #CCE7F7 100%);
+                    border: 1px solid rgba(0, 140, 207, 0.3);
                     border-radius: var(--radius-lg);
                     padding: 2rem;
                 }
@@ -1126,7 +1126,7 @@ const Flyttstadning = () => {
 
                 .info-header h3 {
                     margin: 0;
-                    color: #1E40AF;
+                    color: #1a365d;
                     font-size: 1.25rem;
                 }
 
@@ -1142,13 +1142,13 @@ const Flyttstadning = () => {
                     display: flex;
                     align-items: flex-start;
                     gap: 0.75rem;
-                    color: #1E40AF;
+                    color: #1a365d;
                     font-size: 0.95rem;
                     line-height: 1.5;
                 }
 
                 .responsibility-list svg {
-                    color: #3B82F6;
+                    color: #008CCF;
                     flex-shrink: 0;
                     margin-top: 3px;
                 }
@@ -1157,8 +1157,8 @@ const Flyttstadning = () => {
                     background: rgba(255, 255, 255, 0.5);
                     padding: 1rem;
                     border-radius: var(--radius-md);
-                    border-left: 4px solid #3B82F6;
-                    color: #1E40AF;
+                    border-left: 4px solid #008CCF;
+                    color: #1a365d;
                     margin: 0;
                 }
 
