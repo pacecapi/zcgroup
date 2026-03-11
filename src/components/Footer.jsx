@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="footer-col">
             <h4>{t('nav.services')}</h4>
             <ul>
-              <li><a href="/solar-projects">{t('services.solar.title')}</a></li>
+              <li><a href="/solcellsmontage">{t('services.solar.title')}</a></li>
               <li><a href="/tjanster/hemstadning">{t('services.cleaning.title')}</a></li>
               <li><a href="/tjanster/storstadning">{t('services.deepCleaning.title')}</a></li>
               <li><a href="/tjanster/fonsterputs">{t('services.window.title')}</a></li>
@@ -57,10 +57,22 @@ const Footer = () => {
 
       <style>{`
         .footer {
-          background-color: #0F172A; /* Dark Navy for premium feel */
+          background: linear-gradient(135deg, #1a365d 0%, #0F172A 100%);
           padding: 4rem 0 2rem;
           color: white;
-          border-top: none;
+          border-top: 4px solid var(--color-brand-yellow);
+          position: relative;
+        }
+
+        .footer::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at 10% 20%, rgba(0, 140, 207, 0.1) 0%, transparent 50%);
+          pointer-events: none;
         }
 
         .footer-grid {
@@ -68,13 +80,15 @@ const Footer = () => {
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           gap: 3rem;
           margin-bottom: 4rem;
+          position: relative;
+          z-index: 1;
         }
 
         .footer-col h4 {
           font-size: 1rem;
           font-weight: 700;
           margin-bottom: 1.5rem;
-          color: white;
+          color: var(--color-brand-yellow);
           text-transform: uppercase;
           letter-spacing: 0.05em;
         }
@@ -88,13 +102,14 @@ const Footer = () => {
         }
 
         .footer-col a {
-          color: #94A3B8; /* Slate gray text */
+          color: #CBD5E1;
           font-size: 0.9rem;
-          transition: color 0.2s;
+          transition: all 0.2s;
         }
 
         .footer-col a:hover {
           color: var(--color-brand-yellow);
+          padding-left: 5px;
         }
 
         .social-links {
@@ -105,32 +120,42 @@ const Footer = () => {
 
         .social-links a {
           color: white;
-          opacity: 0.8;
-          transition: opacity 0.2s;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 50%;
+          transition: all 0.3s ease;
         }
-        
+
         .social-links a:hover {
-            opacity: 1;
-            color: var(--color-brand-yellow);
+          background: var(--color-brand-yellow);
+          color: #1a365d;
+          transform: translateY(-3px);
         }
 
         .footer-bottom {
           padding-top: 2rem;
-          border-top: 1px solid rgba(255,255,255,0.1);
+          border-top: 1px solid rgba(255, 255, 255, 0.15);
           display: flex;
           justify-content: space-between;
           flex-wrap: wrap;
           gap: 1rem;
           font-size: 0.85rem;
-          color: #64748B;
+          color: #94A3B8;
+          position: relative;
+          z-index: 1;
         }
-        
+
         .footer-bottom a {
-            color: #64748B;
+          color: #94A3B8;
+          transition: color 0.2s;
         }
-        
+
         .footer-bottom a:hover {
-            color: white;
+          color: var(--color-brand-yellow);
         }
 
         .legal {
