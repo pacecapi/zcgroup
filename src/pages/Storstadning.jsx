@@ -515,7 +515,7 @@ const Storstadning = () => {
                     padding: 1.5rem;
                     margin-bottom: 1.5rem;
                     text-align: center;
-                    border: 1px solid #86EFAC;
+                    border: 1px solid rgba(61, 174, 73, 0.3);
                 }
 
                 .price-box {
@@ -526,14 +526,14 @@ const Storstadning = () => {
 
                 .price-label {
                     font-size: 0.875rem;
-                    color: #166534;
+                    color: #1a365d;
                     font-weight: 500;
                 }
 
                 .price-value {
                     font-size: 2.5rem;
                     font-weight: 800;
-                    color: #166534;
+                    color: #1a365d;
                 }
 
                 .price-original {

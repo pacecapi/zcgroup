@@ -517,7 +517,7 @@ const Solcellsmontage = () => {
                     padding: 1rem;
                     border-radius: var(--radius-md);
                     border-left: 4px solid var(--color-primary);
-                    color: #1E40AF;
+                    color: #1a365d;
                 }
 
                 /* Features Section */
