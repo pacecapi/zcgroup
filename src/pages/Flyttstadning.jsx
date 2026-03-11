@@ -997,7 +997,7 @@ const Flyttstadning = () => {
                 }
 
                 .addon-card {
-                    background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+                    background: linear-gradient(135deg, #FFF9E0 0%, #FFF3BF 100%);
                     border: 1px solid var(--color-brand-yellow);
                     border-top: 4px solid var(--color-brand-yellow);
                 }
@@ -1038,7 +1038,7 @@ const Flyttstadning = () => {
                 .note-card {
                     display: flex;
                     gap: 1rem;
-                    background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+                    background: linear-gradient(135deg, #FFF9E0 0%, #FFF3BF 100%);
                     border: 1px solid var(--color-brand-yellow);
                     border-left: 4px solid var(--color-brand-yellow);
                     border-radius: var(--radius-lg);
