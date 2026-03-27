@@ -408,7 +408,7 @@ const Byggstadning = () => {
                     text-align: center;
                     position: relative;
                     overflow: hidden;
-                    min-height: 500px;
+                    min-height: 650px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -429,10 +429,8 @@ const Byggstadning = () => {
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background-size: contain;
+                    background-size: cover;
                     background-position: center;
-                    background-repeat: no-repeat;
-                    background-color: #1a365d;
                     opacity: 0;
                     transition: opacity 1s ease-in-out;
                 }
@@ -825,7 +823,7 @@ const Byggstadning = () => {
 
                 @media (max-width: 992px) {
                     .service-hero {
-                        min-height: 400px;
+                        min-height: 500px;
                     }
                     .hero-content {
                         padding: 8rem 0 3rem;
@@ -850,7 +848,7 @@ const Byggstadning = () => {
 
                 @media (max-width: 768px) {
                     .service-hero {
-                        min-height: 350px;
+                        min-height: 400px;
                     }
                     .hero-content {
                         padding: 7rem 0 2.5rem;
