@@ -4,6 +4,11 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
 import { CheckCircle, Home } from 'lucide-react';
+import hemstadningImg from '../assets/Hemstadning1.jpg';
+
+const heroImages = {
+    'hemstadning': hemstadningImg,
+};
 
 const ServiceDetail = () => {
     const { slug } = useParams();
@@ -32,12 +37,23 @@ const ServiceDetail = () => {
         desc: t(`services.${serviceKey}.desc`),
     };
 
+    const heroImage = heroImages[slug];
+
     return (
         <div className="app">
             <Header />
             <main>
-                <section className="service-hero">
-                    <div className="container">
+                <section className={`service-hero ${heroImage ? 'has-image' : ''}`}>
+                    {heroImage && (
+                        <div className="hero-carousel">
+                            <div
+                                className="hero-slide active"
+                                style={{ backgroundImage: `url(${heroImage})` }}
+                            />
+                            <div className="hero-overlay" />
+                        </div>
+                    )}
+                    <div className={`container ${heroImage ? 'hero-content' : ''}`}>
                         <Link to="/" className="home-link">
                             <Home size={18} />
                             <span>{language === 'sv' ? 'Hem' : language === 'en' ? 'Home' : 'Inicio'}</span>
@@ -90,6 +106,61 @@ const ServiceDetail = () => {
                     text-align: center;
                     position: relative;
                     overflow: hidden;
+                }
+                .service-hero.has-image {
+                    padding: 0;
+                    min-height: 500px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: none;
+                }
+                .service-hero.has-image::before,
+                .service-hero.has-image::after {
+                    display: none;
+                }
+                .hero-carousel {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 0;
+                }
+                .hero-slide {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-size: cover;
+                    background-position: center;
+                    opacity: 0;
+                    transition: opacity 1s ease-in-out;
+                }
+                .hero-slide.active {
+                    opacity: 1;
+                }
+                .hero-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(to top, rgba(26, 54, 93, 0.5) 0%, rgba(0, 0, 0, 0.15) 100%);
+                    z-index: 1;
+                }
+                .hero-content {
+                    position: relative;
+                    z-index: 2;
+                    padding: 10rem 0 4rem 0;
+                }
+                .service-hero.has-image h1 {
+                    color: white;
+                    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                }
+                .service-hero.has-image .hero-subtitle {
+                    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
                 }
                 .service-hero::before {
                     content: '';
@@ -227,6 +298,13 @@ const ServiceDetail = () => {
                     .service-hero {
                         padding: 10rem 0 4rem 0;
                     }
+                    .service-hero.has-image {
+                        min-height: 400px;
+                        padding: 0;
+                    }
+                    .hero-content {
+                        padding: 8rem 0 3rem;
+                    }
                     .service-content-grid {
                         grid-template-columns: 1fr;
                     }
@@ -235,6 +313,15 @@ const ServiceDetail = () => {
                     }
                     .include-list {
                         grid-template-columns: 1fr;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .service-hero.has-image {
+                        min-height: 350px;
+                    }
+                    .hero-content {
+                        padding: 7rem 0 2.5rem;
                     }
                 }
             `}</style>
