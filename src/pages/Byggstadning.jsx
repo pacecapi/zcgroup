@@ -109,7 +109,14 @@ const Byggstadning = () => {
                                 key={index}
                                 className={`hero-slide ${index === currentImageIndex ? 'active' : ''}`}
                                 style={{ backgroundImage: `url(${img})` }}
-                            />
+                            >
+                                {index === 1 && (
+                                    <>
+                                        <span className="before-after-label label-antes">Antes</span>
+                                        <span className="before-after-label label-despues">Después</span>
+                                    </>
+                                )}
+                            </div>
                         ))}
                         <div className="hero-overlay" />
                         <button className="carousel-nav prev" onClick={prevSlide}>
@@ -447,6 +454,29 @@ const Byggstadning = () => {
                     height: 100%;
                     background: linear-gradient(to top, rgba(26, 54, 93, 0.5) 0%, rgba(0, 0, 0, 0.15) 100%);
                     z-index: 1;
+                }
+
+                .before-after-label {
+                    position: absolute;
+                    bottom: 8%;
+                    background: var(--color-brand-yellow);
+                    color: #1a365d;
+                    font-weight: 800;
+                    font-size: 1.2rem;
+                    padding: 0.5rem 1.5rem;
+                    border-radius: var(--radius-full);
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    z-index: 2;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                }
+
+                .label-antes {
+                    left: 15%;
+                }
+
+                .label-despues {
+                    right: 15%;
                 }
 
                 .carousel-nav {
