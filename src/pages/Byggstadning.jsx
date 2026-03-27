@@ -4,10 +4,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Home, CheckCircle, Shield, GraduationCap, Award, HardHat, Building2, User, Mail, Phone, MapPin, Send, FileText, Calendar, Loader2, ArrowLeft, ArrowRight } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
+import { useLanguage } from '../context/LanguageContext';
 import heroImg1 from '../assets/Byggstadningimage_1.jpg';
 import heroImg2 from '../assets/Byggstadningimage_2.jpg';
 
 const Byggstadning = () => {
+    const { language } = useLanguage();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
     const [formData, setFormData] = useState({
@@ -112,8 +114,8 @@ const Byggstadning = () => {
                             >
                                 {index === 1 && (
                                     <>
-                                        <span className="before-after-label label-antes">Antes</span>
-                                        <span className="before-after-label label-despues">Después</span>
+                                        <span className="before-after-label label-antes">{language === 'sv' ? 'FÖRE' : language === 'en' ? 'BEFORE' : 'ANTES'}</span>
+                                        <span className="before-after-label label-despues">{language === 'sv' ? 'EFTER' : language === 'en' ? 'AFTER' : 'DESPUÉS'}</span>
                                     </>
                                 )}
                             </div>
@@ -459,8 +461,8 @@ const Byggstadning = () => {
                 .before-after-label {
                     position: absolute;
                     bottom: 8%;
-                    background: var(--color-brand-yellow);
-                    color: #1a365d;
+                    background: #6BC24A;
+                    color: white;
                     font-weight: 800;
                     font-size: 1.2rem;
                     padding: 0.5rem 1.5rem;
