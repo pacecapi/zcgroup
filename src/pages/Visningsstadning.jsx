@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Home, CheckCircle, Shield, GraduationCap, Award, ChevronDown, Sparkles, Eye, Calendar, Clock, User, Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
+import heroImg1 from '../assets/Visningstadning1.png';
 
 const Visningsstadning = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -77,9 +78,16 @@ const Visningsstadning = () => {
         <div className="app visningsstadning-page">
             <Header />
             <main>
-                {/* Hero Section */}
+                {/* Hero Section with Image */}
                 <section className="service-hero">
-                    <div className="container">
+                    <div className="hero-carousel">
+                        <div
+                            className="hero-slide active"
+                            style={{ backgroundImage: `url(${heroImg1})` }}
+                        />
+                        <div className="hero-overlay" />
+                    </div>
+                    <div className="container hero-content">
                         <Link to="/" className="home-link">
                             <Home size={18} />
                             <span>Hem</span>
@@ -328,32 +336,64 @@ const Visningsstadning = () => {
 
                 .service-hero {
                     margin-top: 0;
-                    background: linear-gradient(135deg, var(--color-brand-blue) 0%, var(--color-primary) 100%);
                     color: white;
-                    padding: 10rem 0 4rem 0;
+                    padding: 0;
                     text-align: center;
                     position: relative;
                     overflow: hidden;
+                    min-height: 500px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
-                .service-hero::before {
-                    content: '';
+                .hero-carousel {
                     position: absolute;
-                    top: -20%;
-                    left: -10%;
-                    width: 60%;
-                    height: 60%;
-                    background: radial-gradient(circle, rgba(255, 210, 0, 0.15) 0%, transparent 70%);
-                    pointer-events: none;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 0;
+                }
+
+                .hero-slide {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-size: cover;
+                    background-position: center;
+                    opacity: 0;
+                    transition: opacity 1s ease-in-out;
+                }
+
+                .hero-slide.active {
+                    opacity: 1;
+                }
+
+                .hero-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(to top, rgba(26, 54, 93, 0.5) 0%, rgba(0, 0, 0, 0.15) 100%);
+                    z-index: 1;
+                }
+
+                .hero-content {
+                    position: relative;
+                    z-index: 2;
+                    padding: 10rem 0 4rem 0;
                 }
 
                 .service-hero h1 {
                     font-size: 3.5rem;
                     margin-bottom: 1.5rem;
-                    color: #1a365d;
+                    color: white;
                     font-weight: 800;
-                    position: relative;
-                    z-index: 1;
+                    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
                 }
 
                 .hero-subtitle {
@@ -362,8 +402,7 @@ const Visningsstadning = () => {
                     margin: 0 auto 2rem;
                     line-height: 1.7;
                     opacity: 0.95;
-                    position: relative;
-                    z-index: 1;
+                    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
                 }
 
                 .trust-badges {
@@ -371,7 +410,6 @@ const Visningsstadning = () => {
                     justify-content: center;
                     gap: 1.5rem;
                     flex-wrap: wrap;
-                    position: relative;
                     z-index: 1;
                 }
 
@@ -625,6 +663,12 @@ const Visningsstadning = () => {
                 }
 
                 @media (max-width: 992px) {
+                    .service-hero {
+                        min-height: 400px;
+                    }
+                    .hero-content {
+                        padding: 8rem 0 3rem;
+                    }
                     .service-hero h1 {
                         font-size: 2.5rem;
                     }
@@ -642,7 +686,10 @@ const Visningsstadning = () => {
 
                 @media (max-width: 768px) {
                     .service-hero {
-                        padding: 8rem 0 3rem;
+                        min-height: 350px;
+                    }
+                    .hero-content {
+                        padding: 7rem 0 2.5rem;
                     }
                     .form-row, .form-row.three-col {
                         grid-template-columns: 1fr;
