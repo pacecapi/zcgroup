@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Home, CheckCircle, Shield, GraduationCap, Award, Briefcase, Building2, User, Mail, Phone, MapPin, Send, FileText, Clock, Loader2 } from 'lucide-react';
+import { Home, CheckCircle, Shield, GraduationCap, Award, Briefcase, Building2, User, Mail, Phone, MapPin, Send, FileText, Clock, Loader2, ArrowLeft, ArrowRight } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
+import heroImg1 from '../assets/Kontorstaddning1.png';
+import heroImg2 from '../assets/Kontorstaddning2.png';
 
 const Kontorsstadning = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -75,6 +77,19 @@ const Kontorsstadning = () => {
         'Påfyllning av förbrukningsmaterial',
     ];
 
+    const heroImages = [heroImg1, heroImg2];
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [heroImages.length]);
+
+    const nextSlide = () => setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    const prevSlide = () => setCurrentImageIndex((prev) => (prev === 0 ? heroImages.length - 1 : prev - 1));
+
     const benefits = [
         { title: 'Flexibla tider', desc: 'Vi anpassar oss efter era arbetstider' },
         { title: 'Fast pris', desc: 'Inga dolda kostnader eller överraskningar' },
@@ -86,9 +101,34 @@ const Kontorsstadning = () => {
         <div className="app kontorsstadning-page">
             <Header />
             <main>
-                {/* Hero Section */}
+                {/* Hero Section with Carousel */}
                 <section className="service-hero">
-                    <div className="container">
+                    <div className="hero-carousel">
+                        {heroImages.map((img, index) => (
+                            <div
+                                key={index}
+                                className={`hero-slide ${index === currentImageIndex ? 'active' : ''}`}
+                                style={{ backgroundImage: `url(${img})` }}
+                            />
+                        ))}
+                        <div className="hero-overlay" />
+                        <button className="carousel-nav prev" onClick={prevSlide}>
+                            <ArrowLeft size={28} color="white" />
+                        </button>
+                        <button className="carousel-nav next" onClick={nextSlide}>
+                            <ArrowRight size={28} color="white" />
+                        </button>
+                        <div className="carousel-dots">
+                            {heroImages.map((_, index) => (
+                                <button
+                                    key={index}
+                                    className={`dot ${index === currentImageIndex ? 'active' : ''}`}
+                                    onClick={() => setCurrentImageIndex(index)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <div className="container hero-content">
                         <Link to="/" className="home-link">
                             <Home size={18} />
                             <span>Hem</span>
@@ -369,32 +409,117 @@ const Kontorsstadning = () => {
 
                 .service-hero {
                     margin-top: 0;
-                    background: linear-gradient(135deg, var(--color-brand-blue) 0%, var(--color-primary) 100%);
                     color: white;
-                    padding: 10rem 0 4rem 0;
+                    padding: 0;
                     text-align: center;
                     position: relative;
                     overflow: hidden;
+                    min-height: 500px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
-                .service-hero::before {
-                    content: '';
+                .hero-carousel {
                     position: absolute;
-                    top: -20%;
-                    left: -10%;
-                    width: 60%;
-                    height: 60%;
-                    background: radial-gradient(circle, rgba(255, 210, 0, 0.15) 0%, transparent 70%);
-                    pointer-events: none;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 0;
+                }
+
+                .hero-slide {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-size: cover;
+                    background-position: center;
+                    opacity: 0;
+                    transition: opacity 1s ease-in-out;
+                }
+
+                .hero-slide.active {
+                    opacity: 1;
+                }
+
+                .hero-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(to top, rgba(26, 54, 93, 0.5) 0%, rgba(0, 0, 0, 0.15) 100%);
+                    z-index: 1;
+                }
+
+                .carousel-nav {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(255, 255, 255, 0.15);
+                    border: none;
+                    cursor: pointer;
+                    z-index: 5;
+                    padding: 0.75rem;
+                    border-radius: 50%;
+                    opacity: 0.7;
+                    transition: all 0.3s;
+                }
+
+                .carousel-nav:hover {
+                    opacity: 1;
+                    background: rgba(255, 255, 255, 0.25);
+                }
+
+                .carousel-nav.prev {
+                    left: 1.5rem;
+                }
+
+                .carousel-nav.next {
+                    right: 1.5rem;
+                }
+
+                .carousel-dots {
+                    position: absolute;
+                    bottom: 1.5rem;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 0.5rem;
+                    z-index: 5;
+                }
+
+                .dot {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                    background: transparent;
+                    cursor: pointer;
+                    padding: 0;
+                    transition: all 0.3s;
+                }
+
+                .dot.active {
+                    background: var(--color-brand-yellow);
+                    border-color: var(--color-brand-yellow);
+                }
+
+                .hero-content {
+                    position: relative;
+                    z-index: 2;
+                    padding: 10rem 0 4rem 0;
                 }
 
                 .service-hero h1 {
                     font-size: 3.5rem;
                     margin-bottom: 1.5rem;
-                    color: #1a365d;
+                    color: white;
                     font-weight: 800;
-                    position: relative;
-                    z-index: 1;
+                    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
                 }
 
                 .hero-subtitle {
@@ -403,8 +528,7 @@ const Kontorsstadning = () => {
                     margin: 0 auto 2rem;
                     line-height: 1.7;
                     opacity: 0.95;
-                    position: relative;
-                    z-index: 1;
+                    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
                 }
 
                 .trust-badges {
@@ -705,6 +829,12 @@ const Kontorsstadning = () => {
                 }
 
                 @media (max-width: 992px) {
+                    .service-hero {
+                        min-height: 400px;
+                    }
+                    .hero-content {
+                        padding: 8rem 0 3rem;
+                    }
                     .service-hero h1 {
                         font-size: 2.5rem;
                     }
@@ -725,7 +855,10 @@ const Kontorsstadning = () => {
 
                 @media (max-width: 768px) {
                     .service-hero {
-                        padding: 8rem 0 3rem;
+                        min-height: 350px;
+                    }
+                    .hero-content {
+                        padding: 7rem 0 2.5rem;
                     }
                     .form-row, .form-row.three-col {
                         grid-template-columns: 1fr;
