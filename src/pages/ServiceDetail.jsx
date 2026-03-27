@@ -109,7 +109,7 @@ const ServiceDetail = () => {
                 }
                 .service-hero.has-image {
                     padding: 0;
-                    min-height: 500px;
+                    min-height: 90vh;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -299,7 +299,7 @@ const ServiceDetail = () => {
                         padding: 10rem 0 4rem 0;
                     }
                     .service-hero.has-image {
-                        min-height: 400px;
+                        min-height: 70vh;
                         padding: 0;
                     }
                     .hero-content {
@@ -318,7 +318,7 @@ const ServiceDetail = () => {
 
                 @media (max-width: 768px) {
                     .service-hero.has-image {
-                        min-height: 350px;
+                        min-height: auto;
                     }
                     .hero-content {
                         padding: 7rem 0 2.5rem;
