@@ -422,7 +422,7 @@ const Trappstadning = () => {
                     width: 100%;
                     height: 100%;
                     background-size: cover;
-                    background-position: center;
+                    background-position: center 30%;
                     opacity: 0;
                     transition: opacity 1s ease-in-out;
                 }
