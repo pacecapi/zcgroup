@@ -594,7 +594,7 @@ const Flyttstadning = () => {
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background: linear-gradient(135deg, rgba(0, 140, 207, 0.7) 0%, rgba(26, 54, 93, 0.8) 100%);
+                    background: linear-gradient(to top, rgba(26, 54, 93, 0.5) 0%, rgba(0, 0, 0, 0.15) 100%);
                     z-index: 1;
                 }
 
