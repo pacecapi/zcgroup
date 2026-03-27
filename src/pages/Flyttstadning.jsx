@@ -557,7 +557,7 @@ const Flyttstadning = () => {
                     text-align: center;
                     position: relative;
                     overflow: hidden;
-                    min-height: 500px;
+                    min-height: 90vh;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -1286,7 +1286,7 @@ const Flyttstadning = () => {
 
                 @media (max-width: 992px) {
                     .service-hero {
-                        min-height: 400px;
+                        min-height: 70vh;
                     }
                     .hero-content {
                         padding: 8rem 0 3rem;
@@ -1311,7 +1311,7 @@ const Flyttstadning = () => {
 
                 @media (max-width: 768px) {
                     .service-hero {
-                        min-height: 350px;
+                        min-height: auto;
                     }
                     .hero-content {
                         padding: 7rem 0 2.5rem;
