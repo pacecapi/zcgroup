@@ -429,8 +429,10 @@ const Byggstadning = () => {
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background-size: cover;
+                    background-size: contain;
                     background-position: center;
+                    background-repeat: no-repeat;
+                    background-color: #1a365d;
                     opacity: 0;
                     transition: opacity 1s ease-in-out;
                 }
