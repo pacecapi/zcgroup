@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Home, CheckCircle, Shield, Users, Zap, FileText, Wrench, Building2, Sun, ArrowRight, Phone, Mail, Clock, Award, Target, Hammer, Send, Loader2 } from 'lucide-react';
+import { Home, CheckCircle, Shield, Users, Zap, FileText, Wrench, Building2, Sun, ArrowRight, ArrowLeft, Phone, Mail, Clock, Award, Target, Hammer, Send, Loader2 } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
-import heroSolar from '../assets/hero_solar.jpg';
+import heroImg1 from '../assets/Solcellsmontage1.jpg';
+import heroImg2 from '../assets/Solcellsmontage2.png';
+import heroImg3 from '../assets/Solcellsmontage3.png';
 
 const Solcellsmontage = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -75,14 +77,49 @@ const Solcellsmontage = () => {
         { icon: <Zap size={24} />, text: 'Effektivt utförande' },
     ];
 
+    const heroImages = [heroImg1, heroImg2, heroImg3];
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [heroImages.length]);
+
+    const nextSlide = () => setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    const prevSlide = () => setCurrentImageIndex((prev) => (prev === 0 ? heroImages.length - 1 : prev - 1));
+
     return (
         <div className="app solcellsmontage-page">
             <Header />
             <main>
-                {/* Hero Section with Background Image */}
+                {/* Hero Section with Carousel */}
                 <section className="hero-section">
-                    <div className="hero-background" style={{ backgroundImage: `url(${heroSolar})` }}>
+                    <div className="hero-carousel">
+                        {heroImages.map((img, index) => (
+                            <div
+                                key={index}
+                                className={`hero-slide ${index === currentImageIndex ? 'active' : ''}`}
+                                style={{ backgroundImage: `url(${img})` }}
+                            />
+                        ))}
                         <div className="hero-overlay"></div>
+                        <button className="carousel-nav prev" onClick={prevSlide}>
+                            <ArrowLeft size={28} color="white" />
+                        </button>
+                        <button className="carousel-nav next" onClick={nextSlide}>
+                            <ArrowRight size={28} color="white" />
+                        </button>
+                        <div className="carousel-dots">
+                            {heroImages.map((_, index) => (
+                                <button
+                                    key={index}
+                                    className={`carousel-dot ${index === currentImageIndex ? 'active' : ''}`}
+                                    onClick={() => setCurrentImageIndex(index)}
+                                />
+                            ))}
+                        </div>
                     </div>
                     <div className="container hero-content">
                         <Link to="/" className="home-link">
@@ -342,14 +379,29 @@ const Solcellsmontage = () => {
                     overflow: hidden;
                 }
 
-                .hero-background {
+                .hero-carousel {
                     position: absolute;
                     top: 0;
                     left: 0;
-                    right: 0;
-                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 0;
+                }
+
+                .hero-slide {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
                     background-size: cover;
                     background-position: center;
+                    opacity: 0;
+                    transition: opacity 1s ease-in-out;
+                }
+
+                .hero-slide.active {
+                    opacity: 1;
                 }
 
                 .hero-overlay {
@@ -358,7 +410,61 @@ const Solcellsmontage = () => {
                     left: 0;
                     right: 0;
                     bottom: 0;
-                    background: linear-gradient(135deg, rgba(0, 102, 153, 0.9) 0%, rgba(0, 140, 207, 0.85) 100%);
+                    background: linear-gradient(to top, rgba(26, 54, 93, 0.5) 0%, rgba(0, 0, 0, 0.15) 100%);
+                    z-index: 1;
+                }
+
+                .carousel-nav {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(255, 255, 255, 0.15);
+                    border: none;
+                    cursor: pointer;
+                    z-index: 15;
+                    padding: 0.75rem;
+                    border-radius: 50%;
+                    opacity: 0.7;
+                    transition: all 0.3s;
+                }
+
+                .carousel-nav:hover {
+                    opacity: 1;
+                    background: rgba(255, 255, 255, 0.25);
+                }
+
+                .carousel-nav.prev {
+                    left: 1.5rem;
+                }
+
+                .carousel-nav.next {
+                    right: 1.5rem;
+                }
+
+                .carousel-dots {
+                    position: absolute;
+                    bottom: 1.5rem;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 0.5rem;
+                    z-index: 15;
+                }
+
+                .carousel-dot {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                    background: transparent;
+                    cursor: pointer;
+                    padding: 0;
+                    transition: all 0.3s;
+                }
+
+                .carousel-dot.active {
+                    background: var(--color-brand-yellow);
+                    border-color: var(--color-brand-yellow);
                 }
 
                 .hero-content {
