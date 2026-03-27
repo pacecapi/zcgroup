@@ -418,11 +418,10 @@ const Storstadning = () => {
                     display: flex;
                     background: none !important;
                     background-image: none !important;
-                    gap: 4px;
                 }
 
                 .hero-slide-combined .combined-img {
-                    width: calc(50% - 2px);
+                    width: 50%;
                     height: 100%;
                     background-size: cover;
                     background-position: center;
