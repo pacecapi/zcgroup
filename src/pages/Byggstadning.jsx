@@ -408,7 +408,7 @@ const Byggstadning = () => {
                     text-align: center;
                     position: relative;
                     overflow: hidden;
-                    min-height: 650px;
+                    min-height: 90vh;
                     display: flex;
                     align-items: center;
                     justify-content: center;
