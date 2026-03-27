@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
         const { data, error } = await resend.emails.send({
             from: 'Z&C Group <onboarding@resend.dev>', // Use verified domain in production
-            to: ['pablocaicedo@gmail.com'],
+            to: ['boking@zcgroup.se'],
             subject: emailContent.subject,
             html: emailContent.html,
             replyTo: formData.email || undefined,
