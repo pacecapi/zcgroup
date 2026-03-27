@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Home, CheckCircle, Shield, GraduationCap, Award, ChevronDown, Sparkles, UtensilsCrossed, Bath, Plus, Info, Send, Loader2, User, Mail, Phone, MapPin } from 'lucide-react';
+import { Home, CheckCircle, Shield, GraduationCap, Award, ChevronDown, Sparkles, UtensilsCrossed, Bath, Plus, Info, Send, Loader2, User, Mail, Phone, MapPin, ArrowLeft, ArrowRight } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
+import heroImg1 from '../assets/Storstadning1.avif';
+import heroImg2 from '../assets/Storstadning2.avif';
+import heroImg3 from '../assets/Storstadning3.avif';
+
+const heroImages = [heroImg3]; // Slide 1: combined img1+img2, Slide 2: img3
 
 const Storstadning = () => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
     const [formData, setFormData] = useState({
@@ -88,13 +94,44 @@ const Storstadning = () => {
         { value: '200', label: '180+ m²' },
     ];
 
+    const totalSlides = 2; // Slide 0: combined, Slide 1: img3
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % totalSlides);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const nextSlide = () => setCurrentImageIndex((prev) => (prev + 1) % totalSlides);
+    const prevSlide = () => setCurrentImageIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
+
     return (
         <div className="app storstadning-page">
             <Header />
             <main>
                 {/* Hero Section */}
                 <section className="service-hero">
-                    <div className="container">
+                    <div className="hero-carousel">
+                        {/* Slide 0: Combined image (img1 + img2 side by side) */}
+                        <div className={`hero-slide hero-slide-combined ${currentImageIndex === 0 ? 'active' : ''}`}>
+                            <div className="combined-img" style={{ backgroundImage: `url(${heroImg1})` }} />
+                            <div className="combined-img" style={{ backgroundImage: `url(${heroImg2})` }} />
+                        </div>
+                        {/* Slide 1: img3 */}
+                        <div
+                            className={`hero-slide ${currentImageIndex === 1 ? 'active' : ''}`}
+                            style={{ backgroundImage: `url(${heroImg3})` }}
+                        />
+                        <div className="hero-overlay" />
+                        <button className="carousel-nav prev" onClick={prevSlide}>
+                            <ArrowLeft size={32} color="white" />
+                        </button>
+                        <button className="carousel-nav next" onClick={nextSlide}>
+                            <ArrowRight size={32} color="white" />
+                        </button>
+                    </div>
+                    <div className="container hero-content">
                         <Link to="/" className="home-link">
                             <Home size={18} />
                             <span>Hem</span>
@@ -341,30 +378,100 @@ const Storstadning = () => {
 
                 .service-hero {
                     margin-top: 0;
-                    background: linear-gradient(135deg, var(--color-brand-blue) 0%, var(--color-primary) 100%);
                     color: white;
-                    padding: 10rem 0 4rem 0;
+                    padding: 0;
                     text-align: center;
                     position: relative;
                     overflow: hidden;
+                    min-height: 90vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
-                .service-hero::before {
-                    content: '';
+                .hero-carousel {
                     position: absolute;
-                    top: -20%;
-                    left: -10%;
-                    width: 60%;
-                    height: 60%;
-                    background: radial-gradient(circle, rgba(255, 210, 0, 0.15) 0%, transparent 70%);
-                    pointer-events: none;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 0;
+                }
+
+                .hero-slide {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-size: cover;
+                    background-position: center;
+                    opacity: 0;
+                    transition: opacity 1s ease-in-out;
+                }
+
+                .hero-slide.active {
+                    opacity: 1;
+                }
+
+                .hero-slide-combined {
+                    display: flex;
+                    background: none;
+                }
+
+                .hero-slide-combined .combined-img {
+                    flex: 1;
+                    background-size: cover;
+                    background-position: center;
+                }
+
+                .hero-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(to top, rgba(26, 54, 93, 0.5) 0%, rgba(0, 0, 0, 0.15) 100%);
+                    z-index: 1;
+                }
+
+                .carousel-nav {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    z-index: 10;
+                    padding: 1rem;
+                    opacity: 0.7;
+                    transition: opacity 0.2s;
+                }
+
+                .carousel-nav:hover {
+                    opacity: 1;
+                }
+
+                .carousel-nav.prev {
+                    left: 1rem;
+                }
+
+                .carousel-nav.next {
+                    right: 1rem;
+                }
+
+                .hero-content {
+                    position: relative;
+                    z-index: 2;
+                    padding: 10rem 0 4rem 0;
                 }
 
                 .service-hero h1 {
                     font-size: 3.5rem;
                     margin-bottom: 1.5rem;
-                    color: #1a365d;
+                    color: white;
                     font-weight: 800;
+                    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
                     position: relative;
                     z-index: 1;
                 }
@@ -375,6 +482,7 @@ const Storstadning = () => {
                     margin: 0 auto 2rem;
                     line-height: 1.7;
                     opacity: 0.95;
+                    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
                     position: relative;
                     z-index: 1;
                 }
@@ -795,7 +903,11 @@ const Storstadning = () => {
                 /* Responsive */
                 @media (max-width: 992px) {
                     .service-hero {
-                        padding: 8rem 0 3rem 0;
+                        min-height: 70vh;
+                    }
+
+                    .hero-content {
+                        padding: 8rem 0 3rem;
                     }
 
                     .service-hero h1 {
@@ -812,6 +924,16 @@ const Storstadning = () => {
 
                     .booking-card {
                         padding: 2rem;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .service-hero {
+                        min-height: auto;
+                    }
+
+                    .hero-content {
+                        padding: 7rem 0 2.5rem;
                     }
                 }
 
