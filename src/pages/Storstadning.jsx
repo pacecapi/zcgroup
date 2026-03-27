@@ -113,16 +113,17 @@ const Storstadning = () => {
                 {/* Hero Section */}
                 <section className="service-hero">
                     <div className="hero-carousel">
-                        {/* Slide 0: Combined image (img1 + img2 side by side) */}
-                        <div className={`hero-slide hero-slide-combined ${currentImageIndex === 0 ? 'active' : ''}`}>
-                            <div className="combined-img" style={{ backgroundImage: `url(${heroImg1})` }} />
-                            <div className="combined-img" style={{ backgroundImage: `url(${heroImg2})` }} />
-                        </div>
-                        {/* Slide 1: img3 */}
+                        {/* Slide 0: img1 full */}
                         <div
-                            className={`hero-slide ${currentImageIndex === 1 ? 'active' : ''}`}
-                            style={{ backgroundImage: `url(${heroImg3})` }}
+                            className={`hero-slide ${currentImageIndex === 0 ? 'active' : ''}`}
+                            style={{ backgroundImage: `url(${heroImg1})` }}
                         />
+                        {/* Slide 1: img2 + img3 side by side with divider */}
+                        <div className={`hero-slide hero-slide-combined ${currentImageIndex === 1 ? 'active' : ''}`}>
+                            <div className="combined-img" style={{ backgroundImage: `url(${heroImg2})` }} />
+                            <div className="combined-divider" />
+                            <div className="combined-img" style={{ backgroundImage: `url(${heroImg3})` }} />
+                        </div>
                         <div className="hero-overlay" />
                         <button className="carousel-nav prev" onClick={prevSlide}>
                             <ArrowLeft size={32} color="white" />
@@ -416,13 +417,22 @@ const Storstadning = () => {
 
                 .hero-slide-combined {
                     display: flex;
-                    background: none;
+                    background: none !important;
+                    background-image: none !important;
                 }
 
                 .hero-slide-combined .combined-img {
                     flex: 1;
+                    height: 100%;
                     background-size: cover;
                     background-position: center;
+                }
+
+                .combined-divider {
+                    width: 4px;
+                    height: 100%;
+                    background: white;
+                    flex-shrink: 0;
                 }
 
                 .hero-overlay {
