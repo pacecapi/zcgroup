@@ -4,9 +4,11 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Home, CheckCircle, Shield, GraduationCap, Award, ChevronDown, Sparkles, Eye, Calendar, Clock, User, Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
+import { useLanguage } from '../context/LanguageContext';
 import heroImg1 from '../assets/Visningstadning1.png';
 
 const Visningsstadning = () => {
+    const { t } = useLanguage();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
     const [formData, setFormData] = useState({
@@ -90,17 +92,16 @@ const Visningsstadning = () => {
                     <div className="container hero-content">
                         <Link to="/" className="home-link">
                             <Home size={18} />
-                            <span>Hem</span>
+                            <span>{t('common.home')}</span>
                         </Link>
-                        <h1>Visningsstädning</h1>
+                        <h1>{t('visningsstadning.title')}</h1>
                         <p className="hero-subtitle">
-                            Maximera intrycket vid din bostadsvisning. Vi ser till att varje rum
-                            glänser och ger potentiella köpare det bästa första intrycket.
+                            {t('visningsstadning.subtitle')}
                         </p>
                         <div className="trust-badges">
-                            <span className="badge"><Shield size={18} color="#333" /> Städgaranti</span>
-                            <span className="badge"><GraduationCap size={18} color="#333" /> Utbildad personal</span>
-                            <span className="badge"><Award size={18} color="#333" /> Ansvarsförsäkring</span>
+                            <span className="badge"><Shield size={18} color="#333" /> {t('common.cleaningGuarantee')}</span>
+                            <span className="badge"><GraduationCap size={18} color="#333" /> {t('common.trainedStaff')}</span>
+                            <span className="badge"><Award size={18} color="#333" /> {t('common.insurance')}</span>
                         </div>
                     </div>
                 </section>
@@ -131,13 +132,13 @@ const Visningsstadning = () => {
                 <section className="form-section">
                     <div className="container">
                         <div className="form-card">
-                            <h2>Boka visningsstädning</h2>
-                            <p className="form-intro">Fyll i formuläret så kontaktar vi dig för att bekräfta bokningen.</p>
+                            <h2>{t('visningsstadning.bookTitle')}</h2>
+                            <p className="form-intro">{t('common.formIntro')}</p>
 
                             <form onSubmit={handleSubmit} className="booking-form">
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><User size={16} /> Förnamn *</label>
+                                        <label><User size={16} /> {t('common.firstName')} *</label>
                                         <input
                                             type="text"
                                             name="firstName"
@@ -147,7 +148,7 @@ const Visningsstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><User size={16} /> Efternamn *</label>
+                                        <label><User size={16} /> {t('common.lastName')} *</label>
                                         <input
                                             type="text"
                                             name="lastName"
@@ -160,7 +161,7 @@ const Visningsstadning = () => {
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><Mail size={16} /> E-post *</label>
+                                        <label><Mail size={16} /> {t('common.email')} *</label>
                                         <input
                                             type="email"
                                             name="email"
@@ -170,7 +171,7 @@ const Visningsstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><Phone size={16} /> Telefon *</label>
+                                        <label><Phone size={16} /> {t('common.phone')} *</label>
                                         <input
                                             type="tel"
                                             name="phone"
@@ -182,7 +183,7 @@ const Visningsstadning = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label><MapPin size={16} /> Adress *</label>
+                                    <label><MapPin size={16} /> {t('common.address')} *</label>
                                     <input
                                         type="text"
                                         name="address"
@@ -194,7 +195,7 @@ const Visningsstadning = () => {
 
                                 <div className="form-row three-col">
                                     <div className="form-group">
-                                        <label>Postnummer *</label>
+                                        <label>{t('common.postalCode')} *</label>
                                         <input
                                             type="text"
                                             name="postalCode"
@@ -204,7 +205,7 @@ const Visningsstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Ort *</label>
+                                        <label>{t('common.city')} *</label>
                                         <input
                                             type="text"
                                             name="city"
@@ -214,31 +215,31 @@ const Visningsstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Bostadstyp</label>
+                                        <label>{t('common.propertyType')}</label>
                                         <select
                                             name="propertyType"
                                             value={formData.propertyType}
                                             onChange={handleChange}
                                         >
-                                            <option value="">Välj typ</option>
-                                            <option value="lagenhet">Lägenhet</option>
+                                            <option value="">{t('common.selectType')}</option>
+                                            <option value="lagenhet">{t('common.apartment')}</option>
                                             <option value="villa">Villa</option>
-                                            <option value="radhus">Radhus</option>
-                                            <option value="annat">Annat</option>
+                                            <option value="radhus">{t('common.townhouse')}</option>
+                                            <option value="annat">{t('common.other')}</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label>Storlek (m²)</label>
+                                        <label>{t('common.size')}</label>
                                         <select
                                             name="size"
                                             value={formData.size}
                                             onChange={handleChange}
                                         >
-                                            <option value="">Välj storlek</option>
-                                            <option value="30">Upp till 30 m²</option>
+                                            <option value="">{t('common.selectSize')}</option>
+                                            <option value="30">{t('common.upTo')} 30 m²</option>
                                             <option value="50">31-50 m²</option>
                                             <option value="70">51-70 m²</option>
                                             <option value="90">71-90 m²</option>
@@ -249,7 +250,7 @@ const Visningsstadning = () => {
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <label><Calendar size={16} /> Önskat datum *</label>
+                                        <label><Calendar size={16} /> {t('common.preferredDate')} *</label>
                                         <input
                                             type="date"
                                             name="preferredDate"
@@ -273,13 +274,13 @@ const Visningsstadning = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label>Meddelande</label>
+                                    <label>{t('common.message')}</label>
                                     <textarea
                                         name="message"
                                         rows={4}
                                         value={formData.message}
                                         onChange={handleChange}
-                                        placeholder="Berätta gärna mer om din bostad eller speciella önskemål..."
+                                        placeholder={t('common.messagePlaceholder')}
                                     ></textarea>
                                 </div>
 
@@ -292,20 +293,20 @@ const Visningsstadning = () => {
                                             onChange={handleChange}
                                             required
                                         />
-                                        <span>Jag accepterar <a href="/villkor">villkoren</a></span>
+                                        <span>{t('common.acceptTerms')} <a href="/villkor">{t('common.terms')}</a></span>
                                     </label>
                                 </div>
 
                                 {submitStatus === 'success' && (
                                     <div className="status-message success">
                                         <CheckCircle size={20} />
-                                        Tack! Vi har mottagit din förfrågan och återkommer inom kort.
+                                        {t('common.successMessage')}
                                     </div>
                                 )}
 
                                 {submitStatus === 'error' && (
                                     <div className="status-message error">
-                                        Något gick fel. Vänligen försök igen eller kontakta oss direkt.
+                                        {t('common.errorMessage')}
                                     </div>
                                 )}
 
@@ -313,12 +314,12 @@ const Visningsstadning = () => {
                                     {isSubmitting ? (
                                         <>
                                             <Loader2 size={18} className="spin" />
-                                            Skickar...
+                                            {t('common.sending')}
                                         </>
                                     ) : (
                                         <>
                                             <Send size={18} />
-                                            Skicka bokningsförfrågan
+                                            {t('visningsstadning.bookBtn')}
                                         </>
                                     )}
                                 </button>

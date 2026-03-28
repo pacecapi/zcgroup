@@ -9,7 +9,7 @@ import heroImg1 from '../assets/Byggstadningimage_1.jpg';
 import heroImg2 from '../assets/Byggstadningimage_2.jpg';
 
 const Byggstadning = () => {
-    const { language } = useLanguage();
+    const { t, language } = useLanguage();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
     const [formData, setFormData] = useState({
@@ -69,14 +69,14 @@ const Byggstadning = () => {
     };
 
     const services = [
-        'Borttagning av byggdamm och skräp',
-        'Rengöring av golv och ytor',
-        'Fönsterputsning efter byggnation',
-        'Sanering av byggmaterial',
-        'Avtorkning av väggar och tak',
-        'Rengöring av ventilationsgaller',
-        'Polering av lackerade ytor',
-        'Slutbesiktningsstädning',
+        t('byggstadning.service1'),
+        t('byggstadning.service2'),
+        t('byggstadning.service3'),
+        t('byggstadning.service4'),
+        t('byggstadning.service5'),
+        t('byggstadning.service6'),
+        t('byggstadning.service7'),
+        t('byggstadning.service8'),
     ];
 
     const heroImages = [heroImg1, heroImg2];
@@ -93,10 +93,10 @@ const Byggstadning = () => {
     const prevSlide = () => setCurrentImageIndex((prev) => (prev === 0 ? heroImages.length - 1 : prev - 1));
 
     const cleaningTypes = [
-        { title: 'Grovstädning', desc: 'Under och direkt efter byggarbetet' },
-        { title: 'Finstädning', desc: 'Inför slutbesiktning eller inflyttning' },
-        { title: 'Slutstädning', desc: 'Komplett städning av färdigt projekt' },
-        { title: 'Löpande städning', desc: 'Regelbunden städning under byggtid' },
+        { title: t('byggstadning.roughCleaning'), desc: t('byggstadning.roughCleaningDesc') },
+        { title: t('byggstadning.fineCleaning'), desc: t('byggstadning.fineCleaningDesc') },
+        { title: t('byggstadning.finalCleaning'), desc: t('byggstadning.finalCleaningDesc') },
+        { title: t('byggstadning.ongoingCleaning'), desc: t('byggstadning.ongoingCleaningDesc') },
     ];
 
     return (
@@ -114,8 +114,8 @@ const Byggstadning = () => {
                             >
                                 {index === 1 && (
                                     <>
-                                        <span className="before-after-label label-antes">{language === 'sv' ? 'FÖRE' : language === 'en' ? 'BEFORE' : 'ANTES'}</span>
-                                        <span className="before-after-label label-despues">{language === 'sv' ? 'EFTER' : language === 'en' ? 'AFTER' : 'DESPUÉS'}</span>
+                                        <span className="before-after-label label-antes">{t('byggstadning.before')}</span>
+                                        <span className="before-after-label label-despues">{t('byggstadning.after')}</span>
                                     </>
                                 )}
                             </div>
@@ -140,17 +140,16 @@ const Byggstadning = () => {
                     <div className="container hero-content">
                         <Link to="/" className="home-link">
                             <Home size={18} />
-                            <span>Hem</span>
+                            <span>{t('common.home')}</span>
                         </Link>
-                        <h1>Byggstädning</h1>
+                        <h1>{t('byggstadning.title')}</h1>
                         <p className="hero-subtitle">
-                            Professionell byggstädning för alla typer av byggprojekt.
-                            Vi tar hand om allt från grovstädning till slutbesiktning.
+                            {t('byggstadning.subtitle')}
                         </p>
                         <div className="trust-badges">
-                            <span className="badge"><Shield size={18} color="#333" /> Städgaranti</span>
-                            <span className="badge"><GraduationCap size={18} color="#333" /> Utbildad personal</span>
-                            <span className="badge"><Award size={18} color="#333" /> Ansvarsförsäkring</span>
+                            <span className="badge"><Shield size={18} color="#333" /> {t('common.cleaningGuarantee')}</span>
+                            <span className="badge"><GraduationCap size={18} color="#333" /> {t('common.trainedStaff')}</span>
+                            <span className="badge"><Award size={18} color="#333" /> {t('common.insurance')}</span>
                         </div>
                     </div>
                 </section>
@@ -163,7 +162,7 @@ const Byggstadning = () => {
                                 <HardHat size={32} />
                             </div>
                             <div className="services-content">
-                                <h2>Vad ingår i byggstädning?</h2>
+                                <h2>{t('byggstadning.servicesTitle')}</h2>
                                 <div className="services-grid">
                                     {services.map((service, index) => (
                                         <div key={index} className="service-item">
@@ -180,7 +179,7 @@ const Byggstadning = () => {
                 {/* Cleaning Types Section */}
                 <section className="types-section">
                     <div className="container">
-                        <h2>Typer av byggstädning</h2>
+                        <h2>{t('byggstadning.typesTitle')}</h2>
                         <div className="types-grid">
                             {cleaningTypes.map((type, index) => (
                                 <div key={index} className="type-card">
@@ -196,13 +195,13 @@ const Byggstadning = () => {
                 <section className="form-section">
                     <div className="container">
                         <div className="form-card">
-                            <h2>Begär offert för byggstädning</h2>
-                            <p className="form-intro">Fyll i formuläret så kontaktar vi dig med en skräddarsydd offert för ert byggprojekt.</p>
+                            <h2>{t('byggstadning.bookTitle')}</h2>
+                            <p className="form-intro">{t('common.formIntro')}</p>
 
                             <form onSubmit={handleSubmit} className="booking-form">
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><Building2 size={16} /> Företagsnamn *</label>
+                                        <label><Building2 size={16} /> {t('byggstadning.companyName')} *</label>
                                         <input
                                             type="text"
                                             name="companyName"
@@ -212,7 +211,7 @@ const Byggstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><FileText size={16} /> Organisationsnummer *</label>
+                                        <label><FileText size={16} /> {t('byggstadning.orgNumber')} *</label>
                                         <input
                                             type="text"
                                             name="orgNumber"
@@ -226,7 +225,7 @@ const Byggstadning = () => {
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><User size={16} /> Kontaktperson *</label>
+                                        <label><User size={16} /> {t('byggstadning.contactPerson')} *</label>
                                         <input
                                             type="text"
                                             name="contactPerson"
@@ -236,7 +235,7 @@ const Byggstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><Phone size={16} /> Telefon *</label>
+                                        <label><Phone size={16} /> {t('common.phone')} *</label>
                                         <input
                                             type="tel"
                                             name="phone"
@@ -248,7 +247,7 @@ const Byggstadning = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label><Mail size={16} /> E-post *</label>
+                                    <label><Mail size={16} /> {t('common.email')} *</label>
                                     <input
                                         type="email"
                                         name="email"
@@ -259,7 +258,7 @@ const Byggstadning = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label><MapPin size={16} /> Projektadress *</label>
+                                    <label><MapPin size={16} /> {t('byggstadning.projectAddress')} *</label>
                                     <input
                                         type="text"
                                         name="projectAddress"
@@ -271,7 +270,7 @@ const Byggstadning = () => {
 
                                 <div className="form-row three-col">
                                     <div className="form-group">
-                                        <label>Postnummer *</label>
+                                        <label>{t('common.postalCode')} *</label>
                                         <input
                                             type="text"
                                             name="postalCode"
@@ -281,7 +280,7 @@ const Byggstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Ort *</label>
+                                        <label>{t('common.city')} *</label>
                                         <input
                                             type="text"
                                             name="city"
@@ -291,57 +290,57 @@ const Byggstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Projekttyp</label>
+                                        <label>{t('byggstadning.projectType')}</label>
                                         <select
                                             name="projectType"
                                             value={formData.projectType}
                                             onChange={handleChange}
                                         >
-                                            <option value="">Välj typ</option>
-                                            <option value="nyproduktion">Nyproduktion</option>
-                                            <option value="renovering">Renovering</option>
-                                            <option value="ombyggnad">Ombyggnad</option>
-                                            <option value="tillbyggnad">Tillbyggnad</option>
-                                            <option value="annat">Annat</option>
+                                            <option value="">{t('byggstadning.selectProjectType')}</option>
+                                            <option value="nyproduktion">{t('byggstadning.newBuild')}</option>
+                                            <option value="renovering">{t('byggstadning.renovation')}</option>
+                                            <option value="ombyggnad">{t('byggstadning.remodel')}</option>
+                                            <option value="tillbyggnad">{t('byggstadning.extension')}</option>
+                                            <option value="annat">{t('byggstadning.other')}</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label>Projektstorlek (m²)</label>
+                                        <label>{t('byggstadning.area')}</label>
                                         <select
                                             name="projectSize"
                                             value={formData.projectSize}
                                             onChange={handleChange}
                                         >
-                                            <option value="">Välj storlek</option>
-                                            <option value="100">Upp till 100 m²</option>
+                                            <option value="">{t('byggstadning.selectSize')}</option>
+                                            <option value="100">{t('byggstadning.upTo100')}</option>
                                             <option value="300">101-300 m²</option>
                                             <option value="500">301-500 m²</option>
                                             <option value="1000">501-1000 m²</option>
                                             <option value="2000">1001-2000 m²</option>
-                                            <option value="2000+">Över 2000 m²</option>
+                                            <option value="2000+">{t('byggstadning.over2000')}</option>
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <label>Typ av städning</label>
+                                        <label>{t('byggstadning.cleaningType')}</label>
                                         <select
                                             name="cleaningType"
                                             value={formData.cleaningType}
                                             onChange={handleChange}
                                         >
-                                            <option value="">Välj typ</option>
-                                            <option value="grov">Grovstädning</option>
-                                            <option value="fin">Finstädning</option>
-                                            <option value="slut">Slutstädning</option>
-                                            <option value="lopande">Löpande städning</option>
+                                            <option value="">{t('byggstadning.selectCleaningType')}</option>
+                                            <option value="grov">{t('byggstadning.roughCleaning')}</option>
+                                            <option value="fin">{t('byggstadning.fineCleaning')}</option>
+                                            <option value="slut">{t('byggstadning.finalCleaning')}</option>
+                                            <option value="lopande">{t('byggstadning.ongoingCleaning')}</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div className="form-group">
-                                    <label><Calendar size={16} /> Önskat startdatum</label>
+                                    <label><Calendar size={16} /> {t('common.preferredDate')}</label>
                                     <input
                                         type="date"
                                         name="startDate"
@@ -351,13 +350,13 @@ const Byggstadning = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label>Meddelande</label>
+                                    <label>{t('common.message')}</label>
                                     <textarea
                                         name="message"
                                         rows={4}
                                         value={formData.message}
                                         onChange={handleChange}
-                                        placeholder="Berätta gärna mer om ert byggprojekt och era städbehov..."
+                                        placeholder={t('common.messagePlaceholder')}
                                     ></textarea>
                                 </div>
 
@@ -370,18 +369,18 @@ const Byggstadning = () => {
                                             onChange={handleChange}
                                             required
                                         />
-                                        <span>Jag accepterar <a href="/villkor">villkoren</a></span>
+                                        <span>{t('common.acceptTerms')} <a href="/villkor">{t('common.terms')}</a></span>
                                     </label>
                                 </div>
 
                                 {submitStatus === 'success' && (
                                     <div className="status-message success">
-                                        Tack! Din offertförfrågan har skickats. Vi återkommer inom kort.
+                                        {t('common.successMessage')}
                                     </div>
                                 )}
                                 {submitStatus === 'error' && (
                                     <div className="status-message error">
-                                        Ett fel uppstod. Försök igen eller kontakta oss direkt.
+                                        {t('common.errorMessage')}
                                     </div>
                                 )}
 
@@ -389,12 +388,12 @@ const Byggstadning = () => {
                                     {isSubmitting ? (
                                         <>
                                             <Loader2 size={18} className="spin" />
-                                            Skickar...
+                                            {t('common.sending')}
                                         </>
                                     ) : (
                                         <>
                                             <Send size={18} />
-                                            Skicka offertförfrågan
+                                            {t('byggstadning.bookBtn')}
                                         </>
                                     )}
                                 </button>

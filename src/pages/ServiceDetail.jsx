@@ -56,7 +56,7 @@ const ServiceDetail = () => {
                     <div className={`container ${heroImage ? 'hero-content' : ''}`}>
                         <Link to="/" className="home-link">
                             <Home size={18} />
-                            <span>{language === 'sv' ? 'Hem' : language === 'en' ? 'Home' : 'Inicio'}</span>
+                            <span>{t('common.home')}</span>
                         </Link>
                         <h1>{serviceData.title}</h1>
                         <p className="hero-subtitle">{serviceData.desc}</p>
@@ -77,10 +77,10 @@ const ServiceDetail = () => {
                                             : `Ofrecemos ${serviceData.title.toLowerCase()} profesional con un enfoque en la calidad y el detalle. Nuestro equipo se asegura de que cada rincón quede impecable.`}
                                 </p>
                                 <ul className="include-list">
-                                    <li><CheckCircle size={18} /> {language === 'sv' ? 'Utbildad personal' : language === 'en' ? 'Trained staff' : 'Personal capacitado'}</li>
+                                    <li><CheckCircle size={18} /> {t('common.trainedStaff')}</li>
                                     <li><CheckCircle size={18} /> {language === 'sv' ? 'Svanenmärkt material' : language === 'en' ? 'Eco-friendly materials' : 'Materiales ecológicos'}</li>
                                     <li><CheckCircle size={18} /> {language === 'sv' ? 'Garantisystem' : language === 'en' ? 'Quality guarantee' : 'Garantía de calidad'}</li>
-                                    <li><CheckCircle size={18} /> {language === 'sv' ? 'Försäkring ingår' : language === 'en' ? 'Insurance included' : 'Seguro incluido'}</li>
+                                    <li><CheckCircle size={18} /> {t('common.insurance')}</li>
                                 </ul>
                             </div>
                             <div className="content-sidebar">

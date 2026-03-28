@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Home, CheckCircle, Shield, GraduationCap, Award, Plus, Minus, Wind, Calendar, Clock, User, Mail, Phone, MapPin, Hash, MessageSquare, Send, Loader2, ArrowLeft, ArrowRight } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
+import { useLanguage } from '../context/LanguageContext';
 import heroImg1 from '../assets/Fonsterputs1.png';
 import heroImg2 from '../assets/Fonsterputs2.png';
 
@@ -203,6 +204,7 @@ const WindowVisual = ({ type }) => {
 };
 
 const Fonsterputs = () => {
+    const { t } = useLanguage();
     // Window types with prices (after RUT) - Based on renthem.se
     const windowTypes = [
         { id: 'M1', name: 'Enkelt fönster', desc: '1 öppning, max 90cm bred', price: 35 },
@@ -385,17 +387,16 @@ const Fonsterputs = () => {
                     <div className="container hero-content">
                         <Link to="/" className="home-link">
                             <Home size={18} />
-                            <span>Hem</span>
+                            <span>{t('common.home')}</span>
                         </Link>
-                        <h1>Fönsterputs</h1>
+                        <h1>{t('fonsterputs.title')}</h1>
                         <p className="hero-subtitle">
-                            Skinande rena fönster, året runt. Vi putsar alla typer av fönster –
-                            från vanliga villafönster till inglasade balkonger. Priserna visas efter RUT-avdrag.
+                            {t('fonsterputs.subtitle')}
                         </p>
                         <div className="trust-badges">
-                            <span className="badge"><Shield size={18} color="#333" /> Städgaranti</span>
-                            <span className="badge"><GraduationCap size={18} color="#333" /> Utbildad personal</span>
-                            <span className="badge"><Award size={18} color="#333" /> Ansvarsförsäkring</span>
+                            <span className="badge"><Shield size={18} color="#333" /> {t('common.cleaningGuarantee')}</span>
+                            <span className="badge"><GraduationCap size={18} color="#333" /> {t('common.trainedStaff')}</span>
+                            <span className="badge"><Award size={18} color="#333" /> {t('common.insurance')}</span>
                         </div>
                     </div>
                 </section>
@@ -403,7 +404,7 @@ const Fonsterputs = () => {
                 {/* Window Selection Section */}
                 <section className="window-section">
                     <div className="container">
-                        <h2 className="section-title">Välj dina fönstertyper</h2>
+                        <h2 className="section-title">{t('fonsterputs.windowType')}</h2>
                         <p className="section-subtitle">Klicka på + för att lägga till fönster. Priser visas efter 50% RUT-avdrag.</p>
 
                         <div className="window-grid">
@@ -472,8 +473,8 @@ const Fonsterputs = () => {
                         <div className="container">
                             <div className="summary-content">
                                 <div className="summary-info">
-                                    <span className="summary-windows">{totalWindows} fönster valda</span>
-                                    <span className="summary-note">Pris efter RUT-avdrag (50%)</span>
+                                    <span className="summary-windows">{totalWindows} {t('fonsterputs.numberOfWindows')}</span>
+                                    <span className="summary-note">{t('common.priceAfterRut')}</span>
                                 </div>
                                 <div className="summary-price">
                                     <span className="price-label">Totalt:</span>
@@ -488,13 +489,13 @@ const Fonsterputs = () => {
                 <section id="formular" className="form-section">
                     <div className="container">
                         <div className="form-card">
-                            <h2>Boka fönsterputsning</h2>
-                            <p className="form-intro">Fyll i dina uppgifter så kontaktar vi dig för att bekräfta bokningen.</p>
+                            <h2>{t('fonsterputs.bookTitle')}</h2>
+                            <p className="form-intro">{t('common.formIntro')}</p>
 
                             <form className="booking-form" onSubmit={handleSubmit}>
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><User size={16} /> Förnamn *</label>
+                                        <label><User size={16} /> {t('common.firstName')} *</label>
                                         <input
                                             type="text"
                                             name="firstName"
@@ -504,7 +505,7 @@ const Fonsterputs = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><User size={16} /> Efternamn *</label>
+                                        <label><User size={16} /> {t('common.lastName')} *</label>
                                         <input
                                             type="text"
                                             name="lastName"
@@ -516,7 +517,7 @@ const Fonsterputs = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label><MapPin size={16} /> Adress *</label>
+                                    <label><MapPin size={16} /> {t('common.address')} *</label>
                                     <input
                                         type="text"
                                         name="address"
@@ -528,7 +529,7 @@ const Fonsterputs = () => {
 
                                 <div className="form-row three-col">
                                     <div className="form-group">
-                                        <label>Postnummer *</label>
+                                        <label>{t('common.postalCode')} *</label>
                                         <input
                                             type="text"
                                             name="postalCode"
@@ -538,7 +539,7 @@ const Fonsterputs = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Ort *</label>
+                                        <label>{t('common.city')} *</label>
                                         <input
                                             type="text"
                                             name="city"
@@ -560,7 +561,7 @@ const Fonsterputs = () => {
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><Phone size={16} /> Mobilnummer *</label>
+                                        <label><Phone size={16} /> {t('common.phone')} *</label>
                                         <input
                                             type="tel"
                                             name="phone"
@@ -570,7 +571,7 @@ const Fonsterputs = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><Mail size={16} /> E-post *</label>
+                                        <label><Mail size={16} /> {t('common.email')} *</label>
                                         <input
                                             type="email"
                                             name="email"
@@ -594,7 +595,7 @@ const Fonsterputs = () => {
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><Calendar size={16} /> Önskat datum *</label>
+                                        <label><Calendar size={16} /> {t('common.preferredDate')} *</label>
                                         <input
                                             type="date"
                                             name="preferredDate"
@@ -619,13 +620,13 @@ const Fonsterputs = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label><MessageSquare size={16} /> Meddelande</label>
+                                    <label><MessageSquare size={16} /> {t('common.message')}</label>
                                     <textarea
                                         name="message"
                                         rows={4}
                                         value={formData.message}
                                         onChange={handleFormChange}
-                                        placeholder="Beskriv gärna dina fönster eller speciella önskemål..."
+                                        placeholder={t('common.messagePlaceholder')}
                                     ></textarea>
                                 </div>
 
@@ -663,21 +664,21 @@ const Fonsterputs = () => {
                                 {submitStatus === 'success' && (
                                     <div className="status-message success">
                                         <CheckCircle size={20} />
-                                        Tack! Vi har mottagit din förfrågan och återkommer inom kort.
+                                        {t('common.successMessage')}
                                     </div>
                                 )}
 
                                 {submitStatus === 'error' && (
                                     <div className="status-message error">
-                                        Något gick fel. Vänligen försök igen eller kontakta oss direkt.
+                                        {t('common.errorMessage')}
                                     </div>
                                 )}
 
                                 <button type="submit" className="btn-submit" disabled={isSubmitting || totalWindows === 0}>
                                     {isSubmitting ? (
-                                        <><Loader2 size={18} className="spin" /> Skickar...</>
+                                        <><Loader2 size={18} className="spin" /> {t('common.sending')}</>
                                     ) : (
-                                        <>Skicka bokningsförfrågan <Wind size={20} /></>
+                                        <>{t('fonsterputs.bookBtn')} <Wind size={20} /></>
                                     )}
                                 </button>
                             </form>

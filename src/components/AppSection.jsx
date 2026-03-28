@@ -1,30 +1,21 @@
 import React from 'react';
 import { CheckCircle } from 'lucide-react';
 import appMockup from '../assets/app-mockup.png';
+import { useLanguage } from '../context/LanguageContext';
 
 const AppSection = () => {
-  const features = [
-    'Se dina bokningar',
-    'Boka med timbank',
-    'Avboka & omboka smidigt',
-    'Uppdatera städinstruktioner',
-    'Lämna omdömen',
-    'Hantera fakturor',
-    'Få personliga erbjudanden',
-    'Tips & guider'
-  ];
+  const { t } = useLanguage();
+  const features = t('app.features');
 
   return (
     <section className="section app-section">
       <div className="container app-container">
         <div className="app-content">
-          <h2 className="section-title title-left">Allt du behöver på ett ställe</h2>
-          <p className="app-text">
-            Som kund hos Z&C Group får du tillgång till vår smidiga app. Här samlar vi allt som rör ditt hem, så att du kan lägga tiden på annat.
-          </p>
+          <h2 className="section-title title-left">{t('app.title')}</h2>
+          <p className="app-text">{t('app.text')}</p>
 
           <ul className="features-list">
-            {features.map((feature, index) => (
+            {Array.isArray(features) && features.map((feature, index) => (
               <li key={index} className="feature-item">
                 <CheckCircle size={20} className="feature-icon" />
                 <span>{feature}</span>
@@ -32,7 +23,7 @@ const AppSection = () => {
             ))}
           </ul>
 
-          <button className="btn btn-primary app-btn">Läs mer om appen</button>
+          <button className="btn btn-primary app-btn">{t('app.cta')}</button>
         </div>
 
         <div className="app-image">

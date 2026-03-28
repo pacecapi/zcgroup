@@ -4,11 +4,13 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Home, CheckCircle, Shield, Users, Zap, FileText, Wrench, Building2, Sun, ArrowRight, ArrowLeft, Phone, Mail, Clock, Award, Target, Hammer, Send, Loader2 } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
+import { useLanguage } from '../context/LanguageContext';
 import heroImg1 from '../assets/Solcellsmontage1.jpg';
 import heroImg2 from '../assets/Solcellsmontage2.png';
 import heroImg3 from '../assets/Solcellsmontage3.png';
 
 const Solcellsmontage = () => {
+    const { t } = useLanguage();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
     const [formData, setFormData] = useState({
@@ -48,33 +50,33 @@ const Solcellsmontage = () => {
     const features = [
         {
             icon: <Wrench size={32} />,
-            title: 'Mekanisk montering',
-            desc: 'Vi utför enbart den mekaniska monteringen av montagesystem och solpaneler – inget el-arbete.'
+            title: t('solcellsmontage.mechanicalTitle'),
+            desc: t('solcellsmontage.mechanicalDesc')
         },
         {
             icon: <Building2 size={32} />,
-            title: 'Tak & markinstallationer',
-            desc: 'Erfarenhet av alla typer av tak och markbaserade installationer över hela Sverige.'
+            title: t('solcellsmontage.roofTitle'),
+            desc: t('solcellsmontage.roofDesc')
         },
         {
             icon: <FileText size={32} />,
-            title: 'Ni tillhandahåller underlag',
-            desc: 'Ni levererar ritningar och tekniskt underlag – vi ansvarar för ett fackmannamässigt montage.'
+            title: t('solcellsmontage.documentsTitle'),
+            desc: t('solcellsmontage.documentsDesc')
         },
         {
             icon: <Shield size={32} />,
-            title: 'Kvalitet & säkerhet',
-            desc: 'Säkert, effektivt montage enligt gällande branschstandarder och säkerhetsföreskrifter.'
+            title: t('solcellsmontage.qualityTitle'),
+            desc: t('solcellsmontage.qualityDesc')
         }
     ];
 
     const whyUs = [
-        { icon: <Target size={24} />, text: 'Specialiserad montagepartner' },
-        { icon: <Users size={24} />, text: 'Erfarna montörer' },
-        { icon: <Clock size={24} />, text: 'Flexibel kapacitet' },
-        { icon: <Award size={24} />, text: 'Kvalitetsfokus' },
-        { icon: <Hammer size={24} />, text: 'Branschstandarder' },
-        { icon: <Zap size={24} />, text: 'Effektivt utförande' },
+        { icon: <Target size={24} />, text: t('solcellsmontage.specializedPartner') },
+        { icon: <Users size={24} />, text: t('solcellsmontage.experiencedInstallers') },
+        { icon: <Clock size={24} />, text: t('solcellsmontage.flexibleCapacity') },
+        { icon: <Award size={24} />, text: t('solcellsmontage.qualityFocus') },
+        { icon: <Hammer size={24} />, text: t('solcellsmontage.industryStandards') },
+        { icon: <Zap size={24} />, text: t('solcellsmontage.efficientExecution') },
     ];
 
     const heroImages = [heroImg1, heroImg2, heroImg3];
@@ -124,28 +126,27 @@ const Solcellsmontage = () => {
                     <div className="container hero-content">
                         <Link to="/" className="home-link">
                             <Home size={18} />
-                            <span>Hem</span>
+                            <span>{t('common.home')}</span>
                         </Link>
                         <div className="hero-text-box">
                             <div className="hero-badge">
                                 <Sun size={20} />
-                                <span>Montagepartner för solcellsbranschen</span>
+                                <span>{t('solcellsmontage.heroBadge')}</span>
                             </div>
-                            <h1>Mekanisk montering av montagesystem och solpaneler</h1>
+                            <h1>{t('solcellsmontage.title')}</h1>
                             <p className="hero-description">
-                                Vi är en specialiserad montagepartner som arbetar som underentreprenör åt etablerade
-                                solcells- och installationsföretag i hela Sverige.
+                                {t('solcellsmontage.subtitle')}
                             </p>
                             <p className="hero-description">
-                                Vi utför enbart den mekaniska monteringen av montagesystem och solpaneler.
+                                {t('solcellsmontage.heroDesc2')}
                             </p>
                             <div className="hero-cta-group">
                                 <a href="#kontakt" className="btn-cta-primary">
-                                    Kontakta oss
+                                    {t('solcellsmontage.contactCta')}
                                     <ArrowRight size={20} />
                                 </a>
                                 <a href="#tjanster" className="btn-cta-secondary">
-                                    Våra tjänster
+                                    {t('solcellsmontage.servicesCta')}
                                 </a>
                             </div>
                         </div>
@@ -160,14 +161,12 @@ const Solcellsmontage = () => {
                                 <Building2 size={40} />
                             </div>
                             <div className="target-content">
-                                <h2>Våra tjänster riktar sig till företag</h2>
+                                <h2>{t('solcellsmontage.targetTitle')}</h2>
                                 <p>
-                                    Våra tjänster riktar sig till företag i branschen som behöver en pålitlig,
-                                    flexibel och kvalitetsfokuserad montageentreprenör för tak- och markinstallationer.
+                                    {t('solcellsmontage.targetDesc')}
                                 </p>
                                 <p className="highlight">
-                                    <strong>Ni tillhandahåller ritningar och tekniskt underlag</strong> – och vi ansvarar för
-                                    ett säkert, effektivt och fackmannamässigt montage enligt gällande branschstandarder.
+                                    <strong>{t('solcellsmontage.targetHighlightBold')}</strong> {t('solcellsmontage.targetHighlightText')}
                                 </p>
                             </div>
                         </div>
@@ -177,9 +176,9 @@ const Solcellsmontage = () => {
                 {/* Features Section */}
                 <section id="tjanster" className="features-section">
                     <div className="container">
-                        <h2 className="section-title">Vad vi erbjuder</h2>
+                        <h2 className="section-title">{t('solcellsmontage.featuresTitle')}</h2>
                         <p className="section-subtitle">
-                            Som specialiserad underentreprenör fokuserar vi helt på mekanisk montering
+                            {t('solcellsmontage.featuresSubtitle')}
                         </p>
 
                         <div className="features-grid">
@@ -197,7 +196,7 @@ const Solcellsmontage = () => {
                 {/* Why Us Section */}
                 <section className="why-section">
                     <div className="container">
-                        <h2 className="section-title">Varför välja oss?</h2>
+                        <h2 className="section-title">{t('solcellsmontage.whyUs')}</h2>
                         <div className="why-grid">
                             {whyUs.map((item, index) => (
                                 <div key={index} className="why-item">
@@ -212,27 +211,27 @@ const Solcellsmontage = () => {
                 {/* Process Section */}
                 <section className="process-section">
                     <div className="container">
-                        <h2 className="section-title">Så fungerar samarbetet</h2>
+                        <h2 className="section-title">{t('solcellsmontage.process')}</h2>
                         <div className="process-grid">
                             <div className="process-step">
                                 <div className="step-number">1</div>
-                                <h3>Kontakt</h3>
-                                <p>Ni kontaktar oss med information om ert projekt och behov.</p>
+                                <h3>{t('solcellsmontage.step1')}</h3>
+                                <p>{t('solcellsmontage.step1Desc')}</p>
                             </div>
                             <div className="process-step">
                                 <div className="step-number">2</div>
-                                <h3>Underlag</h3>
-                                <p>Ni tillhandahåller ritningar, specifikationer och tekniskt underlag.</p>
+                                <h3>{t('solcellsmontage.step2')}</h3>
+                                <p>{t('solcellsmontage.step2Desc')}</p>
                             </div>
                             <div className="process-step">
                                 <div className="step-number">3</div>
-                                <h3>Planering</h3>
-                                <p>Vi planerar montaget och koordinerar med er tidplan.</p>
+                                <h3>{t('solcellsmontage.step3')}</h3>
+                                <p>{t('solcellsmontage.step3Desc')}</p>
                             </div>
                             <div className="process-step">
                                 <div className="step-number">4</div>
-                                <h3>Montage</h3>
-                                <p>Vi utför den mekaniska monteringen enligt branschstandarder.</p>
+                                <h3>{t('solcellsmontage.step4')}</h3>
+                                <p>{t('solcellsmontage.step4Desc')}</p>
                             </div>
                         </div>
                     </div>
@@ -243,41 +242,40 @@ const Solcellsmontage = () => {
                     <div className="container">
                         <div className="contact-grid">
                             <div className="contact-info">
-                                <h2>Kontakta oss</h2>
+                                <h2>{t('solcellsmontage.contactTitle')}</h2>
                                 <p>
-                                    Är ni ett solcells- eller installationsföretag som söker en pålitlig
-                                    montagepartner? Kontakta oss för att diskutera ert projekt.
+                                    {t('solcellsmontage.contactSubtitle')}
                                 </p>
 
                                 <div className="contact-details">
                                     <div className="contact-item">
                                         <Phone size={24} />
                                         <div>
-                                            <span className="label">Telefon</span>
+                                            <span className="label">{t('common.phone')}</span>
                                             <a href="tel:+46XXXXXXXX">+46 XX XXX XX XX</a>
                                         </div>
                                     </div>
                                     <div className="contact-item">
                                         <Mail size={24} />
                                         <div>
-                                            <span className="label">E-post</span>
+                                            <span className="label">{t('common.email')}</span>
                                             <a href="mailto:info@zcgroup.se">info@zcgroup.se</a>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="trust-badges-contact">
-                                    <span className="badge-small"><Shield size={16} /> Försäkrad</span>
-                                    <span className="badge-small"><Award size={16} /> Kvalitetsfokus</span>
-                                    <span className="badge-small"><Users size={16} /> Erfarna montörer</span>
+                                    <span className="badge-small"><Shield size={16} /> {t('solcellsmontage.insured')}</span>
+                                    <span className="badge-small"><Award size={16} /> {t('solcellsmontage.qualityFocus')}</span>
+                                    <span className="badge-small"><Users size={16} /> {t('solcellsmontage.experiencedInstallers')}</span>
                                 </div>
                             </div>
 
                             <div className="contact-form-card">
-                                <h3>Skicka en förfrågan</h3>
+                                <h3>{t('solcellsmontage.sendRequest')}</h3>
                                 <form className="contact-form" onSubmit={handleSubmit}>
                                     <div className="form-group">
-                                        <label htmlFor="companyName">Företagsnamn *</label>
+                                        <label htmlFor="companyName">{t('solcellsmontage.companyName')} *</label>
                                         <input
                                             type="text"
                                             id="companyName"
@@ -289,7 +287,7 @@ const Solcellsmontage = () => {
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group">
-                                            <label htmlFor="contactPerson">Kontaktperson *</label>
+                                            <label htmlFor="contactPerson">{t('solcellsmontage.contactPerson')} *</label>
                                             <input
                                                 type="text"
                                                 id="contactPerson"
@@ -300,7 +298,7 @@ const Solcellsmontage = () => {
                                             />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="phone">Telefon *</label>
+                                            <label htmlFor="phone">{t('common.phone')} *</label>
                                             <input
                                                 type="tel"
                                                 id="phone"
@@ -312,7 +310,7 @@ const Solcellsmontage = () => {
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="email">E-post *</label>
+                                        <label htmlFor="email">{t('common.email')} *</label>
                                         <input
                                             type="email"
                                             id="email"
@@ -323,24 +321,24 @@ const Solcellsmontage = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="message">Meddelande</label>
+                                        <label htmlFor="message">{t('common.message')}</label>
                                         <textarea
                                             id="message"
                                             name="message"
                                             rows={4}
                                             value={formData.message}
                                             onChange={handleChange}
-                                            placeholder="Berätta om ert projekt..."
+                                            placeholder={t('solcellsmontage.messagePlaceholder')}
                                         ></textarea>
                                     </div>
                                     {submitStatus === 'success' && (
                                         <div className="status-message success">
-                                            Tack! Din förfrågan har skickats. Vi återkommer inom kort.
+                                            {t('common.successMessage')}
                                         </div>
                                     )}
                                     {submitStatus === 'error' && (
                                         <div className="status-message error">
-                                            Ett fel uppstod. Försök igen eller kontakta oss direkt.
+                                            {t('common.errorMessage')}
                                         </div>
                                     )}
 
@@ -348,12 +346,12 @@ const Solcellsmontage = () => {
                                         {isSubmitting ? (
                                             <>
                                                 <Loader2 size={18} className="spin" />
-                                                Skickar...
+                                                {t('common.sending')}
                                             </>
                                         ) : (
                                             <>
                                                 <Send size={18} />
-                                                Skicka förfrågan
+                                                {t('solcellsmontage.sendRequest')}
                                             </>
                                         )}
                                     </button>

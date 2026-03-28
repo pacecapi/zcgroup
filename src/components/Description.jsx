@@ -1,16 +1,16 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Description = () => {
+  const { t } = useLanguage();
   return (
     <section className="section description-section">
       <div className="container">
         <div className="description-content">
-          <h2 className="section-title">I vår värld är det detaljerna som gör skillnaden</h2>
-          <p className="description-text">
-            Vi finns där du finns. Med verksamhet i <a href="#">Stockholm</a>, <a href="#">Göteborg</a>, <a href="#">Malmö</a>, <a href="#">Uppsala</a>, <a href="#">Västerås</a> och många fler orter, är vi aldrig långt borta. Oavsett om du behöver <a href="/tjanster/hemstadning">hemstädning</a> varje vecka eller en engångsinsats inför <a href="/tjanster/storstadning">storstädningen</a>, så har vi lösningen för dig.
-          </p>
+          <h2 className="section-title">{t('description.title')}</h2>
+          <p className="description-text" dangerouslySetInnerHTML={{ __html: t('description.text') }} />
           <blockquote className="quote-text">
-            "Det räcker inte att möta förväntningarna. Vi vill överträffa dem."
+            {t('description.quote')}
           </blockquote>
         </div>
       </div>

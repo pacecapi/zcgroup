@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useLanguage } from '../context/LanguageContext';
 import { Home, CheckCircle, Shield, GraduationCap, Award, Sparkles, UtensilsCrossed, Bath, Plus, Info, XCircle, AlertTriangle, Mail, Send, Loader2, User, Phone, MapPin, Truck, Calendar, Clock, ArrowLeft, ArrowRight } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
 import heroImg1 from '../assets/Flyttstadningimage_1.jpg';
 import heroImg2 from '../assets/Flyttstadningimage_2.jpg';
 
 const Flyttstadning = () => {
+    const { t } = useLanguage();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
     const [formData, setFormData] = useState({
@@ -94,8 +96,8 @@ const Flyttstadning = () => {
     const prevSlide = () => setCurrentImageIndex((prev) => (prev === 0 ? heroImages.length - 1 : prev - 1));
 
     const sizeOptions = [
-        { value: '', label: 'Välj storlek' },
-        { value: '30', label: 'Upp till 30 m²' },
+        { value: '', label: t('common.selectSize') },
+        { value: '30', label: `${t('common.upTo')} 30 m²` },
         { value: '50', label: '31-50 m²' },
         { value: '70', label: '51-70 m²' },
         { value: '90', label: '71-90 m²' },
@@ -106,28 +108,9 @@ const Flyttstadning = () => {
         { value: '200', label: '180+ m²' },
     ];
 
-    const additionalServices = [
-        { name: 'Fönsterputs av halvinglasad balkong', price: '400 kr' },
-        { name: 'Fönsterputs av helglasad balkong', price: '600 kr' },
-        { name: 'Inglasad uterum (pris efter antal fönster)', price: 'Ca 800 kr' },
-        { name: 'Helgtillägg', price: '600 kr' },
-        { name: 'Storhelgtillägg', price: '1000 kr' },
-        { name: 'Kamin: tömning av aska, glasrengöring, avtorkning', price: '200 kr' },
-        { name: 'Fönsterputs av 3-glas', price: '20 kr/glas' },
-        { name: 'Sopning av balkong', price: '150 kr' },
-        { name: 'Städning av biytor (förråd, garage, balkonger)', price: 'Offert' },
-    ];
+    const additionalServices = t('flyttstadning.additionalServices');
 
-    const services = [
-        'Dammsugning och våttorkning av alla golv',
-        'Rengöring av kök och vitvaror (in- och utvändigt)',
-        'Badrum och toalett rengörs noggrant',
-        'Fönsterputsning (in- och utvändigt)',
-        'Rengöring av garderober och skåp',
-        'Avtorkning av dörrar och karmar',
-        'Rengöring av golvlister och socklar',
-        'Städgaranti vid besiktning',
-    ];
+    const services = t('flyttstadning.servicesList');
 
     return (
         <div className="app flyttstadning-page">
@@ -163,17 +146,16 @@ const Flyttstadning = () => {
                     <div className="container hero-content">
                         <Link to="/" className="home-link">
                             <Home size={18} />
-                            <span>Hem</span>
+                            <span>{t('common.home')}</span>
                         </Link>
-                        <h1>Flyttstädning</h1>
+                        <h1>{t('flyttstadning.title')}</h1>
                         <p className="hero-subtitle">
-                            Professionell flyttstädning för en trygg överlämning. Vi ser till att bostaden blir
-                            noggrant städad och godkänd vid besiktning, så att du kan lämna ditt hem med gott samvete.
+                            {t('flyttstadning.subtitle')}
                         </p>
                         <div className="trust-badges">
-                            <span className="badge"><Shield size={18} color="#333" /> Städgaranti</span>
-                            <span className="badge"><GraduationCap size={18} color="#333" /> Utbildad personal</span>
-                            <span className="badge"><Award size={18} color="#333" /> Ansvarsförsäkring</span>
+                            <span className="badge"><Shield size={18} color="#333" /> {t('common.cleaningGuarantee')}</span>
+                            <span className="badge"><GraduationCap size={18} color="#333" /> {t('common.trainedStaff')}</span>
+                            <span className="badge"><Award size={18} color="#333" /> {t('common.insurance')}</span>
                         </div>
                     </div>
                 </section>
@@ -186,9 +168,9 @@ const Flyttstadning = () => {
                                 <Truck size={32} />
                             </div>
                             <div className="services-content">
-                                <h2>Vad ingår i flyttstädning?</h2>
+                                <h2>{t('flyttstadning.whatIncluded')}</h2>
                                 <div className="services-grid">
-                                    {services.map((service, index) => (
+                                    {Array.isArray(services) && services.map((service, index) => (
                                         <div key={index} className="service-item">
                                             <CheckCircle size={18} />
                                             <span>{service}</span>
@@ -204,13 +186,13 @@ const Flyttstadning = () => {
                 <section className="form-section">
                     <div className="container">
                         <div className="form-card">
-                            <h2>Boka flyttstädning</h2>
-                            <p className="form-intro">Fyll i formuläret så kontaktar vi dig för att bekräfta bokningen.</p>
+                            <h2>{t('flyttstadning.bookTitle')}</h2>
+                            <p className="form-intro">{t('common.formIntro')}</p>
 
                             <form onSubmit={handleSubmit} className="booking-form">
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><User size={16} /> Förnamn *</label>
+                                        <label><User size={16} /> {t('common.firstName')} *</label>
                                         <input
                                             type="text"
                                             name="firstName"
@@ -220,7 +202,7 @@ const Flyttstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><User size={16} /> Efternamn *</label>
+                                        <label><User size={16} /> {t('common.lastName')} *</label>
                                         <input
                                             type="text"
                                             name="lastName"
@@ -233,7 +215,7 @@ const Flyttstadning = () => {
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><Mail size={16} /> E-post *</label>
+                                        <label><Mail size={16} /> {t('common.email')} *</label>
                                         <input
                                             type="email"
                                             name="email"
@@ -243,7 +225,7 @@ const Flyttstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><Phone size={16} /> Telefon *</label>
+                                        <label><Phone size={16} /> {t('common.phone')} *</label>
                                         <input
                                             type="tel"
                                             name="phone"
@@ -255,7 +237,7 @@ const Flyttstadning = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label><MapPin size={16} /> Adress *</label>
+                                    <label><MapPin size={16} /> {t('common.address')} *</label>
                                     <input
                                         type="text"
                                         name="address"
@@ -267,7 +249,7 @@ const Flyttstadning = () => {
 
                                 <div className="form-row three-col">
                                     <div className="form-group">
-                                        <label>Postnummer *</label>
+                                        <label>{t('common.postalCode')} *</label>
                                         <input
                                             type="text"
                                             name="postalCode"
@@ -277,7 +259,7 @@ const Flyttstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Ort *</label>
+                                        <label>{t('common.city')} *</label>
                                         <input
                                             type="text"
                                             name="city"
@@ -287,24 +269,24 @@ const Flyttstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Bostadstyp</label>
+                                        <label>{t('common.propertyType')}</label>
                                         <select
                                             name="propertyType"
                                             value={formData.propertyType}
                                             onChange={handleChange}
                                         >
-                                            <option value="">Välj typ</option>
-                                            <option value="lagenhet">Lägenhet</option>
+                                            <option value="">{t('common.selectType')}</option>
+                                            <option value="lagenhet">{t('common.apartment')}</option>
                                             <option value="villa">Villa</option>
-                                            <option value="radhus">Radhus</option>
-                                            <option value="annat">Annat</option>
+                                            <option value="radhus">{t('common.townhouse')}</option>
+                                            <option value="annat">{t('common.other')}</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label>Storlek (m²)</label>
+                                        <label>{t('common.size')}</label>
                                         <select
                                             name="size"
                                             value={formData.size}
@@ -316,7 +298,7 @@ const Flyttstadning = () => {
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <label><Calendar size={16} /> Önskat datum *</label>
+                                        <label><Calendar size={16} /> {t('common.preferredDate')} *</label>
                                         <input
                                             type="date"
                                             name="preferredDate"
@@ -326,15 +308,15 @@ const Flyttstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><Clock size={16} /> Tid</label>
+                                        <label><Clock size={16} /> {t('common.time')}</label>
                                         <select
                                             name="timeSlot"
                                             value={formData.timeSlot || ''}
                                             onChange={handleChange}
                                         >
-                                            <option value="">Välj tid</option>
-                                            <option value="morning">Förmiddag (08-12)</option>
-                                            <option value="afternoon">Eftermiddag (12-17)</option>
+                                            <option value="">{t('common.selectTime')}</option>
+                                            <option value="morning">{t('common.morning')}</option>
+                                            <option value="afternoon">{t('common.afternoon')}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -342,21 +324,21 @@ const Flyttstadning = () => {
                                 {priceInfo && (
                                     <div className="price-display">
                                         <div className="price-box">
-                                            <span className="price-label">Pris efter RUT-avdrag</span>
+                                            <span className="price-label">{t('common.priceAfterRut')}</span>
                                             <span className="price-value">{priceInfo.rutPrice.toLocaleString('sv-SE')} kr</span>
-                                            <span className="price-original">Ordinarie: {priceInfo.totalPrice.toLocaleString('sv-SE')} kr</span>
+                                            <span className="price-original">{t('common.regularPrice')}: {priceInfo.totalPrice.toLocaleString('sv-SE')} kr</span>
                                         </div>
                                     </div>
                                 )}
 
                                 <div className="form-group">
-                                    <label>Meddelande</label>
+                                    <label>{t('common.message')}</label>
                                     <textarea
                                         name="message"
                                         rows={4}
                                         value={formData.message}
                                         onChange={handleChange}
-                                        placeholder="Berätta gärna mer om din bostad eller speciella önskemål..."
+                                        placeholder={t('common.messagePlaceholder')}
                                     ></textarea>
                                 </div>
 
@@ -369,20 +351,20 @@ const Flyttstadning = () => {
                                             onChange={handleChange}
                                             required
                                         />
-                                        <span>Jag accepterar <a href="/villkor">villkoren</a></span>
+                                        <span>{t('common.acceptTerms')} <a href="/villkor">{t('common.terms')}</a></span>
                                     </label>
                                 </div>
 
                                 {submitStatus === 'success' && (
                                     <div className="status-message success">
                                         <CheckCircle size={20} />
-                                        Tack! Vi har mottagit din förfrågan och återkommer inom kort.
+                                        {t('common.successMessage')}
                                     </div>
                                 )}
 
                                 {submitStatus === 'error' && (
                                     <div className="status-message error">
-                                        Något gick fel. Vänligen försök igen eller kontakta oss direkt.
+                                        {t('common.errorMessage')}
                                     </div>
                                 )}
 
@@ -390,12 +372,12 @@ const Flyttstadning = () => {
                                     {isSubmitting ? (
                                         <>
                                             <Loader2 size={18} className="spin" />
-                                            Skickar...
+                                            {t('common.sending')}
                                         </>
                                     ) : (
                                         <>
                                             <Send size={18} />
-                                            Skicka bokningsförfrågan
+                                            {t('flyttstadning.bookBtn')}
                                         </>
                                     )}
                                 </button>
@@ -407,7 +389,7 @@ const Flyttstadning = () => {
                 {/* Service Description */}
                 <section className="section service-description">
                     <div className="container">
-                        <h2 className="section-title">Vad ingår i flyttstädningen?</h2>
+                        <h2 className="section-title">{t('flyttstadning.whatIncluded')}</h2>
 
                         <div className="service-grid">
                             {/* Alla rum */}
@@ -475,10 +457,10 @@ const Flyttstadning = () => {
                             <div className="service-card addon-card">
                                 <div className="card-header">
                                     <Plus size={28} />
-                                    <h3>Tilläggstjänster till flyttstädning</h3>
+                                    <h3>{t('flyttstadning.additionalTitle')}</h3>
                                 </div>
                                 <ul className="service-list addon-list">
-                                    {additionalServices.map((service, index) => (
+                                    {Array.isArray(additionalServices) && additionalServices.map((service, index) => (
                                         <li key={index}>
                                             <CheckCircle size={16} />
                                             <span className="addon-name">{service.name}</span>
@@ -507,13 +489,11 @@ const Flyttstadning = () => {
 
                         {/* Tjänster som inte ingår */}
                         <div className="excluded-section">
-                            <h3><XCircle size={24} /> Tjänster som inte ingår i flyttstädningen</h3>
+                            <h3><XCircle size={24} /> {t('flyttstadning.excludedTitle')}</h3>
                             <div className="excluded-grid">
-                                <div className="excluded-item">Vattenlås</div>
-                                <div className="excluded-item">Persienner</div>
-                                <div className="excluded-item">Element demonteras ej</div>
-                                <div className="excluded-item">Borttagning av spikar, krokar och liknande</div>
-                                <div className="excluded-item">Städning av målade ytor (väggar, tak etc.) med risk för nyansskillnader</div>
+                                {Array.isArray(t('flyttstadning.excludedList')) && t('flyttstadning.excludedList').map((item, index) => (
+                                    <div key={index} className="excluded-item">{item}</div>
+                                ))}
                             </div>
                         </div>
 
@@ -522,20 +502,16 @@ const Flyttstadning = () => {
                             <div className="info-card">
                                 <div className="info-header">
                                     <Info size={24} />
-                                    <h3>Inför flyttstädning – Kundens ansvar</h3>
+                                    <h3>{t('flyttstadning.infoTitle')}</h3>
                                 </div>
                                 <div className="info-content">
                                     <ul className="responsibility-list">
-                                        <li><CheckCircle size={16} /> Bostaden ska vara tömd om inget annat är överenskommet.</li>
-                                        <li><CheckCircle size={16} /> Frysen ska vara avfrostad innan städning påbörjas.</li>
-                                        <li><CheckCircle size={16} /> Dra ut vitvaror som kyl, frys, spis, tvättmaskin och torktumlare från väggen om du vill att vi rengör bakom.</li>
-                                        <li><CheckCircle size={16} /> Vitvaror ställs tillbaka av kund efter avslutad städning.</li>
-                                        <li><CheckCircle size={16} /> Front på badkar ska demonteras och monteras tillbaka av kund vid behov.</li>
-                                        <li><CheckCircle size={16} /> Glas på ugnslucka ska demonteras och monteras tillbaka av kund vid behov.</li>
-                                        <li><CheckCircle size={16} /> Kunden ansvarar för att det finns el i bostaden vid städtillfället.</li>
+                                        {Array.isArray(t('flyttstadning.infoText')) && t('flyttstadning.infoText').map((item, index) => (
+                                            <li key={index}><CheckCircle size={16} /> {item}</li>
+                                        ))}
                                     </ul>
                                     <p className="info-note">
-                                        <strong>Tänk på:</strong> Biytor som förråd, garage, uterum och balkonger ingår inte i vår flyttstädning men kan självklart bokas till vid behov.
+                                        {t('flyttstadning.infoNote')}
                                     </p>
                                 </div>
                             </div>

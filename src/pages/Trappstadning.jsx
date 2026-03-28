@@ -4,9 +4,11 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Home, CheckCircle, Shield, GraduationCap, Award, Building2, User, Mail, Phone, MapPin, Send, FileText, Clock, Users, Loader2 } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
+import { useLanguage } from '../context/LanguageContext';
 import heroImg1 from '../assets/Trappstadning1.png';
 
 const Trappstadning = () => {
+    const { t } = useLanguage();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
     const [formData, setFormData] = useState({
@@ -87,11 +89,11 @@ const Trappstadning = () => {
     ];
 
     const additionalServicesList = [
-        'Fönsterputs trapphus',
-        'Putsning av entrédörrar',
-        'Rengöring av källare',
-        'Städning av tvättstuga',
-        'Storstädning 2 ggr/år',
+        { key: 'windowCleaning', label: t('trappstadning.windowCleaning') },
+        { key: 'elevatorCleaning', label: t('trappstadning.elevatorCleaning') },
+        { key: 'laundryCleaning', label: t('trappstadning.laundryCleaning') },
+        { key: 'garageCleaning', label: t('trappstadning.garageCleaning') },
+        { key: 'recycleCleaning', label: t('trappstadning.recycleCleaning') },
     ];
 
     const benefits = [
@@ -117,17 +119,16 @@ const Trappstadning = () => {
                     <div className="container hero-content">
                         <Link to="/" className="home-link">
                             <Home size={18} />
-                            <span>Hem</span>
+                            <span>{t('common.home')}</span>
                         </Link>
-                        <h1>Trappstädning</h1>
+                        <h1>{t('trappstadning.title')}</h1>
                         <p className="hero-subtitle">
-                            Professionell trapphusstädning för bostadsrättsföreningar och fastighetsägare.
-                            Vi håller era trapphus rena och välkomnande året runt.
+                            {t('trappstadning.subtitle')}
                         </p>
                         <div className="trust-badges">
-                            <span className="badge"><Shield size={18} color="#333" /> Städgaranti</span>
-                            <span className="badge"><GraduationCap size={18} color="#333" /> Utbildad personal</span>
-                            <span className="badge"><Award size={18} color="#333" /> Ansvarsförsäkring</span>
+                            <span className="badge"><Shield size={18} color="#333" /> {t('common.cleaningGuarantee')}</span>
+                            <span className="badge"><GraduationCap size={18} color="#333" /> {t('common.trainedStaff')}</span>
+                            <span className="badge"><Award size={18} color="#333" /> {t('common.insurance')}</span>
                         </div>
                     </div>
                 </section>
@@ -173,13 +174,13 @@ const Trappstadning = () => {
                 <section className="form-section">
                     <div className="container">
                         <div className="form-card">
-                            <h2>Begär offert för trappstädning</h2>
-                            <p className="form-intro">Fyll i formuläret så kontaktar vi dig med en skräddarsydd offert för er fastighet.</p>
+                            <h2>{t('trappstadning.bookTitle')}</h2>
+                            <p className="form-intro">{t('common.formIntro')}</p>
 
                             <form onSubmit={handleSubmit} className="booking-form">
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><Building2 size={16} /> Företag/BRF-namn *</label>
+                                        <label><Building2 size={16} /> {t('kontorsstadning.companyName')} *</label>
                                         <input
                                             type="text"
                                             name="companyName"
@@ -189,7 +190,7 @@ const Trappstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><FileText size={16} /> Organisationsnummer *</label>
+                                        <label><FileText size={16} /> {t('kontorsstadning.orgNumber')} *</label>
                                         <input
                                             type="text"
                                             name="orgNumber"
@@ -213,7 +214,7 @@ const Trappstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><Phone size={16} /> Telefon *</label>
+                                        <label><Phone size={16} /> {t('common.phone')} *</label>
                                         <input
                                             type="tel"
                                             name="phone"
@@ -225,7 +226,7 @@ const Trappstadning = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label><Mail size={16} /> E-post *</label>
+                                    <label><Mail size={16} /> {t('common.email')} *</label>
                                     <input
                                         type="email"
                                         name="email"
@@ -236,7 +237,7 @@ const Trappstadning = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label><MapPin size={16} /> Fastighetsadress *</label>
+                                    <label><MapPin size={16} /> {t('common.address')} *</label>
                                     <input
                                         type="text"
                                         name="propertyAddress"
@@ -248,7 +249,7 @@ const Trappstadning = () => {
 
                                 <div className="form-row three-col">
                                     <div className="form-group">
-                                        <label>Postnummer *</label>
+                                        <label>{t('common.postalCode')} *</label>
                                         <input
                                             type="text"
                                             name="postalCode"
@@ -258,7 +259,7 @@ const Trappstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Ort *</label>
+                                        <label>{t('common.city')} *</label>
                                         <input
                                             type="text"
                                             name="city"
@@ -268,7 +269,7 @@ const Trappstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Antal våningar</label>
+                                        <label>{t('trappstadning.floors')}</label>
                                         <select
                                             name="floors"
                                             value={formData.floors}
@@ -300,17 +301,17 @@ const Trappstadning = () => {
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <label><Clock size={16} /> Önskad frekvens</label>
+                                        <label><Clock size={16} /> {t('trappstadning.frequency')}</label>
                                         <select
                                             name="frequency"
                                             value={formData.frequency}
                                             onChange={handleChange}
                                         >
-                                            <option value="">Välj frekvens</option>
-                                            <option value="weekly">1 gång/vecka</option>
-                                            <option value="biweekly">Varannan vecka</option>
-                                            <option value="monthly">1 gång/månad</option>
-                                            <option value="other">Annat</option>
+                                            <option value="">{t('common.selectType')}</option>
+                                            <option value="weekly">{t('kontorsstadning.weekly')}</option>
+                                            <option value="biweekly">{t('kontorsstadning.biweekly')}</option>
+                                            <option value="monthly">{t('kontorsstadning.monthly')}</option>
+                                            <option value="other">{t('common.other')}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -322,23 +323,23 @@ const Trappstadning = () => {
                                             <label key={index} className="service-checkbox">
                                                 <input
                                                     type="checkbox"
-                                                    checked={formData.additionalServices.includes(service)}
-                                                    onChange={() => handleAdditionalService(service)}
+                                                    checked={formData.additionalServices.includes(service.key)}
+                                                    onChange={() => handleAdditionalService(service.key)}
                                                 />
-                                                <span>{service}</span>
+                                                <span>{service.label}</span>
                                             </label>
                                         ))}
                                     </div>
                                 </div>
 
                                 <div className="form-group">
-                                    <label>Meddelande</label>
+                                    <label>{t('common.message')}</label>
                                     <textarea
                                         name="message"
                                         rows={4}
                                         value={formData.message}
                                         onChange={handleChange}
-                                        placeholder="Berätta gärna mer om er fastighet och era städbehov..."
+                                        placeholder={t('common.messagePlaceholder')}
                                     ></textarea>
                                 </div>
 
@@ -351,20 +352,20 @@ const Trappstadning = () => {
                                             onChange={handleChange}
                                             required
                                         />
-                                        <span>Jag accepterar <a href="/villkor">villkoren</a></span>
+                                        <span>{t('common.acceptTerms')} <a href="/villkor">{t('common.terms')}</a></span>
                                     </label>
                                 </div>
 
                                 {submitStatus === 'success' && (
                                     <div className="status-message success">
                                         <CheckCircle size={20} />
-                                        Tack! Vi har mottagit din förfrågan och återkommer inom kort.
+                                        {t('common.successMessage')}
                                     </div>
                                 )}
 
                                 {submitStatus === 'error' && (
                                     <div className="status-message error">
-                                        Något gick fel. Vänligen försök igen eller kontakta oss direkt.
+                                        {t('common.errorMessage')}
                                     </div>
                                 )}
 
@@ -372,12 +373,12 @@ const Trappstadning = () => {
                                     {isSubmitting ? (
                                         <>
                                             <Loader2 size={18} className="spin" />
-                                            Skickar...
+                                            {t('common.sending')}
                                         </>
                                     ) : (
                                         <>
                                             <Send size={18} />
-                                            Skicka offertförfrågan
+                                            {t('trappstadning.bookBtn')}
                                         </>
                                     )}
                                 </button>

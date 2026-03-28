@@ -1,17 +1,17 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Testimonials = () => {
+    const { t } = useLanguage();
     return (
         <section className="section testimonials-section">
             <div className="container">
                 <div className="testimonial-content">
-                    <span className="quote-mark">“</span>
-                    <p className="testimonial-text">
-                        Att komma hem till ett nystädat hem på torsdagar är veckans höjdpunkt. Det ger mig lugn och tid att fokusera på familjen.
-                    </p>
+                    <span className="quote-mark">{"\u201C"}</span>
+                    <p className="testimonial-text">{t('testimonial.text')}</p>
                     <div className="testimonial-author">
-                        <span className="author-name">Anna, Stockholm</span>
-                        <span className="author-role">Kund sedan 2018</span>
+                        <span className="author-name">{t('testimonial.author')}</span>
+                        <span className="author-role">{t('testimonial.role')}</span>
                     </div>
                 </div>
             </div>

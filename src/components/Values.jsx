@@ -1,46 +1,42 @@
 import React from 'react';
 import { ShieldCheck, Clock, Smile } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Values = () => {
+  const { t } = useLanguage();
   return (
     <section className="section values-section">
       <div className="container">
-        <h2 className="section-title">Mer än bara service</h2>
+        <h2 className="section-title">{t('values.title')}</h2>
 
         <div className="values-grid">
           <div className="value-item">
             <div className="icon-container">
               <ShieldCheck size={64} strokeWidth={1.5} />
             </div>
-            <h3>Tryggt</h3>
-            <p>
-              Vår personal är noga utvald, utbildad och försäkrad. Vi har kollektivavtal och schyssta villkor – en självklarhet för oss.
-            </p>
+            <h3>{t('values.safe')}</h3>
+            <p>{t('values.safeDesc')}</p>
           </div>
 
           <div className="value-item">
             <div className="icon-container">
               <Clock size={64} strokeWidth={1.5} />
             </div>
-            <h3>Flexibelt</h3>
-            <p>
-              Avboka eller boka om när livet händer. Ingen bindningstid på våra abonnemang, och du kan alltid pausa vid behov.
-            </p>
+            <h3>{t('values.flexible')}</h3>
+            <p>{t('values.flexibleDesc')}</p>
           </div>
 
           <div className="value-item">
             <div className="icon-container">
               <Smile size={64} strokeWidth={1.5} />
             </div>
-            <h3>Enkelt</h3>
-            <p>
-              Med vår app har du full kontroll. Se bokningar, fakturor och kommunicera direkt med din städare eller kundservice.
-            </p>
+            <h3>{t('values.simple')}</h3>
+            <p>{t('values.simpleDesc')}</p>
           </div>
         </div>
 
         <div className="values-cta">
-          <button className="btn btn-secondary">Läs mer om oss</button>
+          <button className="btn btn-secondary">{t('values.cta')}</button>
         </div>
       </div>
 

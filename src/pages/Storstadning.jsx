@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Home, CheckCircle, Shield, GraduationCap, Award, ChevronDown, Sparkles, UtensilsCrossed, Bath, Plus, Info, Send, Loader2, User, Mail, Phone, MapPin, ArrowLeft, ArrowRight } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
+import { useLanguage } from '../context/LanguageContext';
 import heroImg1 from '../assets/Storstadning1.avif';
 import heroImg2 from '../assets/Storstadning2.avif';
 import heroImg3 from '../assets/Storstadning3.avif';
@@ -11,6 +12,7 @@ import heroImg3 from '../assets/Storstadning3.avif';
 const heroImages = [heroImg3]; // Slide 1: combined img1+img2, Slide 2: img3
 
 const Storstadning = () => {
+    const { t, language } = useLanguage();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
@@ -82,8 +84,8 @@ const Storstadning = () => {
     const priceInfo = getPriceForSize(formData.size);
 
     const sizeOptions = [
-        { value: '', label: 'Välj storlek' },
-        { value: '30', label: 'Upp till 30 m²' },
+        { value: '', label: t('common.selectSize') },
+        { value: '30', label: `${t('common.upTo')} 30 m²` },
         { value: '50', label: '31-50 m²' },
         { value: '70', label: '51-70 m²' },
         { value: '90', label: '71-90 m²' },
@@ -135,17 +137,16 @@ const Storstadning = () => {
                     <div className="container hero-content">
                         <Link to="/" className="home-link">
                             <Home size={18} />
-                            <span>Hem</span>
+                            <span>{t('common.home')}</span>
                         </Link>
-                        <h1>Storstädning</h1>
+                        <h1>{t('storstadning.title')}</h1>
                         <p className="hero-subtitle">
-                            Storstädning för ett fräscht och välstädat hem eller arbetsplats. Vi utför en grundlig
-                            rengöring av alla ytor för att ge ditt utrymme ny energi och ett långvarigt rent resultat.
+                            {t('storstadning.subtitle')}
                         </p>
                         <div className="trust-badges">
-                            <span className="badge"><Shield size={18} color="#333" /> Städgaranti</span>
-                            <span className="badge"><GraduationCap size={18} color="#333" /> Utbildad personal</span>
-                            <span className="badge"><Award size={18} color="#333" /> Ansvarsförsäkring</span>
+                            <span className="badge"><Shield size={18} color="#333" /> {t('common.cleaningGuarantee')}</span>
+                            <span className="badge"><GraduationCap size={18} color="#333" /> {t('common.trainedStaff')}</span>
+                            <span className="badge"><Award size={18} color="#333" /> {t('common.insurance')}</span>
                         </div>
                     </div>
                 </section>
@@ -154,60 +155,60 @@ const Storstadning = () => {
                 <section className="booking-section">
                     <div className="container">
                         <div className="booking-card">
-                            <h2>Boka din storstädning</h2>
-                            <p className="form-intro">Fyll i formuläret så kontaktar vi dig för att bekräfta bokningen.</p>
+                            <h2>{t('storstadning.bookTitle')}</h2>
+                            <p className="form-intro">{t('common.formIntro')}</p>
 
                             <form onSubmit={handleSubmit} className="booking-form">
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><User size={16} /> Förnamn *</label>
+                                        <label><User size={16} /> {t('common.firstName')} *</label>
                                         <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
                                     </div>
                                     <div className="form-group">
-                                        <label><User size={16} /> Efternamn *</label>
+                                        <label><User size={16} /> {t('common.lastName')} *</label>
                                         <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
                                     </div>
                                 </div>
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><Mail size={16} /> E-post *</label>
+                                        <label><Mail size={16} /> {t('common.email')} *</label>
                                         <input type="email" name="email" value={formData.email} onChange={handleChange} required />
                                     </div>
                                     <div className="form-group">
-                                        <label><Phone size={16} /> Telefon *</label>
+                                        <label><Phone size={16} /> {t('common.phone')} *</label>
                                         <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
                                     </div>
                                 </div>
 
                                 <div className="form-group">
-                                    <label><MapPin size={16} /> Adress *</label>
+                                    <label><MapPin size={16} /> {t('common.address')} *</label>
                                     <input type="text" name="address" value={formData.address} onChange={handleChange} required />
                                 </div>
 
                                 <div className="form-row three-col">
                                     <div className="form-group">
-                                        <label>Postnummer *</label>
+                                        <label>{t('common.postalCode')} *</label>
                                         <input type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
                                     </div>
                                     <div className="form-group">
-                                        <label>Ort *</label>
+                                        <label>{t('common.city')} *</label>
                                         <input type="text" name="city" value={formData.city} onChange={handleChange} required />
                                     </div>
                                     <div className="form-group">
-                                        <label>Bostadstyp</label>
+                                        <label>{t('common.propertyType')}</label>
                                         <select name="propertyType" value={formData.propertyType} onChange={handleChange}>
-                                            <option value="">Välj typ</option>
-                                            <option value="lagenhet">Lägenhet</option>
+                                            <option value="">{t('common.selectType')}</option>
+                                            <option value="lagenhet">{t('common.apartment')}</option>
                                             <option value="villa">Villa</option>
-                                            <option value="radhus">Radhus</option>
+                                            <option value="radhus">{t('common.townhouse')}</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label>Storlek (m²) *</label>
+                                        <label>{t('common.size')} *</label>
                                         <select name="size" value={formData.size} onChange={handleChange} required>
                                             {sizeOptions.map(opt => (
                                                 <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -215,7 +216,7 @@ const Storstadning = () => {
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <label>Önskat datum</label>
+                                        <label>{t('common.preferredDate')}</label>
                                         <input type="date" name="preferredDate" value={formData.preferredDate} onChange={handleChange} />
                                     </div>
                                 </div>
@@ -223,43 +224,43 @@ const Storstadning = () => {
                                 {priceInfo && (
                                     <div className="price-display">
                                         <div className="price-box">
-                                            <span className="price-label">Pris efter RUT-avdrag</span>
+                                            <span className="price-label">{t('common.priceAfterRut')}</span>
                                             <span className="price-value">{priceInfo.rutPrice.toLocaleString('sv-SE')} kr</span>
-                                            <span className="price-original">Ordinarie: {priceInfo.totalPrice.toLocaleString('sv-SE')} kr</span>
+                                            <span className="price-original">{t('common.regularPrice')}: {priceInfo.totalPrice.toLocaleString('sv-SE')} kr</span>
                                         </div>
                                     </div>
                                 )}
 
                                 <div className="form-group">
-                                    <label>Meddelande</label>
-                                    <textarea name="message" rows={3} value={formData.message} onChange={handleChange} placeholder="Berätta gärna mer om din bostad eller speciella önskemål..."></textarea>
+                                    <label>{t('common.message')}</label>
+                                    <textarea name="message" rows={3} value={formData.message} onChange={handleChange} placeholder={t('common.messagePlaceholder')}></textarea>
                                 </div>
 
                                 <div className="form-group checkbox-group">
                                     <label className="checkbox-label">
                                         <input type="checkbox" name="acceptTerms" checked={formData.acceptTerms} onChange={handleChange} required />
-                                        <span>Jag accepterar <a href="/villkor" className="terms-link">villkoren</a></span>
+                                        <span>{t('common.acceptTerms')} <a href="/villkor" className="terms-link">{t('common.terms')}</a></span>
                                     </label>
                                 </div>
 
                                 {submitStatus === 'success' && (
                                     <div className="status-message success">
                                         <CheckCircle size={20} />
-                                        Tack! Vi har mottagit din förfrågan och återkommer inom kort.
+                                        {t('common.successMessage')}
                                     </div>
                                 )}
 
                                 {submitStatus === 'error' && (
                                     <div className="status-message error">
-                                        Något gick fel. Vänligen försök igen eller kontakta oss direkt.
+                                        {t('common.errorMessage')}
                                     </div>
                                 )}
 
                                 <button type="submit" className="btn-cta-booking" disabled={isSubmitting}>
                                     {isSubmitting ? (
-                                        <><Loader2 size={18} className="spin" /> Skickar...</>
+                                        <><Loader2 size={18} className="spin" /> {t('common.sending')}</>
                                     ) : (
-                                        <><Send size={18} /> Boka storstädning</>
+                                        <><Send size={18} /> {t('storstadning.bookBtn')}</>
                                     )}
                                 </button>
                             </form>
@@ -270,25 +271,19 @@ const Storstadning = () => {
                 {/* Service Description */}
                 <section className="section service-description">
                     <div className="container">
-                        <h2 className="section-title">Vad ingår i Storstädning?</h2>
+                        <h2 className="section-title">{t('storstadning.whatIncluded')}</h2>
 
                         <div className="service-grid">
                             {/* Alla rum */}
                             <div className="service-card">
                                 <div className="card-header">
                                     <Sparkles size={28} />
-                                    <h3>Alla rum</h3>
+                                    <h3>{t('storstadning.allRooms')}</h3>
                                 </div>
                                 <ul className="service-list">
-                                    <li><CheckCircle size={16} /> Dammsugning och moppning av golv</li>
-                                    <li><CheckCircle size={16} /> Dammsugning av mattor även under om möjlighet finns</li>
-                                    <li><CheckCircle size={16} /> Dammsugning av klädda och stoppade möbler</li>
-                                    <li><CheckCircle size={16} /> Dammtorkning av golvlister, karmar, eluttag, dörrar, fönsterbrädor</li>
-                                    <li><CheckCircle size={16} /> Putsning av speglar</li>
-                                    <li><CheckCircle size={16} /> Tömning av papperskorgar</li>
-                                    <li><CheckCircle size={16} /> Damning av möbler, lampor och tavlor</li>
-                                    <li><CheckCircle size={16} /> Dammtorkning av fria ytor på hyllor</li>
-                                    <li><CheckCircle size={16} /> Dammtorkning av väggar, element, fria ytor samt ovanpå skåp och garderober</li>
+                                    {(t('storstadning.allRoomsList') || []).map((item, i) => (
+                                        <li key={i}><CheckCircle size={16} /> {item}</li>
+                                    ))}
                                 </ul>
                             </div>
 
@@ -296,20 +291,12 @@ const Storstadning = () => {
                             <div className="service-card">
                                 <div className="card-header">
                                     <UtensilsCrossed size={28} />
-                                    <h3>Kök</h3>
+                                    <h3>{t('storstadning.kitchen')}</h3>
                                 </div>
                                 <ul className="service-list">
-                                    <li><CheckCircle size={16} /> Rengöring av mikrovågsugn in- och utvändigt</li>
-                                    <li><CheckCircle size={16} /> Rengöring av köksfläkt samt ventiler (ej inuti)</li>
-                                    <li><CheckCircle size={16} /> Rengöring av kyl och frys utvändigt</li>
-                                    <li><CheckCircle size={16} /> Rengöring av diskmaskin in- och utvändigt</li>
-                                    <li><CheckCircle size={16} /> Rengöring av skåp, hyllor och lådor utvändigt</li>
-                                    <li><CheckCircle size={16} /> Avtorkning av köksluckor in- och utvändigt</li>
-                                    <li><CheckCircle size={16} /> Rengöring av diskho och diskbänk</li>
-                                    <li><CheckCircle size={16} /> Rengöring av spis och kakel ovanför diskbänk</li>
-                                    <li><CheckCircle size={16} /> Tömning och avtorkning av sopkorg</li>
-                                    <li><CheckCircle size={16} /> Rengöring in- och utvändigt i skåp där sopbehållare finns</li>
-                                    <li><CheckCircle size={16} /> Torkning av vitvaror</li>
+                                    {(t('storstadning.kitchenList') || []).map((item, i) => (
+                                        <li key={i}><CheckCircle size={16} /> {item}</li>
+                                    ))}
                                 </ul>
                             </div>
 
@@ -317,18 +304,15 @@ const Storstadning = () => {
                             <div className="service-card">
                                 <div className="card-header">
                                     <Bath size={28} />
-                                    <h3>Toalett och badrum</h3>
+                                    <h3>{t('storstadning.bathroom')}</h3>
                                 </div>
                                 <ul className="service-list">
-                                    <li><CheckCircle size={16} /> Rengöring av kakelväggar och fogar i duschutrymme (om möjligt)</li>
-                                    <li><CheckCircle size={16} /> Rengöring av golv och synliga rör</li>
-                                    <li><CheckCircle size={16} /> Golvbrunnar och ventiler rengörs utvändigt</li>
-                                    <li><CheckCircle size={16} /> Rengöring av alla förvaringsutrymmen utvändigt</li>
-                                    <li><CheckCircle size={16} /> Rengöring av all sanitet, även under badkaret</li>
-                                    <li><CheckCircle size={16} /> Tvättmaskin, torktumlare och torkskåp rengörs utvändigt</li>
+                                    {(t('storstadning.bathroomList') || []).map((item, i) => (
+                                        <li key={i}><CheckCircle size={16} /> {item}</li>
+                                    ))}
                                 </ul>
                                 <p className="card-note">
-                                    * Fronten av badkar/jacuzzi nedmonteras och återställes av kund
+                                    {t('storstadning.bathroomNote')}
                                 </p>
                             </div>
 
@@ -336,14 +320,12 @@ const Storstadning = () => {
                             <div className="service-card addon-card">
                                 <div className="card-header">
                                     <Plus size={28} />
-                                    <h3>Tilläggstjänster till storstädning</h3>
+                                    <h3>{t('storstadning.addons')}</h3>
                                 </div>
                                 <ul className="service-list addon-list">
-                                    <li><CheckCircle size={16} /> Fönsterputs</li>
-                                    <li><CheckCircle size={16} /> Rengöring av ugn invändig</li>
-                                    <li><CheckCircle size={16} /> Rengöring av kylskåp invändig</li>
-                                    <li><CheckCircle size={16} /> Rengöring av köksskåp och lådor invändig</li>
-                                    <li><CheckCircle size={16} /> Bi area som balkong, vind, förråd och garage</li>
+                                    {(t('storstadning.addonsList') || []).map((item, i) => (
+                                        <li key={i}><CheckCircle size={16} /> {item}</li>
+                                    ))}
                                 </ul>
                             </div>
                         </div>
@@ -353,16 +335,14 @@ const Storstadning = () => {
                             <div className="info-card">
                                 <div className="info-header">
                                     <Info size={24} />
-                                    <h3>Inför storstädning</h3>
+                                    <h3>{t('storstadning.infoTitle')}</h3>
                                 </div>
                                 <div className="info-content">
                                     <p>
-                                        Vi rekommenderar att lösa föremål såsom leksaker, kläder, disk m.m. plockas undan
-                                        för att uppnå bästa möjliga städresultat.
+                                        {t('storstadning.infoText')}
                                     </p>
                                     <p className="info-note">
-                                        <strong>Observera:</strong> Målade ytor såsom väggar och tak endast dammtorkas med
-                                        torr trasa för att undvika att färgen skadas eller släpper.
+                                        <strong>{language === 'sv' ? 'Observera' : language === 'en' ? 'Note' : 'Nota'}:</strong> {t('storstadning.infoNote')}
                                     </p>
                                 </div>
                             </div>

@@ -4,10 +4,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Home, CheckCircle, Shield, GraduationCap, Award, Briefcase, Building2, User, Mail, Phone, MapPin, Send, FileText, Clock, Loader2, ArrowLeft, ArrowRight } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
+import { useLanguage } from '../context/LanguageContext';
 import heroImg1 from '../assets/Kontorstaddning1.png';
 import heroImg2 from '../assets/Kontorstaddning2.png';
 
 const Kontorsstadning = () => {
+    const { t } = useLanguage();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
     const [formData, setFormData] = useState({
@@ -131,17 +133,16 @@ const Kontorsstadning = () => {
                     <div className="container hero-content">
                         <Link to="/" className="home-link">
                             <Home size={18} />
-                            <span>Hem</span>
+                            <span>{t('common.home')}</span>
                         </Link>
-                        <h1>Kontorsstädning</h1>
+                        <h1>{t('kontorsstadning.title')}</h1>
                         <p className="hero-subtitle">
-                            Professionell kontorsstädning som skapar en ren och trivsam arbetsmiljö.
-                            Vi hjälper ert företag att hålla kontoret fräscht varje dag.
+                            {t('kontorsstadning.subtitle')}
                         </p>
                         <div className="trust-badges">
-                            <span className="badge"><Shield size={18} color="#333" /> Städgaranti</span>
-                            <span className="badge"><GraduationCap size={18} color="#333" /> Utbildad personal</span>
-                            <span className="badge"><Award size={18} color="#333" /> Ansvarsförsäkring</span>
+                            <span className="badge"><Shield size={18} color="#333" /> {t('common.cleaningGuarantee')}</span>
+                            <span className="badge"><GraduationCap size={18} color="#333" /> {t('common.trainedStaff')}</span>
+                            <span className="badge"><Award size={18} color="#333" /> {t('common.insurance')}</span>
                         </div>
                     </div>
                 </section>
@@ -187,13 +188,13 @@ const Kontorsstadning = () => {
                 <section className="form-section">
                     <div className="container">
                         <div className="form-card">
-                            <h2>Begär offert för kontorsstädning</h2>
-                            <p className="form-intro">Fyll i formuläret så kontaktar vi dig med en skräddarsydd offert.</p>
+                            <h2>{t('kontorsstadning.bookTitle')}</h2>
+                            <p className="form-intro">{t('common.formIntro')}</p>
 
                             <form onSubmit={handleSubmit} className="booking-form">
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label><Building2 size={16} /> Företagsnamn *</label>
+                                        <label><Building2 size={16} /> {t('kontorsstadning.companyName')} *</label>
                                         <input
                                             type="text"
                                             name="companyName"
@@ -203,7 +204,7 @@ const Kontorsstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><FileText size={16} /> Organisationsnummer *</label>
+                                        <label><FileText size={16} /> {t('kontorsstadning.orgNumber')} *</label>
                                         <input
                                             type="text"
                                             name="orgNumber"
@@ -227,7 +228,7 @@ const Kontorsstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label><Phone size={16} /> Telefon *</label>
+                                        <label><Phone size={16} /> {t('common.phone')} *</label>
                                         <input
                                             type="tel"
                                             name="phone"
@@ -239,7 +240,7 @@ const Kontorsstadning = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label><Mail size={16} /> E-post *</label>
+                                    <label><Mail size={16} /> {t('common.email')} *</label>
                                     <input
                                         type="email"
                                         name="email"
@@ -250,7 +251,7 @@ const Kontorsstadning = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label><MapPin size={16} /> Kontorsadress *</label>
+                                    <label><MapPin size={16} /> {t('common.address')} *</label>
                                     <input
                                         type="text"
                                         name="address"
@@ -262,7 +263,7 @@ const Kontorsstadning = () => {
 
                                 <div className="form-row three-col">
                                     <div className="form-group">
-                                        <label>Postnummer *</label>
+                                        <label>{t('common.postalCode')} *</label>
                                         <input
                                             type="text"
                                             name="postalCode"
@@ -272,7 +273,7 @@ const Kontorsstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Ort *</label>
+                                        <label>{t('common.city')} *</label>
                                         <input
                                             type="text"
                                             name="city"
@@ -282,13 +283,13 @@ const Kontorsstadning = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Antal anställda</label>
+                                        <label>{t('kontorsstadning.employees')}</label>
                                         <select
                                             name="employees"
                                             value={formData.employees}
                                             onChange={handleChange}
                                         >
-                                            <option value="">Välj</option>
+                                            <option value="">{t('common.selectType')}</option>
                                             <option value="1-10">1-10</option>
                                             <option value="11-25">11-25</option>
                                             <option value="26-50">26-50</option>
@@ -300,14 +301,14 @@ const Kontorsstadning = () => {
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label>Kontorsstorlek (m²)</label>
+                                        <label>{t('kontorsstadning.officeSize')}</label>
                                         <select
                                             name="officeSize"
                                             value={formData.officeSize}
                                             onChange={handleChange}
                                         >
-                                            <option value="">Välj storlek</option>
-                                            <option value="50">Upp till 50 m²</option>
+                                            <option value="">{t('common.selectSize')}</option>
+                                            <option value="50">{t('common.upTo')} 50 m²</option>
                                             <option value="100">51-100 m²</option>
                                             <option value="200">101-200 m²</option>
                                             <option value="500">201-500 m²</option>
@@ -316,18 +317,18 @@ const Kontorsstadning = () => {
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <label><Clock size={16} /> Önskad frekvens</label>
+                                        <label><Clock size={16} /> {t('kontorsstadning.frequency')}</label>
                                         <select
                                             name="frequency"
                                             value={formData.frequency}
                                             onChange={handleChange}
                                         >
-                                            <option value="">Välj frekvens</option>
-                                            <option value="daily">Dagligen</option>
-                                            <option value="weekly">1 gång/vecka</option>
-                                            <option value="biweekly">2 gånger/vecka</option>
-                                            <option value="monthly">1 gång/månad</option>
-                                            <option value="other">Annat</option>
+                                            <option value="">{t('common.selectType')}</option>
+                                            <option value="daily">{t('kontorsstadning.daily')}</option>
+                                            <option value="weekly">{t('kontorsstadning.weekly')}</option>
+                                            <option value="biweekly">{t('kontorsstadning.biweekly')}</option>
+                                            <option value="monthly">{t('kontorsstadning.monthly')}</option>
+                                            <option value="other">{t('common.other')}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -348,13 +349,13 @@ const Kontorsstadning = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label>Meddelande</label>
+                                    <label>{t('common.message')}</label>
                                     <textarea
                                         name="message"
                                         rows={4}
                                         value={formData.message}
                                         onChange={handleChange}
-                                        placeholder="Berätta gärna mer om era behov och önskemål..."
+                                        placeholder={t('common.messagePlaceholder')}
                                     ></textarea>
                                 </div>
 
@@ -367,18 +368,18 @@ const Kontorsstadning = () => {
                                             onChange={handleChange}
                                             required
                                         />
-                                        <span>Jag accepterar <a href="/villkor">villkoren</a></span>
+                                        <span>{t('common.acceptTerms')} <a href="/villkor">{t('common.terms')}</a></span>
                                     </label>
                                 </div>
 
                                 {submitStatus === 'success' && (
                                     <div className="status-message success">
-                                        Tack! Din offertförfrågan har skickats. Vi återkommer inom kort.
+                                        {t('common.successMessage')}
                                     </div>
                                 )}
                                 {submitStatus === 'error' && (
                                     <div className="status-message error">
-                                        Ett fel uppstod. Försök igen eller kontakta oss direkt.
+                                        {t('common.errorMessage')}
                                     </div>
                                 )}
 
@@ -386,12 +387,12 @@ const Kontorsstadning = () => {
                                     {isSubmitting ? (
                                         <>
                                             <Loader2 size={18} className="spin" />
-                                            Skickar...
+                                            {t('common.sending')}
                                         </>
                                     ) : (
                                         <>
                                             <Send size={18} />
-                                            Skicka offertförfrågan
+                                            {t('kontorsstadning.bookBtn')}
                                         </>
                                     )}
                                 </button>
