@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
-import { Home, CheckCircle, Shield, GraduationCap, Award, Sparkles, UtensilsCrossed, Bath, Plus, Info, XCircle, AlertTriangle, Mail, Send, Loader2, User, Phone, MapPin, Truck, Calendar, Clock, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Home, CheckCircle, Shield, GraduationCap, Award, Sparkles, UtensilsCrossed, Bath, Plus, Info, XCircle, AlertTriangle, Mail, Send, Loader2, User, Phone, MapPin, Calendar, Clock, ArrowLeft, ArrowRight } from 'lucide-react';
 import { sendEmail } from '../utils/sendEmail';
 import heroImg1 from '../assets/Flyttstadningimage_1.jpg';
 import heroImg2 from '../assets/Flyttstadningimage_2.jpg';
@@ -110,7 +110,7 @@ const Flyttstadning = () => {
 
     const additionalServices = t('flyttstadning.additionalServices');
 
-    const services = t('flyttstadning.servicesList');
+
 
     return (
         <div className="app flyttstadning-page">
@@ -156,28 +156,6 @@ const Flyttstadning = () => {
                             <span className="badge"><Shield size={18} color="#333" /> {t('common.cleaningGuarantee')}</span>
                             <span className="badge"><GraduationCap size={18} color="#333" /> {t('common.trainedStaff')}</span>
                             <span className="badge"><Award size={18} color="#333" /> {t('common.insurance')}</span>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Services Included */}
-                <section className="services-included">
-                    <div className="container">
-                        <div className="services-card">
-                            <div className="services-icon">
-                                <Truck size={32} />
-                            </div>
-                            <div className="services-content">
-                                <h2>{t('flyttstadning.whatIncluded')}</h2>
-                                <div className="services-grid">
-                                    {Array.isArray(services) && services.map((service, index) => (
-                                        <div key={index} className="service-item">
-                                            <CheckCircle size={18} />
-                                            <span>{service}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </section>
